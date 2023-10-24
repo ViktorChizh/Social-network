@@ -1,4 +1,4 @@
-#2-react-way-of-samurai
+# 2-react-way-of-samurai
     
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "12.0.0",
