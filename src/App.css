@@ -36,11 +36,22 @@
 .navBar {
     grid-area: n;
     background-color: #3c1c81;
+    padding: 20px;
 }
 
 .navBar a {
+    display: block;
     color: white;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 2;
+    text-decoration: none;
 }
+
+.navBar a:last-of-type {
+    margin-top: 50px;
+}
+
 .mainContent {
     grid-area: m;
     background-color: #85c0d7;
