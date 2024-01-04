@@ -1,2 +1,0 @@
-.app-wrapper{grid-gap:10px;background-color:#b1e7c0;display:grid;grid-template-areas:"h h" "n m";grid-template-columns:150px 1fr;grid-template-rows:100px 1fr;margin:0 auto;width:90%}.header{background-color:#1f27af;grid-area:h}.header img{height:100px;width:150px}.mainImg{height:300px;object-fit:cover;width:100%}.avatarImg{height:150px;object-fit:cover;width:150px}.navBar{background-color:#3c1c81;grid-area:n}.navBar a{color:#fff}.mainContent{background-color:#85c0d7;grid-area:m}
-/*# sourceMappingURL=main.d08eddcf.css.map*/
