@@ -1,11 +1,12 @@
 import React from 'react'
 import s from './Header.module.css'
+import logo from '../../assets/logo.jpg'
 
 export const Header = () => {
     return (
         <header className={s.header}>
             <img
-                src="https://st5.depositphotos.com/11338062/64410/v/450/depositphotos_644105748-stock-illustration-mask-samurai-warrior-sport-logo.jpg"
+                src={logo}
                 alt='logo'/>
         </header>
     )
