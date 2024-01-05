@@ -11,50 +11,10 @@
     'n m';
 }
 
-.header {
-    grid-area: h;
-    background-color: #1f27af;
-}
 
-.header img {
-    width: 150px;
-    height: 100px;
-}
 
-.mainImg {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-}
 
-.avatarImg {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-}
 
-.navBar {
-    grid-area: n;
-    background-color: #3c1c81;
-    padding: 20px;
-}
 
-.navBar a {
-    display: block;
-    color: white;
-    font-size: 24px;
-    font-weight: 700;
-    font-style: italic;
-    line-height: 2;
-    text-decoration: none;
-}
 
-.navBar a:last-of-type {
-    margin-top: 50px;
-}
-
-.mainContent {
-    grid-area: m;
-    background-color: #85c0d7;
-}
 

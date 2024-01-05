@@ -1,0 +1,19 @@
+.navBar {
+    grid-area: n;
+    background-color: #3c1c81;
+    padding: 20px;
+}
+
+.navBar a {
+    display: block;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 2;
+    text-decoration: none;
+}
+
+.navBar a:last-of-type {
+    margin-top: 50px;
+}

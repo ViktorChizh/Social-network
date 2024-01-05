@@ -1,0 +1,16 @@
+.mainImg {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.avatarImg {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.mainContent {
+    grid-area: m;
+    background-color: #85c0d7;
+}
