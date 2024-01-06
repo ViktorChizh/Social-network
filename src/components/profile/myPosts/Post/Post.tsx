@@ -4,7 +4,7 @@ import ava from '../../../../assets/postAvatar.jpg'
 
 type PostType = {
     message: string
-    count: number
+    likesCount: number
 }
 
 export const Post: FC<PostType> = (props) => {
@@ -13,7 +13,7 @@ export const Post: FC<PostType> = (props) => {
             <img src={ava} alt="avatarka"/>
             {props.message}
             <div>
-                <span> like {props.count}</span>
+                <span> like {props.likesCount}</span>
             </div>
         </div>
     )

@@ -11,6 +11,10 @@
     'n m';
 }
 
+.mainContent {
+    grid-area: m;
+    background-color: #85c0d7;
+}
 
 
 

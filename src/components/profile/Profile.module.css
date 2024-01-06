@@ -1,6 +1,6 @@
 .mainImg {
     width: 100%;
-    height: 200px;
+    height: 300px;
     object-fit: cover;
 }
 
@@ -10,7 +10,4 @@
     object-fit: cover;
 }
 
-.mainContent {
-    grid-area: m;
-    background-color: #85c0d7;
-}
+
