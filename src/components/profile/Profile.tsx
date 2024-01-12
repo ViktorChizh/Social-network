@@ -6,14 +6,11 @@ import astronaft from '../../assets/avatar.webp'
 
 export const Profile = () => {
     return (
-        <>
-            <div>
-                <img className={s.mainImg} src={cosmos} alt="cosmos"/>
-            </div>
+        <div className={s.main}>
             <div>
                 <img className={s.avatarImg} src={astronaft} alt="avatar"/> <span>user's description</span>
             </div>
             <MyPosts/>
-        </>
+        </div>
     )
 }

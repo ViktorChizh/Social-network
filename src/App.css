@@ -1,4 +1,5 @@
 .app-wrapper {
+
     width: 90%;
     margin: 0 auto;
     background-color: #b1e7c0;
@@ -14,10 +15,8 @@
 .mainContent {
     grid-area: m;
     background-color: #85c0d7;
+
 }
-
-
-
 
 
 

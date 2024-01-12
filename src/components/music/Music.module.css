@@ -1,0 +1,25 @@
+.main {
+    box-sizing: border-box;
+    padding: 10px;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    gap: 10px;
+    background: center no-repeat url("../../assets/bgM.jpg");
+    background-size: cover;
+
+}
+.block {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    font-size: larger;
+    font-weight: bolder;
+    text-decoration: none;
+    color: white;
+}
+.block img{
+    width: 75px;
+    height: 75px;
+}
