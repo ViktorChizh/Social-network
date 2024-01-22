@@ -2,7 +2,8 @@ import React, {FC} from 'react'
 import s from './Post.module.css'
 
 
-type PostType = {
+export type PostType = {
+    id: number
     message: string
     likesCount: number
     avatar: string
@@ -10,7 +11,7 @@ type PostType = {
 
 export const Post: FC<PostType> = (props) => {
     return (
-        <div className={s.post}>
+        <div className={s.post} key={props.id}>
             <img src={props.avatar} alt="avatarka"/>
             {props.message}
             <div>

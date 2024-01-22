@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {FC} from 'react'
 import s from './MyPosts.module.css'
-import {Post} from './Post/Post';
-import ava from '../../../assets/postAvatar.jpg'
+import {Post, PostType} from './post/Post';
 
-export const MyPosts = () => {
+type MyPostsPropsType = {
+    posts: PostType[]
+}
+
+export const MyPosts: FC<MyPostsPropsType> = ({posts}) => {
     return (
         <div className={s.myPosts}>
             My posts
@@ -11,8 +14,7 @@ export const MyPosts = () => {
                 <textarea></textarea>
                 <button>ADD POST</button>
             </div>
-            <Post message='Hi, how are you?' likesCount={5} avatar={ava}/>
-            <Post message="It's my first post" likesCount={7} avatar={ava}/>
+            {posts.map(i => <Post id={i.id} message={i.message} likesCount={i.likesCount} avatar={i.avatar}/>)}
         </div>
     )
 }

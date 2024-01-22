@@ -12,12 +12,12 @@
 
 .dialogs span {
     margin-left: 10px;
-    color: white;
+    color: #b1e5e7;
     font-size: 50px;
 }
 
 .dialogsItem {
-    color: white;
+    color: #b1e5e7;
 }
 
 .dialogsItem .dialog:first-of-type {
@@ -27,7 +27,7 @@
 .dialog {
     padding: 10px;
     a {
-        color: white;
+        color: #b1e5e7;
         text-decoration: none;
     }
 }
@@ -43,6 +43,6 @@ a.active {
 
 .message {
     padding: 10px;
-    color: white;
+    color: #b1e5e7;
 }
 

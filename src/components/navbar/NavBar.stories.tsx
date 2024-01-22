@@ -3,6 +3,7 @@ import { NavBar } from './NavBar';
 import { BrowserRouter } from 'react-router-dom';
 
 export default {
+    title: 'NavBar',
     component: NavBar
 }
 

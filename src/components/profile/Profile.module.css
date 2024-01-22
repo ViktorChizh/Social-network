@@ -1,18 +1,26 @@
 .main {
     box-sizing: border-box;
     padding: 10px;
-    color: white;
-    font-size: 50px;
-    font-weight: bolder;
     height: 100%;
-    background: center no-repeat url("../../assets/main.jpg");
+    background: center no-repeat url("../../assets/bgP.jpg");
     background-size: cover;
 }
 
+.description{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    color: #b1e5e7;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
 .avatarImg {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #b1e5e7;
 }
 
 

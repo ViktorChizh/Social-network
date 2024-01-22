@@ -1,15 +1,19 @@
-import React from 'react'
+import React, {FC} from 'react'
 import s from './Profile.module.css'
 import {MyPosts} from './myPosts/MyPosts'
 import astronaft from '../../assets/avatar.webp'
+import {ProfileInfo} from './profileInfo/ProfileInfo';
+import {PostType} from './myPosts/post/Post';
 
-export const Profile = () => {
+export type ProfilePropsType = {
+    profile: PostType[]
+}
+
+export const Profile: FC<ProfilePropsType> = ({profile}) => {
     return (
         <div className={s.main}>
-            <div>
-                <img className={s.avatarImg} src={astronaft} alt="avatar"/> <span>user's description</span>
-            </div>
-            <MyPosts/>
+            <ProfileInfo srcImage={astronaft} altImage="avatar" description="user's description"/>
+            <MyPosts posts={profile}/>
         </div>
     )
 }
