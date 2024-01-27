@@ -12,11 +12,11 @@ export type PostType = {
 export const Post: FC<PostType> = (props) => {
     return (
         <div className={s.post} key={props.id}>
-            <img src={props.avatar} alt="avatarka"/>
-            {props.message}
-            <div>
+            <div className={s.ava}>
+                <img src={props.avatar} alt="avatarka"/>
                 <span> like {props.likesCount}</span>
             </div>
+            {props.message}
         </div>
     )
 }

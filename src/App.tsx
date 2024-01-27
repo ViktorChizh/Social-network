@@ -8,30 +8,45 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from './components/news/News';
 import {Music} from './components/music/Music';
 import {Settings} from './components/settings/Settings';
-import {StateType} from './redux/State';
+import {StateType, updateNewDialogText, updateNewMessageText, updateNewPostText} from './redux/State';
 
 type AppPropsType = {
     state: StateType
+    addPost: () => void
+    updateNewPostText: (p: string) => void
+    addMessage: () => void
+    updateNewMessageText: (m: string) => void
+    addDialog: () => void
+    updateNewDialogText: (d: string) => void
 }
 
-function App ({state}: AppPropsType) {
-    return (
-        <BrowserRouter>
-            <div className="app-wrapper">
-                <Header/>
-                <NavBar/>
-                <div className="mainContent">
-                    <Route path='/profile' render={()=><Profile profile={state.profile}/>}/>
-                    <Route path='/dialogs' component={()=><Dialogs dialog={state.dialog}/>}/>
-                    <Route path='/news' component={News}/>
-                    <Route path='/music' component={Music}/>
-                    <Route path='/settings' component={Settings}/>
-                    <Route path='/2-samurai-way-main' component={()=><Profile profile={state.profile}/>}/>
-                    <Route exact path='/' component={()=><Profile profile={state.profile}/>}/>
-                </div>
+function App({state, addPost, addMessage, addDialog}: AppPropsType) {
+    return <BrowserRouter>
+        <div className="app-wrapper">
+            <Header/>
+            <NavBar/>
+            <div className="mainContent">
+                <Route path="/profile" render={() => <Profile profile={state.profile}
+                                                              addPost={addPost}
+                                                              updateNewPostText={updateNewPostText}/>}/>
+                <Route path="/dialogs"
+                       render={() => <Dialogs dialog={state.dialog}
+                                              addMessage={addMessage}
+                                              updateNewMessageText={updateNewMessageText}
+                                              addDialog={addDialog}
+                                              updateNewDialogText={updateNewDialogText}/>}/>
+                <Route path="/news" render={News}/>
+                <Route path="/music" render={Music}/>
+                <Route path="/settings" render={Settings}/>
+                <Route path="/2-samurai-way-main" component={() => <Profile profile={state.profile}
+                                                                            addPost={addPost}
+                                                                            updateNewPostText={updateNewPostText}/>}/>
+                <Route exact path="/" component={() => <Profile profile={state.profile}
+                                                                addPost={addPost}
+                                                                updateNewPostText={updateNewPostText}/>}/>
             </div>
-        </BrowserRouter>
-    )
+        </div>
+    </BrowserRouter>
 }
 
 export default App
