@@ -9,7 +9,7 @@ export type DialogItemProps = {
 export const DialogItem: FC<DialogItemProps> = ({id, name}) => {
     return (
         <div className={s.dialog}>
-            <NavLink to={'/dialogs/' + id} activeClassName={s.active} key={id}>{name}</NavLink>
+            <NavLink to={'/dialogs/' + id} activeClassName={s.active}>{name}</NavLink>
         </div>
     )
 }

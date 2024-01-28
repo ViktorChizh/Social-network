@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FC} from 'react'
 import './App.css'
 import {Header} from './components/header/Header';
 import {NavBar} from './components/navbar/NavBar';
@@ -8,42 +8,35 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from './components/news/News';
 import {Music} from './components/music/Music';
 import {Settings} from './components/settings/Settings';
-import {StateType, updateNewDialogText, updateNewMessageText, updateNewPostText} from './redux/State';
+import {StoreType} from './redux/Store';
 
 type AppPropsType = {
-    state: StateType
-    addPost: () => void
-    updateNewPostText: (p: string) => void
-    addMessage: () => void
-    updateNewMessageText: (m: string) => void
-    addDialog: () => void
-    updateNewDialogText: (d: string) => void
+    store: StoreType
 }
-
-function App({state, addPost, addMessage, addDialog}: AppPropsType) {
+export const App: FC<AppPropsType> = ({store}) => {
     return <BrowserRouter>
         <div className="app-wrapper">
             <Header/>
             <NavBar/>
             <div className="mainContent">
-                <Route path="/profile" render={() => <Profile profile={state.profile}
-                                                              addPost={addPost}
-                                                              updateNewPostText={updateNewPostText}/>}/>
+                <Route path="/profile" render={() => <Profile profile={store.getState().profile}
+                                                              addPost={store.addPost.bind(store)}
+                                                              updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
                 <Route path="/dialogs"
-                       render={() => <Dialogs dialog={state.dialog}
-                                              addMessage={addMessage}
-                                              updateNewMessageText={updateNewMessageText}
-                                              addDialog={addDialog}
-                                              updateNewDialogText={updateNewDialogText}/>}/>
-                <Route path="/news" component={()=><News/>}/>
+                       render={() => <Dialogs dialog={store.getState().dialog}
+                                              addMessage={store.addMessage.bind(store)}
+                                              updateNewMessageText={store.updateNewMessageText.bind(store)}
+                                              addDialog={store.addDialog.bind(store)}
+                                              updateNewDialogText={store.updateNewDialogText.bind(store)}/>}/>
+                <Route path="/news" component={() => <News/>}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>
-                <Route path="/2-samurai-way-main" render={() => <Profile profile={state.profile}
-                                                                            addPost={addPost}
-                                                                            updateNewPostText={updateNewPostText}/>}/>
-                <Route exact path="/" render={() => <Profile profile={state.profile}
-                                                                addPost={addPost}
-                                                                updateNewPostText={updateNewPostText}/>}/>
+                <Route path="/2-samurai-way-main" render={() => <Profile profile={store.getState().profile}
+                                                                         addPost={store.addPost.bind(store)}
+                                                                         updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
+                <Route exact path="/" render={() => <Profile profile={store.getState().profile}
+                                                             addPost={store.addPost.bind(store)}
+                                                             updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
             </div>
         </div>
     </BrowserRouter>

@@ -1,6 +1,7 @@
-import React, {FC, LegacyRef} from 'react'
+import React, {FC} from 'react'
 import s from './MyPosts.module.css'
 import {Post, PostType} from './post/Post';
+import {TextareaWithButton} from '../../textarea-button/TextareaWithButton';
 
 type MyPostsPropsType = {
     posts: PostType[]
@@ -9,25 +10,18 @@ type MyPostsPropsType = {
     updateNewPostText: (p: string) => void
 }
 
-export const MyPosts: FC<MyPostsPropsType> = ({posts, newPostText,addPost,updateNewPostText}) => {
-
-    const newPostElement: LegacyRef<HTMLTextAreaElement> | undefined = React.createRef()
-    const updateNewPostTextHandler = () => {
-        newPostElement.current && updateNewPostText(newPostElement.current.value)
-    }
+export const MyPosts: FC<MyPostsPropsType> = ({posts, newPostText, addPost, updateNewPostText}) => {
 
     return (
         <div className={s.myPosts}>
             <span>My posts</span>
 
-            {posts.map(i => <Post id={i.id}
+            {posts.map(i => <Post key={i.id}
+                                  id={i.id}
                                   message={i.message}
                                   likesCount={i.likesCount}
                                   avatar={i.avatar}/>)}
-            <div className={s.newPost}>
-                <textarea ref={newPostElement} value={newPostText} onChange={updateNewPostTextHandler}/>
-                <button onClick={addPost}>ADD POST</button>
-            </div>
+            <TextareaWithButton newText={newPostText} addText={addPost} updateNewText={updateNewPostText}/>
         </div>
     )
 }

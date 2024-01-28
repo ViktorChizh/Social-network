@@ -1,0 +1,17 @@
+.textareaButton {
+    display: flex;
+    gap: 5px;
+    button {
+        align-self: stretch;
+        border: 2px solid #b1e5e7;
+        border-radius: 5px;
+        font-weight: bold;
+        background-color: #383fcc;
+        color: #b1e5e7;
+    }
+    textarea {
+        border: 2px solid #b1e5e7;
+        border-radius: 5px;
+        resize: none;
+    }
+}

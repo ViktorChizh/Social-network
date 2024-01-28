@@ -11,10 +11,3 @@
     display: flex;
     align-items: stretch;
 }
-
-button {
-    margin-left: 10px;
-    font-weight: bold;
-    background-color: #383fcc;
-    color: #b1e5e7
-}

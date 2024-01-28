@@ -4,7 +4,6 @@ import {MyPosts} from './myPosts/MyPosts'
 import astronaft from '../../assets/avatar.webp'
 import {ProfileInfo} from './profileInfo/ProfileInfo';
 import {PostType} from './myPosts/post/Post';
-import {updateNewPostText} from '../../redux/State';
 
 export type ProfilePropsType = {
     profile: {
@@ -15,7 +14,7 @@ export type ProfilePropsType = {
     updateNewPostText: (p: string)=>void
 }
 
-export const Profile: FC<ProfilePropsType> = ({profile, addPost}) => {
+export const Profile: FC<ProfilePropsType> = ({profile, addPost, updateNewPostText}) => {
     return (
         <div className={s.main}>
             <ProfileInfo srcImage={astronaft} altImage="avatar" description="user's description"/>

@@ -1,6 +1,6 @@
 import {MyPosts} from './MyPosts';
 import React from 'react';
-import {addPost, state, updateNewPostText} from '../../../redux/State';
+import {store} from '../../../redux/Store';
 
 
 export default {
@@ -9,8 +9,8 @@ export default {
 }
 
 export const MyPostDemo = () => {
-    return <MyPosts posts={state.profile.posts}
-                    addPost={addPost}
-                    updateNewPostText={updateNewPostText}
-                    newPostText={state.profile.newPostText} />
+    return <MyPosts posts={store._state.profile.posts}
+                    addPost={store.addPost.bind(store)}
+                    updateNewPostText={store.updateNewPostText.bind(store)}
+                    newPostText={store._state.profile.newPostText} />
 }

@@ -1,7 +1,6 @@
 import {Profile} from './Profile';
 import React from 'react';
-import ava from '../../assets/postAvatar.jpg';
-import {addPost, state, updateNewPostText} from '../../redux/State';
+import {store} from '../../redux/Store';
 
 
 export default {
@@ -10,5 +9,7 @@ export default {
 }
 
 export const ProfileDemo = () => {
-    return <Profile profile={state.profile} addPost={addPost} updateNewPostText={updateNewPostText}/>
+    return <Profile profile={store._state.profile}
+                    addPost={store.addPost.bind(store)}
+                    updateNewPostText={store.updateNewPostText.bind(store)}/>
 }
