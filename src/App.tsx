@@ -35,13 +35,13 @@ function App({state, addPost, addMessage, addDialog}: AppPropsType) {
                                               updateNewMessageText={updateNewMessageText}
                                               addDialog={addDialog}
                                               updateNewDialogText={updateNewDialogText}/>}/>
-                <Route path="/news" render={News}/>
-                <Route path="/music" render={Music}/>
-                <Route path="/settings" render={Settings}/>
-                <Route path="/2-samurai-way-main" component={() => <Profile profile={state.profile}
+                <Route path="/news" component={()=><News/>}/>
+                <Route path="/music" component={Music}/>
+                <Route path="/settings" component={Settings}/>
+                <Route path="/2-samurai-way-main" render={() => <Profile profile={state.profile}
                                                                             addPost={addPost}
                                                                             updateNewPostText={updateNewPostText}/>}/>
-                <Route exact path="/" component={() => <Profile profile={state.profile}
+                <Route exact path="/" render={() => <Profile profile={state.profile}
                                                                 addPost={addPost}
                                                                 updateNewPostText={updateNewPostText}/>}/>
             </div>

@@ -2,8 +2,6 @@ import {PostType} from '../components/profile/myPosts/post/Post';
 import {DialogItemProps} from '../components/dialogs/dialogItem/DialogItem';
 import {MessageType} from '../components/dialogs/message/Message';
 import ava from '../assets/postAvatar.jpg';
-import {rerender} from '../index-rerender';
-
 
 export type StateType = {
     profile: {
@@ -82,7 +80,7 @@ export const addMessage = () => {
         message: state.dialog.newMessageText
     }
     state.dialog.messages.push(newMessage)
-    state.profile.newPostText= ''
+    state.dialog.newMessageText= ''
     rerender(state, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
 }
 
@@ -97,7 +95,7 @@ export const addDialog = () => {
         name: state.dialog.newDialogText
     }
     state.dialog.dialogs.push(newDialog)
-    state.dialog.newMessageText = ''
+    state.dialog.newDialogText = ''
     rerender(state, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
 }
 
@@ -105,3 +103,25 @@ export const updateNewMessageText = (dialog: string) => {
     state.dialog.newMessageText = dialog
     rerender(state, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
 }
+
+let rerender = (state: StateType,
+                addDialog: () => void,
+                addMessage: () => void,
+                addPost: () => void,
+                updateNewPostText: (s: string) => void,
+                updateNewMessageText: (s: string) => void,
+                updateNewDialogText: (s: string) => void) => {
+    // stub function: временная пустая функция заглушка - нужна, чтобы всё скомпилилось при запуске
+}
+
+export const subscriber = (observer: (state: StateType,
+                                      addDialog: () => void,
+                                      addMessage: () => void,
+                                      addPost: () => void,
+                                      updateNewPostText: (s: string) => void,
+                                      updateNewMessageText: (s: string) => void,
+                                      updateNewDialogText: (s: string) => void)=>void) => {
+    rerender = observer
+} // подменяем заглушку на настоящую ререндер, которую передаем как колбек из индекс.тсх, а не импортируем
+// теперь в стэйт ничего не импортируется из индекс.тсх и нет циклической ошибки.
+// ОТКАЗЫВАЕМСЯ от промежуточного файла index-rerender.tsx
