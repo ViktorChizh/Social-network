@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 import s from './MyPosts.module.css'
 import {Post, PostType} from './post/Post';
-import {TextareaWithButton} from '../../textarea-button/TextareaWithButton';
+import {TextareaWithButton} from '../../textareaWithButton/TextareaWithButton';
 
 type MyPostsPropsType = {
     posts: PostType[]

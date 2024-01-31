@@ -2,7 +2,7 @@ import React, {FC, LegacyRef} from 'react'
 import s from './Dialogs.module.css'
 import {DialogItem, DialogItemProps} from './dialogItem/DialogItem';
 import {Message, MessageType} from './message/Message';
-import {TextareaWithButton} from '../textarea-button/TextareaWithButton';
+import {TextareaWithButton} from '../textareaWithButton/TextareaWithButton';
 
 export type DialogPropsType = {
     dialog: {
