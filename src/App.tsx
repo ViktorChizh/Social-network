@@ -19,9 +19,10 @@ export const App: FC<AppPropsType> = ({store}) => {
             <Header/>
             <NavBar/>
             <div className="mainContent">
-                <Route path="/profile" render={() => <Profile profile={store.getState().profile}
-                                                              addPost={store.addPost.bind(store)}
-                                                              updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
+                <Route path="/profile"
+                       render={() => <Profile profile={store.getState().profile}
+                                              addPost={store.addPost.bind(store)}
+                                              updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
                 <Route path="/dialogs"
                        render={() => <Dialogs dialog={store.getState().dialog}
                                               addMessage={store.addMessage.bind(store)}
@@ -31,12 +32,18 @@ export const App: FC<AppPropsType> = ({store}) => {
                 <Route path="/news" component={() => <News/>}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>
-                <Route path="/2-samurai-way-main" render={() => <Profile profile={store.getState().profile}
-                                                                         addPost={store.addPost.bind(store)}
-                                                                         updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
-                <Route exact path="/" render={() => <Profile profile={store.getState().profile}
-                                                             addPost={store.addPost.bind(store)}
-                                                             updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
+                <Route path="/2-samurai-way-main"
+                       render={() => <Profile profile={store.getState().profile}
+                                              addPost={store.addPost.bind(store)}
+                                              updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
+                <Route exact path="/"
+                       render={() => <Profile profile={store.getState().profile}
+                                              addPost={store.addPost.bind(store)}
+                                              updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
+                {/*<Route  path="*" render={() => <div style={{*/}
+                {/*    fontSize: '75px', fontWeight: '900', fontStyle: 'italic',*/}
+                {/*    color: 'red', maxWidth: '250px', margin: '12vh auto 0'*/}
+                {/*}}>Error404</div>}/>*/}
             </div>
         </div>
     </BrowserRouter>
