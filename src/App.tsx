@@ -21,25 +21,19 @@ export const App: FC<AppPropsType> = ({store}) => {
             <div className="mainContent">
                 <Route path="/profile"
                        render={() => <Profile profile={store.getState().profile}
-                                              addPost={store.addPost.bind(store)}
-                                              updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
+                                              dispatch={store.dispatch.bind(store)}/>}/>
                 <Route path="/dialogs"
                        render={() => <Dialogs dialog={store.getState().dialog}
-                                              addMessage={store.addMessage.bind(store)}
-                                              updateNewMessageText={store.updateNewMessageText.bind(store)}
-                                              addDialog={store.addDialog.bind(store)}
-                                              updateNewDialogText={store.updateNewDialogText.bind(store)}/>}/>
+                                              dispatch={store.dispatch.bind(store)}/>}/>
                 <Route path="/news" component={() => <News/>}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>
                 <Route path="/2-samurai-way-main"
                        render={() => <Profile profile={store.getState().profile}
-                                              addPost={store.addPost.bind(store)}
-                                              updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
+                                              dispatch={store.dispatch.bind(store)}/>}/>
                 <Route exact path="/"
                        render={() => <Profile profile={store.getState().profile}
-                                              addPost={store.addPost.bind(store)}
-                                              updateNewPostText={store.updateNewPostText.bind(store)}/>}/>
+                                              dispatch={store.dispatch.bind(store)}/>}/>
                 {/*<Route  path="*" render={() => <div style={{*/}
                 {/*    fontSize: '75px', fontWeight: '900', fontStyle: 'italic',*/}
                 {/*    color: 'red', maxWidth: '250px', margin: '12vh auto 0'*/}

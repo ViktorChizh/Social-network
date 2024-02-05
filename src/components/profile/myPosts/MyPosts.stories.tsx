@@ -10,7 +10,6 @@ export default {
 
 export const MyPostDemo = () => {
     return <MyPosts posts={store._state.profile.posts}
-                    addPost={store.addPost.bind(store)}
-                    updateNewPostText={store.updateNewPostText.bind(store)}
+                    dispatch={store.dispatch.bind(store)}
                     newPostText={store._state.profile.newPostText} />
 }

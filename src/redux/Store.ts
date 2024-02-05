@@ -2,6 +2,8 @@ import {PostType} from '../components/profile/myPosts/post/Post';
 import {DialogItemProps} from '../components/dialogs/dialogItem/DialogItem';
 import {MessageType} from '../components/dialogs/message/Message';
 import ava from '../assets/postAvatar.jpg';
+import {ProfifeReducer, ProfifeReducerActionType} from './Profile-reducer';
+import {DialogReducer, DialogReducerActionType} from './Dialog-reducer';
 
 export type StateType = {
     profile: {
@@ -16,17 +18,16 @@ export type StateType = {
     }
 }
 
+export type StoreActionType = ProfifeReducerActionType | DialogReducerActionType
+
 export type StoreType = {
     _state: StateType
-    getState: ()=> StateType
     _callSubscriber: (s: StoreType)=>void
+
+    getState: ()=> StateType
     subscriber: (observer: (s: StoreType)=>void)=>void
-    addPost: ()=>void
-    updateNewPostText: (p: string) => void
-    addMessage: ()=>void
-    updateNewDialogText: (d: string) => void
-    addDialog: ()=>void
-    updateNewMessageText: (m: string) => void
+
+    dispatch: (action: StoreActionType) => void
 }
 
 export const store: StoreType = {
@@ -41,7 +42,7 @@ export const store: StoreType = {
                 },
                 {
                     id: 2,
-                    message: 'It\'s my first post',
+                    message: "It's my first post",
                     likesCount: 7,
                     avatar: ava
                 }
@@ -67,52 +68,19 @@ export const store: StoreType = {
             newMessageText: ''
         }
     },
-    getState(){return this._state},
     _callSubscriber(this) {
         // stub function: временная пустая функция заглушка - нужна, чтобы всё скомпилилось при запуске
     },
+
+    getState(){return this._state},
     subscriber(observer) {
         this._callSubscriber = observer
     },
-    addPost() {
-        let newPost: PostType = {
-            id: this._state.profile.posts[this._state.profile.posts.length - 1].id + 1,
-            message: this._state.profile.newPostText,
-            likesCount: 0,
-            avatar: ava
-        }
-        this._state.profile.posts.push(newPost)
-        this._state.profile.newPostText = ''
-        this._callSubscriber(this)
-    },
-    updateNewPostText(post: string) {
-        this._state.profile.newPostText = post
-        this._callSubscriber(this)
-    },
-    addMessage() {
-        let newMessage: MessageType = {
-            id: this._state.dialog.messages[this._state.dialog.messages.length - 1].id + 1,
-            message: this._state.dialog.newMessageText
-        }
-        this._state.dialog.messages.push(newMessage)
-        this._state.dialog.newMessageText = ''
-        this._callSubscriber(this)
-    },
-    updateNewDialogText(message: string) {
-        this._state.dialog.newDialogText = message
-        this._callSubscriber(this)
-    },
-    addDialog() {
-        let newDialog: DialogItemProps = {
-            id: this._state.dialog.dialogs[this._state.dialog.dialogs.length - 1].id + 1,
-            name: this._state.dialog.newDialogText
-        }
-        this._state.dialog.dialogs.push(newDialog)
-        this._state.dialog.newDialogText = ''
-        this._callSubscriber(this)
-    },
-    updateNewMessageText(dialog: string) {
-        this._state.dialog.newMessageText = dialog
+
+    dispatch (action: StoreActionType) {
+        this._state.profile = ProfifeReducer(this._state.profile, action)
+        this._state.dialog = DialogReducer(this._state.dialog, action)
+
         this._callSubscriber(this)
     }
 }

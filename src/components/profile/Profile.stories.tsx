@@ -10,6 +10,5 @@ export default {
 
 export const ProfileDemo = () => {
     return <Profile profile={store._state.profile}
-                    addPost={store.addPost.bind(store)}
-                    updateNewPostText={store.updateNewPostText.bind(store)}/>
+                    dispatch={store.dispatch.bind(store)}/>
 }

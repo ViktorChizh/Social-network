@@ -13,10 +13,7 @@ export const DialogsDemo = () => {
         // оборачиваю иначе не работают навлинки
         <BrowserRouter>
             <Dialogs dialog={store._state.dialog}
-                     addMessage={store.addMessage.bind(store)}
-                     updateNewMessageText={store.updateNewMessageText.bind(store)}
-                     addDialog={store.addDialog.bind(store)}
-                     updateNewDialogText={store.updateNewDialogText.bind(store)}/>
+                     dispatch={store.dispatch.bind(store)}/>
         </BrowserRouter>
     )
 } 
