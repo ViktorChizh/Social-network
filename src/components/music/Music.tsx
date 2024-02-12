@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import s from './Music.module.css'
 
 type MusicBaseType = {
@@ -36,7 +36,10 @@ const musicBase: MusicBaseType[] = [
 ]
 
 export const Music = () => {
-
+    useEffect(() => {
+        setTimeout( ()=>{
+            document.title = 'SocialNetwork - music'
+        }, 500)})
     return (
         <div className={s.main}>
             {musicBase.map(e => {

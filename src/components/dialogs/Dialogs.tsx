@@ -1,10 +1,10 @@
-import React, {FC} from 'react'
+import React, {FC, useEffect} from 'react'
 import s from './Dialogs.module.css'
 import {DialogItem, DialogItemProps} from './dialogItem/DialogItem';
 import {Message, MessageType} from './message/Message';
 import {TextareaWithButton} from '../textareaWithButton/TextareaWithButton';
-import {StoreActionType} from '../../redux/Store';
-import {addDialogAC, addMessageAC, updateNewDialogTextAC, updateNewMessageTextAC} from '../../redux/Dialog-reducer';
+import {StoreActionType} from '../../redux/_Store';
+import {addDialogAC, addMessageAC, updateNewDialogTextAC, updateNewMessageTextAC} from '../../redux/DialogReducer';
 
 export type DialogPropsType = {
     dialog: {
@@ -17,7 +17,10 @@ export type DialogPropsType = {
 }
 
 export const Dialogs: FC<DialogPropsType> = ({dialog, dispatch}) => {
-
+    useEffect(() => {
+        setTimeout( ()=>{
+            document.title = 'SocialNetwork - dialogs'
+        }, 500)})
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>

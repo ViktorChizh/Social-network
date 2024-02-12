@@ -16,7 +16,7 @@ export type StateType = {
     }
 }
 
-export const state: StateType = {
+export const _State: StateType = {
     profile: {
         posts: [
             {
@@ -59,49 +59,49 @@ export const state: StateType = {
 
 export const addPost = () => {
     let newPost: PostType = {
-        id: state.profile.posts[state.profile.posts.length - 1].id + 1,
-        message: state.profile.newPostText,
+        id: _State.profile.posts[_State.profile.posts.length - 1].id + 1,
+        message: _State.profile.newPostText,
         likesCount: 0,
         avatar: ava
     }
-    state.profile.posts.push(newPost)
-    state.profile.newPostText= ''
-    rerender(state, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
+    _State.profile.posts.push(newPost)
+    _State.profile.newPostText= ''
+    rerender(_State, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
 }
 
 export const updateNewPostText = (post: string) => {
-    state.profile.newPostText= post
-    rerender(state, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
+    _State.profile.newPostText= post
+    rerender(_State, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
 }
 
 export const addMessage = () => {
     let newMessage: MessageType = {
-        id: state.dialog.messages[state.dialog.messages.length - 1].id + 1,
-        message: state.dialog.newMessageText
+        id: _State.dialog.messages[_State.dialog.messages.length - 1].id + 1,
+        message: _State.dialog.newMessageText
     }
-    state.dialog.messages.push(newMessage)
-    state.dialog.newMessageText= ''
-    rerender(state, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
+    _State.dialog.messages.push(newMessage)
+    _State.dialog.newMessageText= ''
+    rerender(_State, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
 }
 
 export const updateNewDialogText = (message: string) => {
-    state.dialog.newDialogText= message
-    rerender(state, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
+    _State.dialog.newDialogText= message
+    rerender(_State, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
 }
 
 export const addDialog = () => {
     let newDialog: DialogItemProps = {
-        id: state.dialog.dialogs[state.dialog.dialogs.length - 1].id + 1,
-        name: state.dialog.newDialogText
+        id: _State.dialog.dialogs[_State.dialog.dialogs.length - 1].id + 1,
+        name: _State.dialog.newDialogText
     }
-    state.dialog.dialogs.push(newDialog)
-    state.dialog.newDialogText = ''
-    rerender(state, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
+    _State.dialog.dialogs.push(newDialog)
+    _State.dialog.newDialogText = ''
+    rerender(_State, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
 }
 
 export const updateNewMessageText = (dialog: string) => {
-    state.dialog.newMessageText = dialog
-    rerender(state, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
+    _State.dialog.newMessageText = dialog
+    rerender(_State, addDialog, addMessage, addPost, updateNewPostText, updateNewMessageText, updateNewDialogText)
 }
 
 let rerender = (state: StateType,

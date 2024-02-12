@@ -1,10 +1,10 @@
-import React, {FC} from 'react'
+import React, {FC, useEffect} from 'react'
 import s from './Profile.module.css'
 import {MyPosts} from './myPosts/MyPosts'
 import astronaft from '../../assets/avatar.webp'
 import {ProfileInfo} from './profileInfo/ProfileInfo';
 import {PostType} from './myPosts/post/Post';
-import {StoreActionType} from '../../redux/Store';
+import {StoreActionType} from '../../redux/_Store';
 
 export type ProfilePropsType = {
     profile: {
@@ -15,6 +15,10 @@ export type ProfilePropsType = {
 }
 
 export const Profile: FC<ProfilePropsType> = ({profile, dispatch}) => {
+    useEffect(() => {
+        setTimeout( ()=>{
+            document.title = 'SocialNetwork - profile'
+            }, 500)})
     return (
         <div className={s.main}>
             <ProfileInfo srcImage={astronaft} altImage="avatar" description="user's description"/>

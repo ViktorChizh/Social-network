@@ -1,6 +1,6 @@
 import {Profile} from './Profile';
 import React from 'react';
-import {store} from '../../redux/Store';
+import {store} from '../../redux/Store-Redux';
 
 
 export default {
@@ -9,6 +9,6 @@ export default {
 }
 
 export const ProfileDemo = () => {
-    return <Profile profile={store._state.profile}
+    return <Profile profile={store.getState().profile}
                     dispatch={store.dispatch.bind(store)}/>
 }

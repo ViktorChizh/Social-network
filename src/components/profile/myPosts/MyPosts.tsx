@@ -2,7 +2,7 @@ import React, {FC} from 'react'
 import s from './MyPosts.module.css'
 import {Post, PostType} from './post/Post';
 import {TextareaWithButton} from '../../textareaWithButton/TextareaWithButton';
-import {StoreActionType} from '../../../redux/Store';
+import {StoreActionType} from '../../../redux/_Store';
 import {addPostAC, updateNewPostTextAC} from '../../../redux/Profile-reducer';
 
 type MyPostsPropsType = {

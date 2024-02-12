@@ -1,13 +1,31 @@
 import {PostType} from '../components/profile/myPosts/post/Post';
 import ava from '../assets/postAvatar.jpg';
-import {StoreActionType} from './Store';
+import {StoreActionType} from './_Store';
 
 export type ProfileType = {
     posts: PostType[]
     newPostText: string
 }
 
-export const ProfifeReducer = (state: ProfileType, action: StoreActionType): ProfileType => {
+let initialState =  {
+        posts: [
+            {
+                id: 1,
+                message: 'Hi, how are you?',
+                likesCount: 5,
+                avatar: ava
+            },
+            {
+                id: 2,
+                message: "It's my first post",
+                likesCount: 7,
+                avatar: ava
+            }
+        ],
+        newPostText: ''
+    }
+
+export const profifeReducer = (state: ProfileType = initialState, action: StoreActionType): ProfileType => {
     switch (action.type) {
         case 'ADD-POST': {
             let newPost: PostType = {

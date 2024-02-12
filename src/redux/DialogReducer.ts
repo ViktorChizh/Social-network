@@ -1,6 +1,6 @@
 import {DialogItemProps} from '../components/dialogs/dialogItem/DialogItem';
 import {MessageType} from '../components/dialogs/message/Message';
-import {StoreActionType} from './Store';
+import {StoreActionType} from './_Store';
 
 export type DialogType = {
     dialogs: DialogItemProps[]
@@ -9,7 +9,26 @@ export type DialogType = {
     newMessageText: string
 }
 
-export const DialogReducer = (state: DialogType, action: StoreActionType): DialogType => {
+let initialState = {
+    dialogs: [
+        {id: 1, name: 'User1'},
+        {id: 2, name: 'User2'},
+        {id: 3, name: 'User3'},
+        {id: 4, name: 'User4'},
+        {id: 5, name: 'User5'},
+        {id: 6, name: 'User6'},
+        {id: 7, name: 'User7'}
+    ],
+    newDialogText: '',
+    messages: [
+        {id: 1, message: 'Hi'},
+        {id: 2, message: 'Yow'},
+        {id: 3, message: 'Hello'},
+    ],
+    newMessageText: ''
+}
+
+export const dialogReducer = (state: DialogType = initialState, action: StoreActionType): DialogType => {
     switch (action.type) {
         case 'ADD-DIALOG': {
             let newDialog: DialogItemProps = {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import s from './News.module.css'
 
 type NewsBaseType = {
@@ -30,7 +30,10 @@ const newsBase: NewsBaseType[] = [
 ]
 
 export const News = () => {
-
+    useEffect(() => {
+        setTimeout( ()=>{
+            document.title = 'SocialNetwork - news'
+        }, 500)})
     return (
         <div className={s.main}>
             {newsBase.map(e => {

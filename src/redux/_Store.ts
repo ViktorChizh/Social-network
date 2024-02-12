@@ -2,8 +2,8 @@ import {PostType} from '../components/profile/myPosts/post/Post';
 import {DialogItemProps} from '../components/dialogs/dialogItem/DialogItem';
 import {MessageType} from '../components/dialogs/message/Message';
 import ava from '../assets/postAvatar.jpg';
-import {ProfifeReducer, ProfifeReducerActionType} from './Profile-reducer';
-import {DialogReducer, DialogReducerActionType} from './Dialog-reducer';
+import {profifeReducer, ProfifeReducerActionType} from './Profile-reducer';
+import {dialogReducer, DialogReducerActionType} from './DialogReducer';
 
 export type StateType = {
     profile: {
@@ -25,12 +25,12 @@ export type StoreType = {
     _callSubscriber: (s: StoreType)=>void
 
     getState: ()=> StateType
-    subscriber: (observer: (s: StoreType)=>void)=>void
+    subscribe: (observer: (s: StoreType)=>void)=>void
 
     dispatch: (action: StoreActionType) => void
 }
 
-export const store: StoreType = {
+export const _Store: StoreType = {
     _state: {
         profile: {
             posts: [
@@ -73,17 +73,17 @@ export const store: StoreType = {
     },
 
     getState(){return this._state},
-    subscriber(observer) {
+    subscribe(observer) {
         this._callSubscriber = observer
     },
 
     dispatch (action: StoreActionType) {
-        this._state.profile = ProfifeReducer(this._state.profile, action)
-        this._state.dialog = DialogReducer(this._state.dialog, action)
+        this._state.profile = profifeReducer(this._state.profile, action)
+        this._state.dialog = dialogReducer(this._state.dialog, action)
 
         this._callSubscriber(this)
     }
 }
 
 //@ts-ignore
-window.store=store
+window.store=_Store
