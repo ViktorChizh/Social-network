@@ -22,7 +22,8 @@ export const MyPosts: FC<MyPostsPropsType> = ({posts, newPostText, dispatch}) =>
                                   message={i.message}
                                   likesCount={i.likesCount}
                                   avatar={i.avatar}/>)}
-            <TextareaWithButton newText={newPostText}
+            <TextareaWithButton buttonName="ADD POST"
+                                newText={newPostText}
                                 dispatch={dispatch}
                                 addText={addPostAC}
                                 updateNewText={updateNewPostTextAC}/>

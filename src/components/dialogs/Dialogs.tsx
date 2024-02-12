@@ -16,19 +16,25 @@ export type DialogPropsType = {
     dispatch: (action: StoreActionType) => void
 }
 
-export const Dialogs: FC<DialogPropsType> = ({dialog, dispatch }) => {
+export const Dialogs: FC<DialogPropsType> = ({dialog, dispatch}) => {
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
                 <span>Dialogs</span>
                 {dialog.dialogs.map(i => <DialogItem key={i.id} id={i.id} name={i.name}/>)}
-                <TextareaWithButton dispatch={dispatch} newText={dialog.newDialogText} addText={addDialogAC}
+                <TextareaWithButton buttonName="ADD DIALOG"
+                                    dispatch={dispatch}
+                                    newText={dialog.newDialogText}
+                                    addText={addDialogAC}
                                     updateNewText={updateNewDialogTextAC}/>
             </div>
             <div className={s.messages}>
                 {dialog.messages.map(i => <Message key={i.id} id={i.id} message={i.message}/>)}
-                <TextareaWithButton dispatch={dispatch} newText={dialog.newMessageText} addText={addMessageAC}
+                <TextareaWithButton buttonName="ADD MESSAGE"
+                                    dispatch={dispatch}
+                                    newText={dialog.newMessageText}
+                                    addText={addMessageAC}
                                     updateNewText={updateNewMessageTextAC}/>
             </div>
         </div>

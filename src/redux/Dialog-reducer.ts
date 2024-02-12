@@ -42,17 +42,12 @@ export const DialogReducer = (state: DialogType, action: StoreActionType): Dialo
     }
 }
 
-export type DialogReducerActionType =
-    addDialogACType
-    | updateNewDialogTextACType
-    | addMessageACType
-    | updateNewMessageTextACType
-
-type addDialogACType = ReturnType<typeof addDialogAC>
+export type DialogReducerActionType = ReturnType<typeof addDialogAC>
+    | ReturnType<typeof updateNewDialogTextAC>
+    | ReturnType<typeof addMessageAC>
+    | ReturnType<typeof updateNewMessageTextAC>
 
 export const addDialogAC = () => ({type: 'ADD-DIALOG' as const})
-
-type updateNewDialogTextACType = ReturnType<typeof updateNewDialogTextAC>
 
 export const updateNewDialogTextAC = (dialog: string) => ({
     type: 'UPDATE-NEW-DIALOG-TEXT' as const,
@@ -61,11 +56,7 @@ export const updateNewDialogTextAC = (dialog: string) => ({
     }
 })
 
-type addMessageACType = ReturnType<typeof addMessageAC>
-
 export const addMessageAC = () => ({type: 'ADD-MESSAGE' as const})
-
-type updateNewMessageTextACType = ReturnType<typeof updateNewMessageTextAC>
 
 export const updateNewMessageTextAC = (message: string) => ({
     type: 'UPDATE-NEW-MESSAGE-TEXT' as const,
