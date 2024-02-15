@@ -14,17 +14,15 @@ export type ProfilePropsType = {
     dispatch: (action: StoreActionType) => void
 }
 
-export const Profile: FC<ProfilePropsType> = ({profile, dispatch}) => {
+export const Profile: FC<ProfilePropsType> = (props) => {
     useEffect(() => {
-        setTimeout( ()=>{
+        setTimeout( () => {
             document.title = 'SocialNetwork - profile'
             }, 500)})
     return (
         <div className={s.main}>
             <ProfileInfo srcImage={astronaft} altImage="avatar" description="user's description"/>
-            <MyPosts posts={profile.posts}
-                     newPostText={profile.newPostText}
-                     dispatch={dispatch}/>
+            <MyPosts profile={props.profile} dispatch={props.dispatch} />
         </div>
     )
 }

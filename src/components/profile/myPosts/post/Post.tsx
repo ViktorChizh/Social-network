@@ -9,14 +9,18 @@ export type PostType = {
     avatar: string
 }
 
-export const Post: FC<PostType> = (props) => {
+type PostPropsType = {
+    post: PostType
+}
+
+export const Post: FC<PostPropsType> = (props) => {
     return (
         <div className={s.post}>
             <div className={s.ava}>
-                <img src={props.avatar} alt="avatarka"/>
-                <span> like {props.likesCount}</span>
+                <img src={props.post.avatar} alt="avatarka"/>
+                <span> like {props.post.likesCount}</span>
             </div>
-            {props.message}
+            {props.post.message}
         </div>
     )
 }

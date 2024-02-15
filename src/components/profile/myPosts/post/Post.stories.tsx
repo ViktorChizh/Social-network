@@ -8,5 +8,5 @@ export default {
 }
 
 export const PostDemo = () => {
-    return <Post id={1} message={'test message'} likesCount={0} avatar={ava}/>
+    return <Post post={{ id: 1, message: 'test message', likesCount: 0, avatar: ava }} />
 }

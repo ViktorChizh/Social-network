@@ -6,24 +6,20 @@ import {StoreActionType} from '../../../redux/_Store';
 import {addPostAC, updateNewPostTextAC} from '../../../redux/Profile-reducer';
 
 type MyPostsPropsType = {
-    posts: PostType[]
-    newPostText: string
+    profile: {
+        posts: PostType[]
+        newPostText: string
+    }
     dispatch: (action: StoreActionType) => void
 }
 
-export const MyPosts: FC<MyPostsPropsType> = ({posts, newPostText, dispatch}) => {
-
+export const MyPosts: FC<MyPostsPropsType> = ({profile, dispatch}) => {
     return (
         <div className={s.myPosts}>
             <span>My posts</span>
-
-            {posts.map(i => <Post key={i.id}
-                                  id={i.id}
-                                  message={i.message}
-                                  likesCount={i.likesCount}
-                                  avatar={i.avatar}/>)}
+            {profile.posts.map(i => <Post key={i.id} post={i}/>)}
             <TextareaWithButton buttonName="ADD POST"
-                                newText={newPostText}
+                                newText={profile.newPostText}
                                 dispatch={dispatch}
                                 addText={addPostAC}
                                 updateNewText={updateNewPostTextAC}/>

@@ -1,6 +1,6 @@
 import {MyPosts} from './MyPosts';
 import React from 'react';
-import {_Store} from '../../../redux/_Store';
+import {store} from '../../../redux/Store-Redux';
 
 
 export default {
@@ -9,7 +9,6 @@ export default {
 }
 
 export const MyPostDemo = () => {
-    return <MyPosts posts={_Store._state.profile.posts}
-                    dispatch={_Store.dispatch.bind(_Store)}
-                    newPostText={_Store._state.profile.newPostText} />
+    return <MyPosts profile={store.getState().profile}
+                    dispatch={store.dispatch.bind(store)} />
 }
