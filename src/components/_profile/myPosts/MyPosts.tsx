@@ -1,19 +1,12 @@
 import React, {FC} from 'react'
 import s from './MyPosts.module.css'
-import {Post, PostType} from './post/Post';
+import {Post} from './post/Post';
 import {TextareaWithButton} from '../../textareaWithButton/TextareaWithButton';
-import {StoreActionType} from '../../../redux/_Store';
 import {addPostAC, updateNewPostTextAC} from '../../../redux/Profile-reducer';
+import {MyPostsContainerType} from './MyPostsContainer';
 
-type MyPostsPropsType = {
-    profile: {
-        posts: PostType[]
-        newPostText: string
-    }
-    dispatch: (action: StoreActionType) => void
-}
 
-export const MyPosts: FC<MyPostsPropsType> = ({profile, dispatch}) => {
+export const MyPosts: FC<MyPostsContainerType> = ({profile, dispatch}) => {
     return (
         <div className={s.myPosts}>
             <span>My posts</span>
@@ -21,8 +14,8 @@ export const MyPosts: FC<MyPostsPropsType> = ({profile, dispatch}) => {
             <TextareaWithButton buttonName="ADD POST"
                                 newText={profile.newPostText}
                                 dispatch={dispatch}
-                                addText={addPostAC}
-                                updateNewText={updateNewPostTextAC}/>
+                                addAC={addPostAC}
+                                newTextAC={updateNewPostTextAC}/>
         </div>
     )
 }

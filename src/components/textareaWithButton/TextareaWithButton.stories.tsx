@@ -1,7 +1,7 @@
 import React from 'react'
 import {TextareaWithButton} from './TextareaWithButton';
-import {_Store} from '../../redux/_Store'
 import {addMessageAC, updateNewMessageTextAC} from '../../redux/DialogReducer';
+import {store} from '../../redux/Store-Redux';
 
 export default {
     title: 'TextareaWithButton',
@@ -9,9 +9,10 @@ export default {
 }
 
 export const TextareaWithButtonDemo = () => {
+
     return <TextareaWithButton buttonName="ADD"
-                               newText={_Store.getState().profile.newPostText}
-                               dispatch={_Store.dispatch}
-                               addText={addMessageAC}
-                               updateNewText={updateNewMessageTextAC}/>
+                               newText={store.getState().profile.newPostText}
+                               dispatch={store.dispatch}
+                               addAC={addMessageAC}
+                               newTextAC={updateNewMessageTextAC}/>
 } 

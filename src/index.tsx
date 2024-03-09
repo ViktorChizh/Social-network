@@ -2,18 +2,18 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {BrowserRouter} from 'react-router-dom'
 import App from './App'
-import {StateReduxType, store} from './redux/Store-Redux'
+import {store} from './redux/Store-Redux'
+import {Provider} from 'react-redux';
 
-export const rerender = (state: StateReduxType) => {
+export const rerender = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state} dispatch={store.dispatch.bind(store)} />
+            <Provider store={store}>
+                <App />
+            </Provider>
         </BrowserRouter>, document.getElementById('root')
     )
 }
+rerender()
 
-rerender(store.getState())
-
-store.subscribe(() => {
-    rerender(store.getState())
-}) // сразу колбеком закидываем ререндер в _Store и подменяем метод заглушку
+store.subscribe(() => rerender()) // сразу колбеком закидываем ререндер в _Store и подменяем метод заглушку

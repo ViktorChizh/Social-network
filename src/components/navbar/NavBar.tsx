@@ -7,8 +7,8 @@ export const NavBar = () => {
         <nav className={s.navBar}>
             <NavLink to="/profile" activeClassName={s.active}>Profile</NavLink>
             <NavLink to="/dialogs" activeClassName={s.active}>Dialogs</NavLink>
-            <NavLink to="/news" activeClassName={s.active}>News</NavLink>
             <NavLink to="/music" activeClassName={s.active}>Music</NavLink>
+            <NavLink to="/news" activeClassName={s.active}>News</NavLink>
             <NavLink to="/settings" activeClassName={s.active}>Settings</NavLink>
         </nav>
     )

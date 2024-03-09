@@ -1,6 +1,7 @@
 import {DialogItemProps} from '../components/dialogs/dialogItem/DialogItem';
 import {MessageType} from '../components/dialogs/message/Message';
-import {StoreActionType} from './_Store';
+import {StoreActionType} from './Store-Redux';
+
 
 export type DialogType = {
     dialogs: DialogItemProps[]
@@ -35,26 +36,20 @@ export const dialogReducer = (state: DialogType = initialState, action: StoreAct
                 id: state.dialogs[state.dialogs.length - 1].id + 1,
                 name: state.newDialogText
             }
-            state.dialogs.push(newDialog)
-            state.newDialogText = ''
-            return state
+            return {...state, dialogs:[...state.dialogs, newDialog], newDialogText:''}
         }
         case 'UPDATE-NEW-DIALOG-TEXT': {
-            state.newDialogText = action.payload.dialog
-            return state
+            return {...state, newDialogText: action.payload.dialog}
         }
         case 'ADD-MESSAGE': {
             let newMessage: MessageType = {
                 id: state.messages[state.messages.length - 1].id + 1,
                 message: state.newMessageText
             }
-            state.messages.push(newMessage)
-            state.newMessageText = ''
-            return state
+            return {...state, messages:[...state.messages, newMessage], newMessageText:''}
         }
         case 'UPDATE-NEW-MESSAGE-TEXT': {
-            state.newMessageText = action.payload.message
-            return state
+            return {...state, newMessageText: action.payload.message}
         }
         default:
             return state

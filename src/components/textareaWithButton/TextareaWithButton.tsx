@@ -1,26 +1,27 @@
 import React, {FC, LegacyRef} from 'react'
 import s from './TextareaWithButton.module.css';
-import {StoreActionType} from '../../redux/_Store';
+import {StoreActionType} from '../../redux/Store-Redux';
 
-type TextareaButtonPropsType = {
+export type TextareaButtonPropsType = {
     buttonName: string
     newText: string
-    dispatch: (action: StoreActionType) => void
-    addText: () => StoreActionType
-    updateNewText: (refElement: string )=> StoreActionType
+    dispatch: (AC:StoreActionType) => void
+    addAC: ()=>StoreActionType
+    newTextAC: (refElement: string)=>StoreActionType
+
 }
 
 export const TextareaWithButton: FC<TextareaButtonPropsType> = (props) => {
 
-    const {buttonName, newText, dispatch, addText, updateNewText} = props
+    const {buttonName, newText, addAC, newTextAC, dispatch} = props
 
     const refElement: LegacyRef<HTMLTextAreaElement> | undefined = React.createRef()
 
     const updateNewTextHandler = () => {
-        refElement.current && dispatch(updateNewText(refElement.current.value))
+        refElement.current && dispatch(newTextAC(refElement.current.value))
     }
     const addTextHandler = () => {
-        dispatch(addText())
+        dispatch(addAC())
     }
     return (
         <div className={s.textareaButton }>

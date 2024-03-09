@@ -1,7 +1,7 @@
-import {PostType} from '../components/profile/myPosts/post/Post';
 import {DialogItemProps} from '../components/dialogs/dialogItem/DialogItem';
 import {MessageType} from '../components/dialogs/message/Message';
 import ava from '../assets/postAvatar.jpg';
+import {PostType} from '../components/_profile/myPosts/post/Post';
 
 export type StateType = {
     profile: {

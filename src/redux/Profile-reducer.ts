@@ -1,6 +1,6 @@
-import {PostType} from '../components/profile/myPosts/post/Post';
+import {PostType} from '../components/_profile/myPosts/post/Post';
 import ava from '../assets/postAvatar.jpg';
-import {StoreActionType} from './_Store';
+import {StoreActionType} from './Store-Redux';
 
 export type ProfileType = {
     posts: PostType[]
@@ -34,13 +34,13 @@ export const profifeReducer = (state: ProfileType = initialState, action: StoreA
                 likesCount: 0,
                 avatar: ava
             }
-            state.posts.push(newPost)
-            state.newPostText = ''
-            return state
+            // state.posts.push(newPost)
+            // state.newPostText = ''
+            return {...state, posts: [...state.posts, newPost], newPostText: ''}
         }
         case 'UPDATE-NEW-POST-TEXT': {
-            state.newPostText = action.payload.post
-            return state
+
+            return {...state, newPostText: action.payload.post}
         }
         default: return state
     }
