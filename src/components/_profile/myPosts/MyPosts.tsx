@@ -2,7 +2,7 @@ import React, {FC} from 'react'
 import s from './MyPosts.module.css'
 import {Post} from './post/Post';
 import {TextareaWithButton} from '../../textareaWithButton/TextareaWithButton';
-import {addPostAC, updateNewPostTextAC} from '../../../redux/Profile-reducer';
+import {addPostAC, updateNewPostTextAC} from '../../../redux/ProfileReducer';
 import {MyPostsContainerType} from './MyPostsContainer';
 
 

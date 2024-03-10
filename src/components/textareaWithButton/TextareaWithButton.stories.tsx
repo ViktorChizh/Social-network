@@ -1,7 +1,7 @@
 import React from 'react'
 import {TextareaWithButton} from './TextareaWithButton';
 import {addMessageAC, updateNewMessageTextAC} from '../../redux/DialogReducer';
-import {store} from '../../redux/Store-Redux';
+import {store} from '../../redux/_Store-Redux';
 
 export default {
     title: 'TextareaWithButton',

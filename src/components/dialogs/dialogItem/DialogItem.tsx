@@ -6,6 +6,7 @@ export type DialogItemProps = {
     id: number
     name: string
 }
+
 export const DialogItem: FC<DialogItemProps> = ({id, name}) => {
     return (
         <div className={s.dialog}>

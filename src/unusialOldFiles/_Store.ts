@@ -2,36 +2,13 @@
 import {DialogItemProps} from '../components/dialogs/dialogItem/DialogItem';
 import {MessageType} from '../components/dialogs/message/Message';
 import ava from '../assets/postAvatar.jpg';
-import {profifeReducer, ProfifeReducerActionType} from '../redux/Profile-reducer';
+import {profifeReducer, ProfifeReducerActionType} from '../redux/ProfileReducer';
 import {dialogReducer, DialogReducerActionType} from '../redux/DialogReducer';
 import { PostType } from '../components/_profile/myPosts/post/Post';
 
-export type StateType = {
-    profile: {
-        posts: PostType[]
-        newPostText: string
-    }
-    dialog: {
-        dialogs: DialogItemProps[]
-        newDialogText: string
-        messages: MessageType[]
-        newMessageText: string
-    }
-}
 
-export type StoreActionType = ProfifeReducerActionType | DialogReducerActionType
 
-export type StoreType = {
-    _state: StateType
-    _callSubscriber: (s: StoreType)=>void
-
-    getState: ()=> StateType
-    subscribe: (observer: (s: StoreType)=>void)=>void
-
-    dispatch: (action: StoreActionType) => void
-}
-
-export const _Store: StoreType = {
+const _Store: StoreType = {
     _state: {
         profile: {
             posts: [
@@ -79,8 +56,8 @@ export const _Store: StoreType = {
     },
 
     dispatch (action: StoreActionType) {
-        this._state.profile = profifeReducer(this._state.profile, action)
-        this._state.dialog = dialogReducer(this._state.dialog, action)
+        this._state.profile = profifeReducer(this._state.profile, action as ProfifeReducerActionType)
+        this._state.dialog = dialogReducer(this._state.dialog, action as DialogReducerActionType)
 
         this._callSubscriber(this)
     }
@@ -88,3 +65,28 @@ export const _Store: StoreType = {
 
 //@ts-ignore
 window.store=_Store
+
+//types
+export type StateType = {
+    profile: {
+        posts: PostType[]
+        newPostText: string
+    }
+    dialog: {
+        dialogs: DialogItemProps[]
+        newDialogText: string
+        messages: MessageType[]
+        newMessageText: string
+    }
+}
+export type StoreType = {
+    _state: StateType
+    _callSubscriber: (s: StoreType)=>void
+
+    getState: ()=> StateType
+    subscribe: (observer: (s: StoreType)=>void)=>void
+
+    dispatch: (action: StoreActionType) => void
+}
+export type StoreActionType = ProfifeReducerActionType | DialogReducerActionType
+

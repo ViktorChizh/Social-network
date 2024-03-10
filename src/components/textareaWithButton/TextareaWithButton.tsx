@@ -1,6 +1,6 @@
 import React, {FC, LegacyRef} from 'react'
 import s from './TextareaWithButton.module.css';
-import {StoreActionType} from '../../redux/Store-Redux';
+import {StoreActionType} from '../../redux/_Store-Redux';
 
 export type TextareaButtonPropsType = {
     buttonName: string

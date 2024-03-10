@@ -19,6 +19,7 @@
 }
 
 .navBar a:nth-of-type(3),
+.navBar a:nth-of-type(4),
 .navBar a:last-of-type {
-    margin-top: 50px;
+    margin-top: 25px;
 }
