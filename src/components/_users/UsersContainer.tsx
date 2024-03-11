@@ -63,7 +63,6 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
     }
 }
 
-
 const mapStateToProps = (state: StateReduxType): mStPType => ({
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
@@ -80,7 +79,18 @@ const mapDispatchToProps = (dispatch: Dispatch): mDtPType => ({
 })
 
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)
-//types
+//
+type UsersAPIComponentPropsType = {
+    users: UserType[]
+    pageSize: number
+    currentPage: number
+    totalCount: number
+    setUsers: (users: UserType[]) => void
+    setTotalCount: (totalCount: number) => void
+    setCurrentPage: (currentPage: number) => void
+    follow: (userId: number) => void
+    unFollow: (userId: number) => void
+}
 type mStPType = {
     users: UserType[]
     pageSize: number
@@ -95,14 +105,4 @@ type mDtPType = {
     unFollow: (userId: number) => void
 }
 export type DialogsContainerType = mStPType & mDtPType
-type UsersAPIComponentPropsType = {
-    users: UserType[]
-    pageSize: number
-    currentPage: number
-    totalCount: number
-    setUsers: (users: UserType[]) => void
-    setTotalCount: (totalCount: number) => void
-    setCurrentPage: (currentPage: number) => void
-    follow: (userId: number) => void
-    unFollow: (userId: number) => void
-}
+
