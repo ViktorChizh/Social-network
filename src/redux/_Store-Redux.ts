@@ -4,9 +4,9 @@ import {dialogReducer, DialogReducerActionType} from './DialogReducer';
 import {usersReducer, UsersReducerActionType} from './UsersReducer';
 
 export const rootReduser = combineReducers({
-    profile: profifeReducer,
-    dialogs: dialogReducer,
-    users: usersReducer
+    profilePage: profifeReducer,
+    dialogsPage: dialogReducer,
+    usersPage: usersReducer
 })
 
 export const store = createStore(rootReduser)

@@ -1,0 +1,27 @@
+.pages {
+    margin: 0 5px;
+    font-weight: bold;
+    &:hover {
+        cursor: pointer;
+    }
+}
+.selected {
+    color: #b1e5e7;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.paginationBlock{
+    display: flex;
+    height: 15px;
+    align-items: center;
+    padding: 2px;
+}
+.paginationSetting{
+    color: #b1e5e7;
+    font-weight: bolder;
+    font-size: 14px;
+    margin: 0 5px;
+    &:hover {
+        cursor: pointer;
+    }
+}

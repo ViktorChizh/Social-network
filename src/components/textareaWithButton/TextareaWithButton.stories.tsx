@@ -11,7 +11,7 @@ export default {
 export const TextareaWithButtonDemo = () => {
 
     return <TextareaWithButton buttonName="ADD"
-                               newText={store.getState().profile.newPostText}
+                               newText={store.getState().profilePage.newPostText}
                                dispatch={store.dispatch}
                                addAC={addMessageAC}
                                newTextAC={updateNewMessageTextAC}/>

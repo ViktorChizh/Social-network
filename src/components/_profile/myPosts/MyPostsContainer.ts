@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {ProfileType} from '../../../redux/ProfileReducer';
 
 const mapStateToProps = (state: StateReduxType): mStPType => ({
-    profile: state.profile
+    profile: state.profilePage
 })
 
 const mapDispatchToProps = (dispatch: Dispatch): mDtPType => ({dispatch})

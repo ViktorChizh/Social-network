@@ -6,9 +6,9 @@ import {Profile} from './components/_profile/Profile';
 import {Route} from 'react-router-dom';
 import {News} from './components/news/News';
 import {Music} from './components/music/Music';
-import {Settings} from './components/settings/Settings';
 import {DialogsContainer} from './components/dialogs/DialogsContainer';
 import {UsersContainer} from './components/_users/UsersContainer';
+import {SettingsContainer} from './components/settings/SettingsContainer';
 
 export const App: FC = () => {
 
@@ -22,7 +22,7 @@ export const App: FC = () => {
                     <Route path="/users" render={() => <UsersContainer />}/>
                     <Route path="/news" component={() => <News/>}/>
                     <Route path="/music" component={Music}/>
-                    <Route path="/settings" component={Settings}/>
+                    <Route path="/settings" component={SettingsContainer}/>
                     <Route path="/2-samurai-way-main" render={() => <Profile />}/>
                     <Route exact path="/"  render={() => <Profile />}/>
                 </div>

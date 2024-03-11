@@ -1,11 +1,11 @@
 import React from 'react'
-import { Settings } from './Settings';
+import {SettingsContainer} from './SettingsContainer';
 
 export default {
     title: 'Settings',
-    component: Settings
+    component: SettingsContainer
 }
 
 export const SettingsDemo = () => {
-    return <Settings />
+    return <SettingsContainer />
 } 

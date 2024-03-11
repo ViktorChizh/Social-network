@@ -1,14 +1,19 @@
-import React, {useEffect} from 'react'
+import React, {FC, useEffect} from 'react'
 import s from './Settings.module.css'
+import {PageSizeSetting} from '../pageSizeSettings/PageSizeSetting';
 
-export const Settings = () => {
+type SettingsPropsType = {
+    pageSize: number
+    setPageSize: (pageSize: number) => void
+}
+export const Settings: FC<SettingsPropsType> = ({pageSize, setPageSize}) => {
     useEffect(() => {
         setTimeout( ()=>{
             document.title = 'SocialNetwork - settings'
         }, 500)})
     return (
         <div className={s.main}>
-            Settings
+            <PageSizeSetting pageSize={pageSize} setPageSize={setPageSize}/>
         </div>
     )
 } 

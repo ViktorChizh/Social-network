@@ -5,7 +5,7 @@ import {DialogType} from '../../redux/DialogReducer';
 import {Dispatch} from 'redux';
 
 const mapStateToProps = (state: StateReduxType): mStPType  =>  ({
-        dialog: state.dialogs
+        dialog: state.dialogsPage
     })
 
 const mapDispatchToProps = (dispatch: Dispatch): mDtPType => ({dispatch})

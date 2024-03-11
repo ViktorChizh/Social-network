@@ -11,11 +11,17 @@
     'h h'
     'n m';
 }
-
 .mainContent {
     grid-area: m;
     background-color: #383fcc;
-
+}
+button {
+    align-self: stretch;
+    border: 2px solid #b1e5e7;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: #383fcc;
+    color: #b1e5e7;
 }
 
 
