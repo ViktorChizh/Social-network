@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {StateReduxType} from '../../redux/_Store-Redux';
-import {Dispatch} from 'redux';
 import {
-    followAC, ResponseUserType, setCurrentPageAC, setPreloaderAC, setTotalCountAC, setUsersAC, unFollowAC, UserType
+    follow, ResponseUserType, setCurrentPage, setPreloader, setTotalCount, setUsers, unFollow, UserType
 } from '../../redux/UsersReducer';
 import axios from 'axios';
 import {Users} from './Users';
@@ -38,6 +37,7 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
                 this.props.setTotalCount(res.data.totalCount)
             }), 1000)
     }
+
     onPageChanged(pageNumber: number) {
         this.props.setPreloader(true)
         this.props.setCurrentPage(pageNumber)
@@ -49,11 +49,12 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
                 this.props.setTotalCount(res.data.totalCount)
             }), 1000)
     }
+
     render() {
         return (
             <div className={s.users}>
                 {this.props.isPreloading
-                    ? <Preloader width="53%" height="100%" style={{margin: 'auto'}}/>
+                    ? <Preloader style={{width:"53%", height:"100%"}}/>
                     : <Users
                         users={this.props.users}
                         follow={this.props.follow}
@@ -67,6 +68,7 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
         )
     }
 }
+
 const mapStateToProps = (state: StateReduxType): mStPType => ({
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
@@ -74,29 +76,9 @@ const mapStateToProps = (state: StateReduxType): mStPType => ({
     totalCount: state.usersPage.totalCount,
     isPreloading: state.usersPage.isPreloading
 })
-const mapDispatchToProps = (dispatch: Dispatch): mDtPType => ({
-    setUsers: (users: UserType[]) => dispatch(setUsersAC(users)),
-    setTotalCount: (totalCount: number) => dispatch(setTotalCountAC(totalCount)),
-    setCurrentPage: (currentPage: number) => dispatch(setCurrentPageAC(currentPage)),
-    follow: (userId: number) => dispatch(followAC(userId)),
-    unFollow: (userId: number) => dispatch(unFollowAC(userId)),
-    setPreloader: (isPreloader: boolean) => dispatch(setPreloaderAC(isPreloader))
-})
+const mapDispatchToProps = {setUsers, setTotalCount, setCurrentPage, follow, unFollow, setPreloader}
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)
 //types
-type UsersAPIComponentPropsType = {
-    users: UserType[]
-    pageSize: number
-    currentPage: number
-    totalCount: number
-    isPreloading: boolean
-    setUsers: (users: UserType[]) => void
-    setTotalCount: (totalCount: number) => void
-    setCurrentPage: (currentPage: number) => void
-    setPreloader: (isPreloader: boolean) => void
-    follow: (userId: number) => void
-    unFollow: (userId: number) => void
-}
 type mStPType = {
     users: UserType[]
     pageSize: number
@@ -112,4 +94,4 @@ type mDtPType = {
     unFollow: (userId: number) => void
     setPreloader: (isPreloader: boolean) => void
 }
-export type DialogsContainerType = mStPType & mDtPType
+type UsersAPIComponentPropsType = mStPType & mDtPType

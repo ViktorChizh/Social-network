@@ -1,11 +1,11 @@
-import {Profile} from './Profile';
 import React from 'react';
+import {ProfileContainer} from './ProfileContainer';
 
 export default {
     title: 'Profile',
-    component: Profile
+    component: ProfileContainer
 }
 
 export const ProfileDemo = () => {
-    return <Profile />
+    return <ProfileContainer />
 }

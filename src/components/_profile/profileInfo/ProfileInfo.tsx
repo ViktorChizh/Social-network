@@ -1,15 +1,20 @@
 import React, {FC} from 'react';
 import s from '../Profile.module.css';
+import {ResponseUserProfileType} from '../../../redux/ProfileReducer';
+import {Preloader} from '../../preloader/Preloader';
 
-export type ProfileInfoType = {
-    srcImage: string
-    altImage: string
-    description: string
+type PropsType = {
+    profile: ResponseUserProfileType | null
 }
-export const ProfileInfo: FC<ProfileInfoType> = ({srcImage, altImage, description}) => {
+export const ProfileInfo: FC<PropsType> = ({profile}) => {
     return (
-        <div className={s.description}>
-            <img className={s.avatarImg} src={srcImage} alt={altImage}/> <span>{description}</span>
-        </div>
+        <>
+            {!profile
+                ? <Preloader style={{width:'25%', height:'25%'}}/>
+                : <div className={s.description}>
+                    <img className={s.avatarImg} src={profile.photos.small} alt={'UserAvatar'}/>
+                    <span>{profile.fullName}</span>
+                </div>}
+        </>
     )
 }

@@ -48,6 +48,10 @@
     gap: 5px;
     padding: 2px;
     height: 100%;
+    & a {
+        color:  #b1e5e7;
+        text-decoration: none;
+    }
 }
 
 .status {
