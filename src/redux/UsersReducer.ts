@@ -1,8 +1,9 @@
 const initialstate: UsersReducerType = {
     users: [],
-    pageSize: 5,
+    pageSize: 4,
     currentPage: 1,
-    totalCount: 0
+    totalCount: 0,
+    isPreloading: false
 }
 
 export const usersReducer = (state: UsersReducerType = initialstate, action: UsersReducerActionType): UsersReducerType => {
@@ -15,6 +16,8 @@ export const usersReducer = (state: UsersReducerType = initialstate, action: Use
             return {...state, currentPage: action.payload.currentPage}
         case 'SET-PAGESIZE':
             return {...state, pageSize: action.payload.pageSize}
+        case 'SET-PRELOADER':
+            return {...state, isPreloading: action.payload.isPreloading}
         case 'FOLLOW':
             return {...state, users: state.users.map(u => u.id === action.payload.userId ? {...u, followed: true} : u)}
         case 'UNFOLLOW':
@@ -30,6 +33,7 @@ export const setUsersAC = (users: UserType[]) => ({type: 'SET-USERS' as const, p
 export const setTotalCountAC = (totalCount: number) => ({type: 'SET-TOTALCOUNT' as const, payload: {totalCount}})
 export const setCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENTPAGE' as const, payload: {currentPage}})
 export const setPageSizeAC = (pageSize: number) => ({type: 'SET-PAGESIZE' as const, payload: {pageSize}})
+export const setPreloaderAC = (isPreloading: boolean) => ({type: 'SET-PRELOADER' as const, payload: {isPreloading}})
 
 //types
 type PhotosType = {
@@ -48,6 +52,7 @@ export type UsersReducerType = {
     pageSize: number
     currentPage: number
     totalCount: number
+    isPreloading: boolean
 }
 export type UsersReducerActionType =
     | ReturnType<typeof setUsersAC>
@@ -56,6 +61,7 @@ export type UsersReducerActionType =
     | ReturnType<typeof setPageSizeAC>
     | ReturnType<typeof followAC>
     | ReturnType<typeof unFollowAC>
+    | ReturnType<typeof setPreloaderAC>
 
 export type ResponseUserType = {
     items: UserType[]
