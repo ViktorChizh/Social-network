@@ -1,6 +1,5 @@
 import React, {FC} from 'react'
 import './App.css'
-import {Header} from './components/header/Header';
 import {NavBar} from './components/navbar/NavBar';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import {News} from './components/news/News';
@@ -10,16 +9,17 @@ import {UsersContainer} from './components/_users/UsersContainer';
 import {SettingsContainer} from './components/settings/SettingsContainer';
 import {ProfileContainer} from './components/_profile/ProfileContainer';
 import {Error404} from './components/error404/Error404';
+import {HeaderContainer} from './components/header/HeaderContainer';
 
 export const App: FC = () => {
 
     return (
         <div className="app-wrapper">
-            <Header/>
+            <HeaderContainer/>
             <NavBar/>
             <div className="mainContent">
                 <Switch>
-                    <Route path="/profile" render={() => <ProfileContainer/>}/>
+                    <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
                     <Route path="/dialogs" render={() => <DialogsContainer/>}/>
                     <Route path="/users" render={() => <UsersContainer/>}/>
                     <Route path="/news" component={() => <News/>}/>

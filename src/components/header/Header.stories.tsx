@@ -1,11 +1,11 @@
 import React from 'react'
-import { Header } from './Header';
+import {HeaderContainer} from './HeaderContainer';
 
 export default {
     title: 'Header',
-    component: Header
+    component: HeaderContainer
 }
 
 export const HeaderDemo = () => {
-    return <Header/>
+    return <HeaderContainer/>
 }

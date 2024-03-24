@@ -1,0 +1,24 @@
+.loginBlock {
+    padding: 10px;
+    align-self: center;
+    color: white;
+
+    & a {
+        color: white;
+        text-decoration: none;
+    }
+    & img {
+        border-radius: 50%;
+        width: 50%;
+        height: 50%;
+        object-fit: cover;
+    }
+}
+
+.login {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+}

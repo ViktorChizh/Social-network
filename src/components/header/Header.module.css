@@ -3,14 +3,17 @@
     background-color: #1f27af;
     display: flex;
 }
+
 .header img {
     width: 150px;
     height: 100px;
 }
+
 .header .lightgreenBlock {
     width: 10px;
     background-color: #b1e7c0;
 }
+
 .header h1 {
     flex: 1;
     color: #b1e5e7;
@@ -19,7 +22,4 @@
     line-height: 100px;
     margin: 0;
 }
-.header .loginBlock {
-    width: 150px;
-    background-color: #5e67e3;
-}
+

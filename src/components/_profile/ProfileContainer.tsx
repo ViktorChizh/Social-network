@@ -4,14 +4,15 @@ import {connect} from 'react-redux';
 import {StateReduxType} from '../../redux/_Store-Redux';
 import {ProfileUserType, ResponseUserProfileType, setProfile} from '../../redux/ProfileReducer';
 import axios from 'axios';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 
-class ProfileAPIComponent extends Component<ProfileAPIComponentPropsType> {
+class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
     componentDidMount() {
-        setTimeout(() => axios.get<ResponseUserProfileType>
-        (`https://social-network.samuraijs.com/api/1.0/profile/29529`)
+        const userId = this.props.match.params.userId || 29529
+        axios.get<ResponseUserProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then((res) => {
                 this.props.setProfile(res.data)
-            }), 3000)
+            })
     }
 
     render() {
@@ -28,5 +29,7 @@ type MStPType = {
 type MDtPType = {
     setProfile: (profile: ProfileUserType) => void
 }
-export type ProfileAPIComponentPropsType = MStPType & MDtPType
-export const ProfileContainer = connect(mapStateToProps, {setProfile})(ProfileAPIComponent)
+
+type WithRouterProfileComponentType = MStPType & MDtPType & RouteComponentProps<{ userId?: string }>
+
+export const ProfileContainer = connect(mapStateToProps, {setProfile})(withRouter(ProfileAPIComponent))
