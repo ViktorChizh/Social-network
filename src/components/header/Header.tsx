@@ -2,7 +2,7 @@ import React, {FC} from 'react'
 import s from './Header.module.css'
 import logo from '../../assets/logo.jpg'
 import {AuthType} from '../../redux/AuthReducer';
-import {LoginBlock} from './loginBlock/LoginBlock';
+import {LoginBlock} from '../loginBlock/LoginBlock';
 
 export type PropsType = {
     isAuth: boolean

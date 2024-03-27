@@ -1,27 +1,24 @@
 import React, {Component} from 'react'
 import {Header} from './Header'
-import axios from 'axios';
 import {AuthType, setAuthUserData} from '../../redux/AuthReducer';
 import {connect} from 'react-redux';
 import {setPreloader} from '../../redux/UsersReducer';
-import {ProfileUserType} from '../../redux/ProfileReducer';
 import {StateReduxType} from '../../redux/_Store-Redux';
+import {api} from '../../api/API';
 
 class HeaderAPIContainer extends Component<HeaderAPIContainerPropsType> {
     componentDidMount() {
         this.props.setPreloader(true)
-        setTimeout( () =>  axios.get<ResponseServerType<AuthType>>(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
-                .then((res) => {
-                    if (res.data.resultCode === 0) {
-                        let authData = res.data.data
-                        axios.get<ProfileUserType>(`https://social-network.samuraijs.com/api/1.0/profile/${res.data.data.id}`)
-                            .then((res) => {
-                                    this.props.setPreloader(false)
-                                    this.props.setAuthUserData(authData, res.data.photos.small)
-                                }
-                            )
-                    }
-                }),250)
+            api.getMe().then(res => {
+                if (res.resultCode === 0) {
+                    let authData = res.data
+                    api.getProfile(res.data.id).then((res) => {
+                            this.props.setPreloader(false)
+                            this.props.setAuthUserData(authData, res.photos.small)
+                        }
+                    )
+                }
+            })
     }
 
     render() {
@@ -43,7 +40,7 @@ type mDtPType = {
 }
 type HeaderAPIContainerPropsType = mStPType & mDtPType
 
-const MapStateToProps = (state: StateReduxType): mStPType  => ({
+const MapStateToProps = (state: StateReduxType): mStPType => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login,
     ownUserAvatar: state.auth.ownUserAvatar,
@@ -51,7 +48,10 @@ const MapStateToProps = (state: StateReduxType): mStPType  => ({
 })
 
 
-export const HeaderContainer = connect<mStPType,mDtPType, unknown, StateReduxType >(MapStateToProps, {setAuthUserData, setPreloader})(HeaderAPIContainer)
+export const HeaderContainer = connect<mStPType, mDtPType, unknown, StateReduxType>(MapStateToProps, {
+    setAuthUserData,
+    setPreloader
+})(HeaderAPIContainer)
 
 
 export type ResponseServerType<D = {}> = {

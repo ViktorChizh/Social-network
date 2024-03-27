@@ -1,10 +1,10 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import s from './LoginBlock.module.css';
 import {NavLink} from 'react-router-dom';
-import {PropsType} from '../Header';
-import {Preloader} from '../../preloader/Preloader';
+import {PropsType} from '../header/Header';
+import {Preloader} from '../preloader/Preloader';
 
-export const LoginBlock: FC<PropsType> = (props) => {
+export const LoginBlock: FC<PropsType> = memo((props) => {
 
     return (
         <div className={s.loginBlock}>
@@ -21,4 +21,4 @@ export const LoginBlock: FC<PropsType> = (props) => {
 
         </div>
     )
-}
+})

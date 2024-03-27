@@ -3,8 +3,19 @@ import s from '../Users.module.css';
 import {UserType} from '../../../redux/UsersReducer';
 import ava from '../../../assets/avatar.webp'
 import {NavLink} from 'react-router-dom';
+import {api} from '../../../api/API';
 
 export const User: FC<UserPropsType> = ({user, follow, unFollow}) => {
+    const followHandler = () => {
+        api.getUnFollow(user.id).then(data => {
+            if (data.resultCode === 0) unFollow(user.id)
+        })
+    }
+    const unFollowHandler = () => {
+        api.getFollow(user.id).then(data => {
+            if (data.resultCode === 0) follow(user.id)
+        })
+    }
     return (
         <div className={s.block}>
             <div className={s.blockImg}>
@@ -12,8 +23,8 @@ export const User: FC<UserPropsType> = ({user, follow, unFollow}) => {
                     <img src={user.photos.small ? user.photos.small : ava} width="50px" height="50px" alt="avatar"/>
                 </NavLink>
                 {user.followed
-                    ? <button onClick={() => unFollow(user.id)}>FOLLOW</button>
-                    : <button onClick={() => follow(user.id)}>UNFOLLOW</button>}
+                    ? <button onClick={followHandler}>FOLLOW</button>
+                    : <button onClick={unFollowHandler}>UNFOLLOW</button>}
             </div>
             <div className={s.blockMain}>
                 <NavLink to={`/profile/${user.id}`}>

@@ -1,4 +1,4 @@
-import {PostType} from '../components/_profile/myPosts/post/Post';
+import {PostType} from '../components/profile/myPosts/post/Post';
 import ava from '../assets/postAvatar.jpg';
 import {PhotosType} from './UsersReducer';
 

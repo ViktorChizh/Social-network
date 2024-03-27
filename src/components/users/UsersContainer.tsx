@@ -2,12 +2,18 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {StateReduxType} from '../../redux/_Store-Redux';
 import {
-    follow, ResponseUserType, setCurrentPage, setPreloader, setTotalCount, setUsers, unFollow, UserType
+    follow,
+    setCurrentPage,
+    setPreloader,
+    setTotalCount,
+    setUsers,
+    unFollow,
+    UserType
 } from '../../redux/UsersReducer';
-import axios from 'axios';
 import {Users} from './Users';
 import s from './Users.module.css';
 import {Preloader} from '../preloader/Preloader';
+import {api} from '../../api/API';
 
 class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
     // получение стартовых данных в конструкторе (срабатывает 1 раз при создании компоненты)
@@ -29,24 +35,22 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
     // ПРАВИЛЬНО ЗАПРОСЫ ДЕЛАТЬ ЗДЕСЬ:
     componentDidMount() {
         this.props.setPreloader(true)
-        setTimeout(() => axios.get<ResponseUserType>(
-            `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`)
-            .then((res) => {
+        setTimeout(() => api.getUsers(this.props.pageSize, this.props.currentPage)
+            .then((data) => {
                 this.props.setPreloader(false)
-                this.props.setUsers(res.data.items)
-                this.props.setTotalCount(res.data.totalCount)
+                this.props.setUsers(data.items)
+                this.props.setTotalCount(data.totalCount)
             }), 1000)
     }
 
     onPageChanged(pageNumber: number) {
         this.props.setPreloader(true)
         this.props.setCurrentPage(pageNumber)
-        setTimeout(() => axios.get<ResponseUserType>(
-            `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`)
-            .then((res) => {
+        setTimeout(() => api.getUsers(this.props.pageSize, pageNumber)
+            .then((data) => {
                 this.props.setPreloader(false)
-                this.props.setUsers(res.data.items)
-                this.props.setTotalCount(res.data.totalCount)
+                this.props.setUsers(data.items)
+                this.props.setTotalCount(data.totalCount)
             }), 1000)
     }
 
@@ -54,7 +58,7 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
         return (
             <div className={s.users}>
                 {this.props.isPreloading
-                    ? <Preloader style={{width:"53%", height:"100%"}}/>
+                    ? <Preloader style={{width: '53%', height: '100%'}}/>
                     : <Users
                         users={this.props.users}
                         follow={this.props.follow}
