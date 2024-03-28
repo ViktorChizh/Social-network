@@ -1,5 +1,5 @@
-import {PostType} from '../components/profile/myPosts/post/Post';
-import ava from '../assets/postAvatar.jpg';
+import {PostType} from 'components/profile/myPosts/post/Post';
+import ava from 'assets/postAvatar.jpg';
 import {PhotosType} from './UsersReducer';
 
 let initialState = {

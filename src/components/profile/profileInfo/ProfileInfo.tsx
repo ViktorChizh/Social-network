@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import s from '../Profile.module.css';
-import {ResponseUserProfileType} from '../../../redux/ProfileReducer';
+import {ResponseUserProfileType} from 'redux/ProfileReducer';
 import {Preloader} from '../../preloader/Preloader';
 import ava from '../../../assets/avatar.webp'
 

@@ -4,11 +4,11 @@ import {NavLink} from 'react-router-dom';
 import {PropsType} from '../header/Header';
 import {Preloader} from '../preloader/Preloader';
 
-export const LoginBlock: FC<PropsType> = memo((props) => {
+export const LoginBlock: FC<PropsType> = (props) => {
 
     return (
         <div className={s.loginBlock}>
-            {props.isPreloading
+            {props.isPreloading && !props.login
                 ? <Preloader style={{width:"100%"}}/>
                 : props.isAuth
                     ? <div className={s.login}>
@@ -21,4 +21,4 @@ export const LoginBlock: FC<PropsType> = memo((props) => {
 
         </div>
     )
-})
+}

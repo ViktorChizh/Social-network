@@ -1,24 +1,26 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {Header} from './Header'
-import {AuthType, setAuthUserData} from '../../redux/AuthReducer';
+import {AuthType, setAuthUserData} from 'redux/AuthReducer';
 import {connect} from 'react-redux';
-import {setPreloader} from '../../redux/UsersReducer';
-import {StateReduxType} from '../../redux/_Store-Redux';
-import {api} from '../../api/API';
+import {setPreloader} from 'redux/UsersReducer';
+import {StateReduxType} from 'redux/_Store-Redux';
+import {api} from 'api/API';
 
-class HeaderAPIContainer extends Component<HeaderAPIContainerPropsType> {
+class HeaderAPIContainer extends PureComponent<HeaderAPIContainerPropsType> {
     componentDidMount() {
-        this.props.setPreloader(true)
+        if(this.props.login === null){
+            this.props.setPreloader(true)
             api.getMe().then(res => {
                 if (res.resultCode === 0) {
                     let authData = res.data
-                    api.getProfile(res.data.id).then((res) => {
+                    api.getProfile(res.data.id).then(data => {
                             this.props.setPreloader(false)
-                            this.props.setAuthUserData(authData, res.photos.small)
+                            this.props.setAuthUserData(authData, data.photos.small)
                         }
                     )
                 }
             })
+        }
     }
 
     render() {

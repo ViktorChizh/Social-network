@@ -1,7 +1,7 @@
-import React, {FC} from 'react'
+import React, {FC, memo} from 'react'
 import s from './Header.module.css'
 import logo from '../../assets/logo.jpg'
-import {AuthType} from '../../redux/AuthReducer';
+import {AuthType} from 'redux/AuthReducer';
 import {LoginBlock} from '../loginBlock/LoginBlock';
 
 export type PropsType = {
@@ -14,7 +14,7 @@ export type PropsType = {
     setPreloader: (isPreloader: boolean) => void
 }
 
-export const Header: FC<PropsType> = (props) => {
+export const Header: FC<PropsType> = memo((props) => {
     return (
         <header className={s.header}>
             <img src={logo} alt="logo"/>
@@ -23,5 +23,5 @@ export const Header: FC<PropsType> = (props) => {
             <LoginBlock {...props}/>
         </header>
     )
-}
+})
 

@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {AuthType} from '../redux/AuthReducer';
-import {ResponseServerType} from '../components/header/HeaderContainer';
-import {ProfileUserType} from '../redux/ProfileReducer';
-import {ResponseUserType} from '../redux/UsersReducer';
+import {AuthType} from 'redux/AuthReducer';
+import {ResponseServerType} from 'components/header/HeaderContainer';
+import {ProfileUserType} from 'redux/ProfileReducer';
+import {ResponseUserType} from 'redux/UsersReducer';
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -18,17 +18,17 @@ export const api = {
     },
 
     getFollow(id: number) {
-        return axios.post<ResponseServerType>(`follow/${id}`, {}).then(res => res.data)
+        return instance.post<ResponseServerType>(`follow/${id}`, {}).then(res => res.data)
     },
     getUnFollow(id: number) {
-        return axios.delete<ResponseServerType>(`follow/${id}`).then(res => res.data)
+        return instance.delete<ResponseServerType>(`follow/${id}`).then(res => res.data)
     },
 
     getUsers(pageSize: number, currentPage: number) {
-        return axios.get<ResponseUserType>(`users?count=${pageSize}&page=${currentPage}`).then(res => res.data)
+        return instance.get<ResponseUserType>(`users?count=${pageSize}&page=${currentPage}`).then(res => res.data)
     },
 
     getProfile(id: number | null) {
-        return axios.get<ProfileUserType>(`profile/${id}`).then(res => res.data)
+        return instance.get<ProfileUserType>(`profile/${id}`).then(res => res.data)
     }
 }

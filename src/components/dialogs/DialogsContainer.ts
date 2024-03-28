@@ -1,7 +1,7 @@
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
-import {StateReduxType, StoreActionType} from '../../redux/_Store-Redux';
-import {DialogType} from '../../redux/DialogReducer';
+import {StateReduxType, StoreActionType} from 'redux/_Store-Redux';
+import {DialogType} from 'redux/DialogReducer';
 import {Dispatch} from 'redux';
 
 const mapStateToProps = (state: StateReduxType): mStPType  =>  ({

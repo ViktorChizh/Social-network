@@ -1,8 +1,8 @@
 import {MyPosts} from './MyPosts';
-import {StateReduxType, StoreActionType} from '../../../redux/_Store-Redux';
+import {StateReduxType, StoreActionType} from 'redux/_Store-Redux';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {ProfileType} from '../../../redux/ProfileReducer';
+import {ProfileType} from 'redux/ProfileReducer';
 
 const mapStateToProps = (state: StateReduxType): mStPType => ({
     profile: state.profilePage

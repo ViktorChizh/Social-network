@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import s from '../Users.module.css';
-import {UserType} from '../../../redux/UsersReducer';
+import {UserType} from 'redux/UsersReducer';
 import ava from '../../../assets/avatar.webp'
 import {NavLink} from 'react-router-dom';
-import {api} from '../../../api/API';
+import {api} from 'api/API';
 
 export const User: FC<UserPropsType> = ({user, follow, unFollow}) => {
     const followHandler = () => {

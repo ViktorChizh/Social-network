@@ -1,19 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
-import {StateReduxType} from '../../redux/_Store-Redux';
-import {
-    follow,
-    setCurrentPage,
-    setPreloader,
-    setTotalCount,
-    setUsers,
-    unFollow,
-    UserType
-} from '../../redux/UsersReducer';
+import {StateReduxType} from 'redux/_Store-Redux';
+import {follow, setCurrentPage, setPreloader, setTotalCount, setUsers, unFollow, UserType} from 'redux/UsersReducer';
 import {Users} from './Users';
 import s from './Users.module.css';
 import {Preloader} from '../preloader/Preloader';
-import {api} from '../../api/API';
+import {api} from 'api/API';
 
 class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
     // получение стартовых данных в конструкторе (срабатывает 1 раз при создании компоненты)
