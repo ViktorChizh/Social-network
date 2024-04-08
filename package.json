@@ -1,86 +1,87 @@
 {
-  "name": "samurai-way",
-  "homepage": "https://ViktorChizh.github.io/2-samurai-way-main",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "5.14.1",
-    "@testing-library/react": "12.0.0",
-    "@testing-library/user-event": "13.2.1",
-    "antd": "4.18.7",
-    "axios": "0.26.0",
-    "classnames": "2.3.1",
-    "dlx": "^0.2.1",
-    "formik": "2.2.9",
-    "gh-pages": "3.2.3",
-    "init": "^0.1.2",
-    "jest": "27.5.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-redux": "7.2.6",
-    "react-router-dom": "5.3.0",
-    "react-scripts": "5.0.0",
-    "react-test-renderer": "17.0.2",
-    "redux": "4.1.2",
-    "redux-form": "8.3.8",
-    "redux-thunk": "2.4.1",
-    "reselect": "4.1.5",
-    "storybook": "^7.6.8",
-    "typescript": "4.4.2",
-    "uuid": "8.3.2",
-    "web-vitals": "2.1.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "test": "react-scripts test",
-    "storybook": "storybook dev -p 6007",
-    "build": "react-scripts build"
-  },
-  "archaveScripts": {
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "build-storybook": "storybook build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:storybook/recommended"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@storybook/addon-essentials": "7.6.8",
-    "@storybook/addon-interactions": "7.6.8",
-    "@storybook/addon-links": "7.6.8",
-    "@storybook/addon-onboarding": "1.0.10",
-    "@storybook/blocks": "7.6.8",
-    "@storybook/preset-create-react-app": "7.6.8",
-    "@storybook/react": "7.6.8",
-    "@storybook/react-webpack5": "7.6.8",
-    "@storybook/test": "7.6.8",
-    "@types/node": "16.7.13",
-    "@types/react": "17.0.20",
-    "@types/react-dom": "17.0.9",
-    "@types/react-redux": "7.1.22",
-    "@types/react-router-dom": "5.3.3",
-    "@types/react-test-renderer": "17.0.1",
-    "@types/redux-form": "8.3.3",
-    "@types/uuid": "8.3.4",
-    "eslint-plugin-storybook": "^0.6.15",
-    "prop-types": "15.8.1",
-    "webpack": "5.89.0"
-  }
+	"name": "samurai-way",
+	"homepage": "https://ViktorChizh.github.io/2-samurai-way-main",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@testing-library/jest-dom": "5.14.1",
+		"@testing-library/react": "12.0.0",
+		"@testing-library/user-event": "13.2.1",
+		"antd": "4.18.7",
+		"axios": "0.26.0",
+		"classnames": "2.3.1",
+		"dlx": "^0.2.1",
+		"formik": "2.2.9",
+		"gh-pages": "3.2.3",
+		"init": "^0.1.2",
+		"jest": "27.5.1",
+		"prettier": "^3.2.5",
+		"react": "17.0.2",
+		"react-dom": "17.0.2",
+		"react-redux": "7.2.6",
+		"react-router-dom": "5.3.0",
+		"react-scripts": "5.0.0",
+		"react-test-renderer": "17.0.2",
+		"redux": "4.1.2",
+		"redux-form": "8.3.8",
+		"redux-thunk": "2.4.1",
+		"reselect": "4.1.5",
+		"storybook": "^7.6.8",
+		"typescript": "4.4.2",
+		"uuid": "8.3.2",
+		"web-vitals": "2.1.0"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"test": "react-scripts test",
+		"storybook": "storybook dev -p 6007",
+		"build": "react-scripts build"
+	},
+	"archaveScripts": {
+		"eject": "react-scripts eject",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
+		"build-storybook": "storybook build"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest",
+			"plugin:storybook/recommended"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"@storybook/addon-essentials": "7.6.8",
+		"@storybook/addon-interactions": "7.6.8",
+		"@storybook/addon-links": "7.6.8",
+		"@storybook/addon-onboarding": "1.0.10",
+		"@storybook/blocks": "7.6.8",
+		"@storybook/preset-create-react-app": "7.6.8",
+		"@storybook/react": "7.6.8",
+		"@storybook/react-webpack5": "7.6.8",
+		"@storybook/test": "7.6.8",
+		"@types/node": "16.7.13",
+		"@types/react": "17.0.20",
+		"@types/react-dom": "17.0.9",
+		"@types/react-redux": "7.1.22",
+		"@types/react-router-dom": "5.3.3",
+		"@types/react-test-renderer": "17.0.1",
+		"@types/redux-form": "8.3.3",
+		"@types/uuid": "8.3.4",
+		"eslint-plugin-storybook": "^0.6.15",
+		"prop-types": "15.8.1",
+		"webpack": "5.89.0"
+	}
 }

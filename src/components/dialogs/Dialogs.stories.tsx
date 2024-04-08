@@ -1,12 +1,11 @@
-import React from 'react'
-import {DialogsContainer} from './DialogsContainer';
+import React from "react"
+import { DialogsContainer } from "./DialogsContainer"
 
 export default {
-    title: 'Dialogs',
-    component: DialogsContainer
+	title: "Dialogs",
+	component: DialogsContainer,
 }
 
 export const DialogsDemo = () => {
-    return <DialogsContainer />
-
-} 
+	return <DialogsContainer />
+}

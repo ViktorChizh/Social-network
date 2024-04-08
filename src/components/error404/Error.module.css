@@ -1,12 +1,12 @@
 .main {
-    box-sizing: border-box;
-    padding: 10px;
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    gap: 10px;
-    background: center no-repeat url("../../assets/bgE.jpg");
-    background-size: contain;
-    background-color: #051010;
+	box-sizing: border-box;
+	padding: 10px;
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	gap: 10px;
+	background: center no-repeat url("../../assets/bgE.jpg");
+	background-size: contain;
+	background-color: #051010;
 }

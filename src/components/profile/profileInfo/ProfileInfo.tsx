@@ -1,21 +1,31 @@
-import React, {FC} from 'react';
-import s from '../Profile.module.css';
-import {ResponseUserProfileType} from 'redux/ProfileReducer';
-import {Preloader} from '../../preloader/Preloader';
-import ava from '../../../assets/avatar.webp'
+import React, { FC } from "react"
+import s from "../Profile.module.css"
+import { ResponseUserProfileType } from "redux/ProfileReducer"
+import { Preloader } from "../../preloader/Preloader"
+import ava from "assets/avatar.webp"
 
 type PropsType = {
-    profile: ResponseUserProfileType | null
+	profile: ResponseUserProfileType | null
+	width: string
+	height: string
 }
-export const ProfileInfo: FC<PropsType> = ({profile}) => {
-    return (
-        <>
-            {!profile
-                ? <Preloader style={{width:'25%', height:'25%'}}/>
-                : <div className={s.description}>
-                    <img className={s.avatarImg} src={profile.photos.small || ava} alt={'UserAvatar'}/>
-                    <span>{profile.fullName}</span>
-                </div>}
-        </>
-    )
+export const ProfileInfo: FC<PropsType> = ({ profile, height, width }) => {
+	return (
+		<>
+			{profile ? (
+				<div className={s.description}>
+					<img
+						className={s.avatarImg}
+						src={profile.photos.small || ava}
+						alt={"UserAvatar"}
+						width={width}
+						height={height}
+					/>
+					<span>{profile.fullName}</span>
+				</div>
+			) : (
+				<Preloader style={{ width: "25%", height: "25%" }} />
+			)}
+		</>
+	)
 }

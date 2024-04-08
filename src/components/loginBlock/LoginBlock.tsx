@@ -1,24 +1,26 @@
-import React, {FC, memo} from 'react';
-import s from './LoginBlock.module.css';
-import {NavLink} from 'react-router-dom';
-import {PropsType} from '../header/Header';
-import {Preloader} from '../preloader/Preloader';
+import React, { FC, memo, useEffect } from "react"
+import s from "./LoginBlock.module.css"
+import { NavLink } from "react-router-dom"
+import { Preloader } from "../preloader/Preloader"
 
-export const LoginBlock: FC<PropsType> = (props) => {
-
-    return (
-        <div className={s.loginBlock}>
-            {props.isPreloading && !props.login
-                ? <Preloader style={{width:"100%"}}/>
-                : props.isAuth
-                    ? <div className={s.login}>
-                        <img src={props.ownUserAvatar || ''} alt=""/>
-                        <p>{props.login}</p>
-                    </div>
-                    : <NavLink to={'/login'}>LOGIN</NavLink>
-            }
-
-
-        </div>
-    )
+type PropsType = {
+	isAuth: boolean
+	login: string | null
+	ownUserAvatar: string | null
 }
+
+export const LoginBlock: FC<PropsType> = memo((props) => {
+	useEffect(() => {}, [props.login])
+	return (
+		<div className={s.loginBlock}>
+			{props.isAuth ? (
+				<div className={s.login}>
+					<img src={props.ownUserAvatar || ""} alt="" />
+					<p>{props.login}</p>
+				</div>
+			) : (
+				<NavLink to={"/login"}>LOGIN</NavLink>
+			)}
+		</div>
+	)
+})

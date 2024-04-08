@@ -1,25 +1,25 @@
 .navBar {
-    grid-area: n;
-    background-color: #3c1c81;
-    padding: 20px;
+	grid-area: n;
+	background-color: #3c1c81;
+	padding: 20px;
 }
 
 .navBar a {
-    display: block;
-    color: silver;
-    font-size: 24px;
-    font-weight: 700;
-    font-style: italic;
-    line-height: 2;
-    text-decoration: none;
+	display: block;
+	color: silver;
+	font-size: 24px;
+	font-weight: 700;
+	font-style: italic;
+	line-height: 2;
+	text-decoration: none;
 }
 
 .navBar a.active {
-    color: gold;
+	color: gold;
 }
 
 .navBar a:nth-of-type(3),
 .navBar a:nth-of-type(4),
 .navBar a:last-of-type {
-    margin-top: 25px;
+	margin-top: 25px;
 }

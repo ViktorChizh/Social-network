@@ -1,12 +1,12 @@
-import {Post} from './Post';
-import React from 'react';
-import ava from '../../../../assets/postAvatar.jpg'
+import { Post } from "./Post"
+import React from "react"
+import ava from "../../../../assets/postAvatar.jpg"
 
 export default {
-    title: 'profile/myPosts/post/Post',
-    component: Post
+	title: "profile/myPosts/post/Post",
+	component: Post,
 }
 
 export const PostDemo = () => {
-    return <Post post={{ id: 1, message: 'test message', likesCount: 0, avatar: ava }} />
+	return <Post post={{ id: 1, message: "test message", likesCount: 0, avatar: ava }} />
 }

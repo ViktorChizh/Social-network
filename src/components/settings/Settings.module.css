@@ -1,16 +1,16 @@
 .main {
-    box-sizing: border-box;
-    padding: 10px;
-    width: 100%;
-    height: 100%;
-    min-height: 25vh;
-    background: bottom no-repeat url("../../assets/bgS.jpg");
-    background-size: cover;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    font-size: 75px;
-    font-weight: 900;
-    font-style: italic;
-    color: #b1e5e7;
+	box-sizing: border-box;
+	padding: 10px;
+	width: 100%;
+	height: 100%;
+	min-height: 25vh;
+	background: bottom no-repeat url("../../assets/bgS.jpg");
+	background-size: cover;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	font-size: 75px;
+	font-weight: 900;
+	font-style: italic;
+	color: #b1e5e7;
 }

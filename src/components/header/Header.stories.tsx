@@ -1,11 +1,11 @@
-import React from 'react'
-import {HeaderContainer} from './HeaderContainer';
+import React from "react"
+import { HeaderContainer } from "./HeaderContainer"
 
 export default {
-    title: 'Header',
-    component: HeaderContainer
+	title: "Header",
+	component: HeaderContainer,
 }
 
 export const HeaderDemo = () => {
-    return <HeaderContainer/>
+	return <HeaderContainer />
 }

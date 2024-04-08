@@ -1,13 +1,13 @@
 .myPosts {
-    margin: 10px 25px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #b1e5e7;
+	margin: 10px 25px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #b1e5e7;
 }
 
 .newPost {
-    margin: 10px 35px;
-    font-size: 18px;
-    display: flex;
-    align-items: stretch;
+	margin: 10px 35px;
+	font-size: 18px;
+	display: flex;
+	align-items: stretch;
 }

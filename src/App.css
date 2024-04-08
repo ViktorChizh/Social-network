@@ -1,28 +1,24 @@
 .app-wrapper {
-    width: 90%;
-    margin: 0 auto;
-    background-color: #b1e7c0;
-    display: grid;
-    grid-template-rows: 100px 1fr;
-    grid-template-columns: 150px 1fr;
-    grid-gap: 10px;
-    grid-template-areas:
-    'h h'
-    'n m';
+	width: 90%;
+	margin: 0 auto;
+	background-color: #b1e7c0;
+	display: grid;
+	grid-template-rows: 100px 1fr;
+	grid-template-columns: 150px 1fr;
+	grid-gap: 10px;
+	grid-template-areas:
+		"h h"
+		"n m";
 }
 .mainContent {
-    grid-area: m;
-    background-color: #383fcc;
+	grid-area: m;
+	background-color: #383fcc;
 }
 button {
-    align-self: stretch;
-    border: 2px solid #b1e5e7;
-    border-radius: 5px;
-    font-weight: bold;
-    background-color: #383fcc;
-    color: #b1e5e7;
+	align-self: stretch;
+	border: 2px solid #b1e5e7;
+	border-radius: 5px;
+	font-weight: bold;
+	background-color: #383fcc;
+	color: #b1e5e7;
 }
-
-
-
-
