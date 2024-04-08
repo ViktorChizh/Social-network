@@ -1,17 +1,14 @@
+import { wihAuthRedirect } from "hoc/wihAuthRedirect"
 import React, { Component } from "react"
-import { Profile } from "./Profile"
 import { connect } from "react-redux"
+import { Redirect, RouteComponentProps, withRouter } from "react-router-dom"
 import { StateReduxType } from "redux/_Store-Redux"
-import { ProfileUserType, ResponseUserProfileType, setProfile } from "redux/ProfileReducer"
-import { RouteComponentProps, withRouter } from "react-router-dom"
-import { api } from "api/API"
+import { getProfile, ResponseUserProfileType } from "redux/ProfileReducer"
+import { Profile } from "./Profile"
 
 class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
 	componentDidMount() {
-		const userId = this.props.match.params.userId || 29529
-		api.getProfile(+userId).then((res) => {
-			this.props.setProfile(res)
-		})
+		this.props.getProfile(this.props.match.params.userId || "29529")
 	}
 
 	render() {
@@ -21,14 +18,16 @@ class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
 
 const mapStateToProps = (state: StateReduxType): MStPType => ({
 	profile: state.profilePage.profile,
+	isAuth: state.auth.isAuth,
 })
 type MStPType = {
 	profile: ResponseUserProfileType | null
+	isAuth: boolean
 }
 type MDtPType = {
-	setProfile: (profile: ProfileUserType) => void
+	getProfile: (userId: string) => void
 }
 
 type WithRouterProfileComponentType = MStPType & MDtPType & RouteComponentProps<{ userId?: string }>
 
-export const ProfileContainer = connect(mapStateToProps, { setProfile })(withRouter(ProfileAPIComponent))
+export const ProfileContainer = connect(mapStateToProps, { getProfile })(withRouter(ProfileAPIComponent))

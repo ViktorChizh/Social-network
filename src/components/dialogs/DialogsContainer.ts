@@ -6,6 +6,7 @@ import { Dispatch } from "redux"
 
 const mapStateToProps = (state: StateReduxType): mStPType => ({
 	dialog: state.dialogsPage,
+	isAuth: state.auth.isAuth,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch): mDtPType => ({ dispatch })
@@ -14,6 +15,7 @@ export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dia
 //types
 type mStPType = {
 	dialog: DialogType
+	isAuth: boolean
 }
 type mDtPType = {
 	dispatch: (AC: StoreActionType) => void

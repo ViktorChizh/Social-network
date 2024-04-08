@@ -1,25 +1,10 @@
 import React, { FC } from "react"
-import s from "../Users.module.css"
+import { NavLink } from "react-router-dom"
 import { UserType } from "redux/UsersReducer"
 import ava from "../../../assets/avatar.webp"
-import { NavLink } from "react-router-dom"
-import { api } from "api/API"
+import s from "../Users.module.css"
 
-export const User: FC<UserPropsType> = ({ user, follow, unFollow, setButtonDisabled, buttonDisabled }) => {
-	const followHandler = () => {
-		setButtonDisabled(true, user.id)
-		api.getUnFollow(user.id).then((data) => {
-			if (data.resultCode === 0) unFollow(user.id)
-			setButtonDisabled(false, user.id)
-		})
-	}
-	const unFollowHandler = () => {
-		setButtonDisabled(true, user.id)
-		api.getFollow(user.id).then((data) => {
-			if (data.resultCode === 0) follow(user.id)
-			setButtonDisabled(false, user.id)
-		})
-	}
+export const User: FC<UserPropsType> = ({ user, followUser, unFollowUser, buttonDisabled }) => {
 	return (
 		<div className={s.block}>
 			<div className={s.blockImg}>
@@ -30,14 +15,14 @@ export const User: FC<UserPropsType> = ({ user, follow, unFollow, setButtonDisab
 					<button
 						disabled={buttonDisabled.some((id) => id === user.id)}
 						style={{ opacity: buttonDisabled.some((id) => id === user.id) ? "0.3" : "1" }}
-						onClick={followHandler}>
+						onClick={() => followUser(user.id)}>
 						FOLLOW
 					</button>
 				) : (
 					<button
 						disabled={buttonDisabled.some((id) => id === user.id)}
 						style={{ opacity: buttonDisabled.some((id) => id === user.id) ? "0.3" : "1" }}
-						onClick={unFollowHandler}>
+						onClick={() => unFollowUser(user.id)}>
 						UNFOLLOW
 					</button>
 				)}
@@ -58,8 +43,7 @@ export const User: FC<UserPropsType> = ({ user, follow, unFollow, setButtonDisab
 //types
 type UserPropsType = {
 	user: UserType
-	follow: (userId: number) => void
-	unFollow: (userId: number) => void
-	setButtonDisabled: (isDisabled: boolean, id: number) => void
 	buttonDisabled: number[]
+	followUser: (userId: number) => void
+	unFollowUser: (userId: number) => void
 }

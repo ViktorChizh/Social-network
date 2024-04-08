@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { Redirect } from "react-router-dom"
 import { StateReduxType } from "redux/_Store-Redux"
-import { follow, getUsers, setButtonDisabled, setCurrentPage, unFollow, UserType } from "redux/UsersReducer"
+import { followUser, getUsers, setCurrentPage, unFollowUser, UserType } from "redux/UsersReducer"
 import { Preloader } from "../preloader/Preloader"
 import { Users } from "./Users"
 import s from "./Users.module.css"
@@ -34,6 +35,7 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
 	}
 
 	render() {
+		if (!this.props.isAuth) return <Redirect to={"/login"} />
 		return (
 			<div className={s.users}>
 				{this.props.isPreloading ? (
@@ -41,13 +43,12 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
 				) : (
 					<Users
 						users={this.props.users}
-						follow={this.props.follow}
-						unFollow={this.props.unFollow}
+						followUser={this.props.followUser}
+						unFollowUser={this.props.unFollowUser}
 						totalCount={this.props.totalCount}
 						currentPage={this.props.currentPage}
 						pageSize={this.props.pageSize}
 						onPageChanged={this.onPageChanged.bind(this)}
-						setButtonDisabled={this.props.setButtonDisabled}
 						buttonDisabled={this.props.buttonDisabled}
 					/>
 				)}
@@ -63,8 +64,9 @@ const mapStateToProps = (state: StateReduxType): mStPType => ({
 	totalCount: state.usersPage.totalCount,
 	isPreloading: state.usersPage.isPreloading,
 	buttonDisabled: state.usersPage.buttonDisabled,
+	isAuth: state.auth.isAuth,
 })
-const mapDispatchToProps = { setCurrentPage, follow, unFollow, setButtonDisabled, getUsers }
+const mapDispatchToProps = { setCurrentPage, followUser, unFollowUser, getUsers }
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)
 //types
 type mStPType = {
@@ -74,12 +76,12 @@ type mStPType = {
 	totalCount: number
 	isPreloading: boolean
 	buttonDisabled: number[]
+	isAuth: boolean
 }
 type mDtPType = {
 	setCurrentPage: (currentPage: number) => void
-	follow: (userId: number) => void
-	unFollow: (userId: number) => void
-	setButtonDisabled: (isDisabled: boolean, id: number) => void
+	followUser: (userId: number) => void
+	unFollowUser: (userId: number) => void
 	getUsers: (pageSize: number, currentPage: number) => void
 }
 type UsersAPIComponentPropsType = mStPType & mDtPType

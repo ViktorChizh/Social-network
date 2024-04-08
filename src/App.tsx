@@ -1,3 +1,4 @@
+import { Login } from "components/login/Login"
 import React, { FC } from "react"
 import "./App.css"
 import { NavBar } from "./components/navbar/NavBar"
@@ -25,6 +26,7 @@ export const App: FC = () => {
 					<Route path="/music" component={Music} />
 					<Route path="/settings" component={SettingsContainer} />
 					<Route path="/2-samurai-way-main#" render={() => <Redirect to="/profile" />} />
+					<Route path="/login" render={() => <Login />} />
 					<Route path="/error404" render={() => <Error404 />} />
 					<Route path="/" exact render={() => <Redirect to="/profile" />} />
 					<Route path="/*" render={() => <Redirect to="/error404" />} />

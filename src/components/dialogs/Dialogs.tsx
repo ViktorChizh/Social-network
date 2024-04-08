@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from "react"
+import { Redirect } from "react-router-dom"
 import s from "./Dialogs.module.css"
 import { DialogItem } from "./dialogItem/DialogItem"
 import { Message } from "./message/Message"
@@ -6,12 +7,13 @@ import { TextareaWithButton } from "../textareaWithButton/TextareaWithButton"
 import { addDialogAC, addMessageAC, updateNewDialogTextAC, updateNewMessageTextAC } from "../../redux/DialogReducer"
 import { DialogsContainerType } from "./DialogsContainer"
 
-export const Dialogs: FC<DialogsContainerType> = ({ dialog, dispatch }) => {
+export const Dialogs: FC<DialogsContainerType> = ({ isAuth, dialog, dispatch }) => {
 	useEffect(() => {
 		setTimeout(() => {
 			document.title = "SocialNetwork - dialogs"
 		}, 500)
 	})
+	if (!isAuth) return <Redirect to={"login"} />
 	return (
 		<div className={s.dialogs}>
 			<div className={s.dialogsItem}>

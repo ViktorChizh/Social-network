@@ -66,6 +66,18 @@ export const getUsers = (pageSize: number, currentPage: number) => async (dispat
 	dispatch(setUsers(data.items))
 	dispatch(setTotalCount(data.totalCount))
 }
+export const followUser = (id: number) => async (dispatch: Dispatch) => {
+	dispatch(setButtonDisabled(true, id))
+	const data = await api.getUnFollow(id)
+	if (data.resultCode === 0) dispatch(unFollow(id))
+	dispatch(setButtonDisabled(false, id))
+}
+export const unFollowUser = (id: number) => async (dispatch: Dispatch) => {
+	dispatch(setButtonDisabled(true, id))
+	const data = await api.getFollow(id)
+	if (data.resultCode === 0) dispatch(follow(id))
+	dispatch(setButtonDisabled(false, id))
+}
 //types
 export type PhotosType = {
 	small: string

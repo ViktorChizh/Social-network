@@ -1,23 +1,15 @@
 import React, { FC } from "react"
 import { Paginator } from "../paginator/Paginator"
 import { User } from "./user/User"
-import { UserType } from "../../redux/UsersReducer"
+import { UserType } from "redux/UsersReducer"
 
 export const Users: FC<UsersPropsType> = (props) => {
-	let { users, pageSize, currentPage, totalCount, onPageChanged, follow, unFollow, setButtonDisabled, buttonDisabled } =
-		props
+	let { users, pageSize, currentPage, totalCount, buttonDisabled, onPageChanged, followUser, unFollowUser } = props
 	return (
 		<>
 			<Paginator totalCount={totalCount} pageSize={pageSize} currentPage={currentPage} onPageChanged={onPageChanged} />
 			{users.map((u) => (
-				<User
-					key={u.id}
-					user={u}
-					follow={follow}
-					unFollow={unFollow}
-					buttonDisabled={buttonDisabled}
-					setButtonDisabled={setButtonDisabled}
-				/>
+				<User key={u.id} user={u} followUser={followUser} unFollowUser={unFollowUser} buttonDisabled={buttonDisabled} />
 			))}
 		</>
 	)
@@ -28,9 +20,8 @@ type UsersPropsType = {
 	pageSize: number
 	currentPage: number
 	totalCount: number
-	onPageChanged: (pageNumber: number) => void
-	follow: (userId: number) => void
-	unFollow: (userId: number) => void
-	setButtonDisabled: (isDisabled: boolean, id: number) => void
 	buttonDisabled: number[]
+	onPageChanged: (pageNumber: number) => void
+	followUser: (userId: number) => void
+	unFollowUser: (userId: number) => void
 }

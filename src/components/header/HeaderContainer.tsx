@@ -1,21 +1,13 @@
 import React, { PureComponent } from "react"
-import { Header } from "./Header"
-import { AuthType, setAuthUserData } from "redux/AuthReducer"
 import { connect } from "react-redux"
 import { StateReduxType } from "redux/_Store-Redux"
-import { api } from "api/API"
+import { getAuthUserData } from "redux/AuthReducer"
+import { Header } from "./Header"
 
 class HeaderAPIContainer extends PureComponent<HeaderAPIContainerPropsType> {
 	componentDidMount() {
 		if (this.props.login === null) {
-			api.getMe().then((res) => {
-				if (res.resultCode === 0) {
-					let authData = res.data
-					api.getProfile(res.data.id).then((data) => {
-						this.props.setAuthUserData(authData, data.photos.small)
-					})
-				}
-			})
+			this.props.getAuthUserData()
 		}
 	}
 
@@ -30,7 +22,7 @@ type mStPType = {
 	ownUserAvatar: string | null
 }
 type mDtPType = {
-	setAuthUserData: (data: AuthType, ownUserAvatar: string | null) => void
+	getAuthUserData: () => void
 }
 type HeaderAPIContainerPropsType = mStPType & mDtPType
 
@@ -41,7 +33,7 @@ const MapStateToProps = (state: StateReduxType): mStPType => ({
 })
 
 export const HeaderContainer = connect<mStPType, mDtPType, unknown, StateReduxType>(MapStateToProps, {
-	setAuthUserData,
+	getAuthUserData,
 })(HeaderAPIContainer)
 
 export type ResponseServerType<D = {}> = {

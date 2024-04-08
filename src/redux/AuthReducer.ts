@@ -1,3 +1,5 @@
+import { api } from "api/API"
+import { Dispatch } from "redux"
 import defaultAvatar from "../assets/avatar.webp"
 
 let initialState: AuthReducerType = {
@@ -34,3 +36,12 @@ export const setAuthUserData = (data: AuthType, ownUserAvatar: string | null) =>
 	type: "SET_USER_DATA" as const,
 	payload: { data, ownUserAvatar },
 })
+// thunks
+export const getAuthUserData = () => async (dispatch: Dispatch) => {
+	const res = await api.getMe()
+	if (res.resultCode === 0) {
+		let authData = res.data
+		const data = await api.getProfile(res.data.id)
+		dispatch(setAuthUserData(authData, data.photos.small))
+	}
+}
