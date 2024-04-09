@@ -1,3 +1,4 @@
+import { ProfileStatus } from "components/profile/profileStatus/ProfileStatus"
 import React, { FC } from "react"
 import { ProfileUserType } from "redux/ProfileReducer"
 import s from "../Profile.module.css"
@@ -21,7 +22,10 @@ export const ProfileInfo: FC<PropsType> = ({ profile, height, width }) => {
 						width={width}
 						height={height}
 					/>
-					<span>{profile.fullName}</span>
+					<div className={s.textBlock}>
+						<span>{profile.fullName}</span>
+						<ProfileStatus value="hello" />
+					</div>
 				</div>
 			) : (
 				<Preloader style={{ width: "25%", height: "25%" }} />
