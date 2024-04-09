@@ -1,30 +1,15 @@
-import React, { Component } from "react"
+import { UserType } from "api/API"
+import { withAuthRedirect } from "hoc/withAuthRedirect"
+import React, { Component, ComponentType } from "react"
 import { connect } from "react-redux"
-import { Redirect } from "react-router-dom"
+import { compose } from "redux"
 import { StateReduxType } from "redux/_Store-Redux"
-import { followUser, getUsers, setCurrentPage, unFollowUser, UserType } from "redux/UsersReducer"
+import { followUser, getUsers, setCurrentPage, unFollowUser } from "redux/UsersReducer"
 import { Preloader } from "../preloader/Preloader"
 import { Users } from "./Users"
 import s from "./Users.module.css"
 
 class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
-	// получение стартовых данных в конструкторе (срабатывает 1 раз при создании компоненты)
-	// вместо создания метода и кнопки:
-	// constructor(props: UsersPropsType) {
-	//     super(props)
-	// axios.get<ResponseUserType>('https://social-network.samuraijs.com/api/1.0/users?count=4&page=3249')
-	//          .then((res) => this.props.setUsers(res.data.items))
-	//}
-	// getUsers() {...} - обычный синтаксис - необходимо байндить при вызове
-	// getUsers = () => {  //синтаксис стрелочной функции позволяет не байндить метод при вызове
-	//     if(this.props.users.users.length === 0){//проверка для избежания зацикленности запросов при перерисовке
-	//         axios.get<ResponseUserType>('https://social-network.samuraijs.com/api/1.0/users?count=3&page=3249')
-	//             .then((res) => this.props.setUsers(res.data.items))
-	//     }
-	// }
-	// < button onClick = {this.getUsers.bind(this)} > GET USERS < /button>
-	// <button onClick={this.getUsers}>GET USERS</button>
-	// ПРАВИЛЬНО ЗАПРОСЫ ДЕЛАТЬ ЗДЕСЬ:
 	componentDidMount() {
 		this.props.getUsers(this.props.pageSize, this.props.currentPage)
 	}
@@ -35,7 +20,6 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
 	}
 
 	render() {
-		if (!this.props.isAuth) return <Redirect to={"/login"} />
 		return (
 			<div className={s.users}>
 				{this.props.isPreloading ? (
@@ -56,7 +40,6 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
 		)
 	}
 }
-
 const mapStateToProps = (state: StateReduxType): mStPType => ({
 	users: state.usersPage.users,
 	pageSize: state.usersPage.pageSize,
@@ -64,10 +47,11 @@ const mapStateToProps = (state: StateReduxType): mStPType => ({
 	totalCount: state.usersPage.totalCount,
 	isPreloading: state.usersPage.isPreloading,
 	buttonDisabled: state.usersPage.buttonDisabled,
-	isAuth: state.auth.isAuth,
 })
-const mapDispatchToProps = { setCurrentPage, followUser, unFollowUser, getUsers }
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)
+export const UsersContainer = compose<ComponentType>(
+	withAuthRedirect,
+	connect(mapStateToProps, { setCurrentPage, followUser, unFollowUser, getUsers }),
+)(UsersAPIComponent)
 //types
 type mStPType = {
 	users: UserType[]
@@ -76,7 +60,6 @@ type mStPType = {
 	totalCount: number
 	isPreloading: boolean
 	buttonDisabled: number[]
-	isAuth: boolean
 }
 type mDtPType = {
 	setCurrentPage: (currentPage: number) => void

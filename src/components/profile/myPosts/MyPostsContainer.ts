@@ -1,6 +1,7 @@
+import { ComponentType } from "react"
 import { MyPosts } from "./MyPosts"
 import { StateReduxType, StoreActionType } from "redux/_Store-Redux"
-import { Dispatch } from "redux"
+import { compose, Dispatch } from "redux"
 import { connect } from "react-redux"
 import { ProfileType } from "redux/ProfileReducer"
 
@@ -10,7 +11,9 @@ const mapStateToProps = (state: StateReduxType): mStPType => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): mDtPType => ({ dispatch })
 
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+export const MyPostsContainer = compose<ComponentType>(
+	connect<mStPType, mDtPType, unknown, StateReduxType>(mapStateToProps, mapDispatchToProps),
+)(MyPosts)
 //types
 type mStPType = {
 	profile: ProfileType

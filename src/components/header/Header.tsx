@@ -1,8 +1,7 @@
 import React, { FC, memo } from "react"
-import s from "./Header.module.css"
 import logo from "../../assets/logo.jpg"
-import { AuthType } from "redux/AuthReducer"
 import { LoginBlock } from "../loginBlock/LoginBlock"
+import s from "./Header.module.css"
 
 export type PropsType = {
 	isAuth: boolean

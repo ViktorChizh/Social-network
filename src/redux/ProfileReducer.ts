@@ -1,8 +1,7 @@
-import { api } from "api/API"
-import { PostType } from "components/profile/myPosts/post/Post"
+import { api, ResponseProfileUserType } from "api/API"
 import ava from "assets/postAvatar.jpg"
+import { PostType } from "components/profile/myPosts/post/Post"
 import { Dispatch } from "redux"
-import { PhotosType } from "./UsersReducer"
 
 let initialState = {
 	profile: null,
@@ -48,31 +47,14 @@ export const getProfile = (userId: string) => async (dispatch: Dispatch) => {
 	dispatch(setProfile(res))
 }
 //types
+export type ProfileUserType = ResponseProfileUserType & { userId: number }
+
 export type ProfileType = {
-	profile: ResponseUserProfileType | null
+	profile: ProfileUserType | null
 	posts: PostType[]
 	newPostText: string
 }
-export type ContactsType = {
-	facebook: string | null
-	website: string | null
-	vk: string | null
-	twitter: string | null
-	instagram: string | null
-	youtub: string | null
-	github: string | null
-	mainLink: string | null
-}
-export type ProfileUserType = {
-	aboutMe: string
-	contacts: ContactsType
-	lookingForAJob: boolean
-	lookingForAJobDescription: string
-	fullName: string
-	userId: number
-	photos: PhotosType
-}
-export type ResponseUserProfileType = ProfileUserType & { userId: number }
+
 export type ProfifeReducerActionType =
 	| ReturnType<typeof addPostAC>
 	| ReturnType<typeof updateNewPostTextAC>

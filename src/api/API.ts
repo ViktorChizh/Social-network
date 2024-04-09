@@ -1,8 +1,4 @@
 import axios from "axios"
-import { AuthType } from "redux/AuthReducer"
-import { ResponseServerType } from "components/header/HeaderContainer"
-import { ProfileUserType } from "redux/ProfileReducer"
-import { ResponseUserType } from "redux/UsersReducer"
 
 const instance = axios.create({
 	baseURL: "https://social-network.samuraijs.com/api/1.0/",
@@ -14,7 +10,7 @@ const instance = axios.create({
 
 export const api = {
 	getMe() {
-		return instance.get<ResponseServerType<AuthType>>(`auth/me`).then((res) => res.data)
+		return instance.get<ResponseServerType<ResponseAuthType>>(`auth/me`).then((res) => res.data)
 	},
 
 	getFollow(id: number) {
@@ -29,6 +25,53 @@ export const api = {
 	},
 
 	getProfile(id: number | null) {
-		return instance.get<ProfileUserType>(`profile/${id}`).then((res) => res.data)
+		return instance.get<ResponseProfileUserType>(`profile/${id}`).then((res) => res.data)
 	},
+}
+//types
+export type ResponseAuthType = {
+	id: number | null
+	email: string | null
+	login: string | null
+}
+export type ResponseServerType<D = {}> = {
+	data: D
+	resultCode: 0 | 1 | 10
+	messages: string[]
+}
+export type ResponseUserType = {
+	items: UserType[]
+	totalCount: number
+	error: string
+}
+export type ResponseProfileUserType = {
+	aboutMe: string
+	contacts: ContactsType
+	lookingForAJob: boolean
+	lookingForAJobDescription: string
+	fullName: string
+	userId: number
+	photos: PhotosType
+}
+
+export type UserType = {
+	id: number
+	name: string
+	status: string
+	photos: PhotosType
+	followed: boolean
+}
+export type ContactsType = {
+	facebook: string | null
+	website: string | null
+	vk: string | null
+	twitter: string | null
+	instagram: string | null
+	youtub: string | null
+	github: string | null
+	mainLink: string | null
+}
+export type PhotosType = {
+	small: string
+	large: string
 }

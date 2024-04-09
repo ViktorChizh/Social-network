@@ -1,11 +1,11 @@
 import React, { FC, useEffect } from "react"
+import { ProfileUserType } from "redux/ProfileReducer"
 import s from "./Profile.module.css"
 import { ProfileInfo } from "./profileInfo/ProfileInfo"
 import { MyPostsContainer } from "./myPosts/MyPostsContainer"
-import { ResponseUserProfileType } from "../../redux/ProfileReducer"
 
 type PropsType = {
-	profile: ResponseUserProfileType | null
+	profile: ProfileUserType | null
 }
 export const Profile: FC<PropsType> = (props) => {
 	useEffect(() => {

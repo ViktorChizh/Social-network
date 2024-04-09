@@ -1,9 +1,10 @@
-import { wihAuthRedirect } from "hoc/wihAuthRedirect"
-import React, { Component } from "react"
+import { withAuthRedirect } from "hoc/withAuthRedirect"
+import React, { Component, ComponentType } from "react"
 import { connect } from "react-redux"
-import { Redirect, RouteComponentProps, withRouter } from "react-router-dom"
+import { RouteComponentProps, withRouter } from "react-router-dom"
+import { compose } from "redux"
 import { StateReduxType } from "redux/_Store-Redux"
-import { getProfile, ResponseUserProfileType } from "redux/ProfileReducer"
+import { getProfile, ProfileUserType } from "redux/ProfileReducer"
 import { Profile } from "./Profile"
 
 class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
@@ -18,11 +19,9 @@ class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
 
 const mapStateToProps = (state: StateReduxType): MStPType => ({
 	profile: state.profilePage.profile,
-	isAuth: state.auth.isAuth,
 })
 type MStPType = {
-	profile: ResponseUserProfileType | null
-	isAuth: boolean
+	profile: ProfileUserType | null
 }
 type MDtPType = {
 	getProfile: (userId: string) => void
@@ -30,4 +29,8 @@ type MDtPType = {
 
 type WithRouterProfileComponentType = MStPType & MDtPType & RouteComponentProps<{ userId?: string }>
 
-export const ProfileContainer = connect(mapStateToProps, { getProfile })(withRouter(ProfileAPIComponent))
+export const ProfileContainer = compose<ComponentType>(
+	withAuthRedirect,
+	withRouter,
+	connect(mapStateToProps, { getProfile }),
+)(ProfileAPIComponent)

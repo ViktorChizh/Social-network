@@ -1,4 +1,4 @@
-import { api } from "api/API"
+import { api, UserType } from "api/API"
 import { Dispatch } from "redux"
 
 const initialstate: UsersReducerType = {
@@ -79,17 +79,7 @@ export const unFollowUser = (id: number) => async (dispatch: Dispatch) => {
 	dispatch(setButtonDisabled(false, id))
 }
 //types
-export type PhotosType = {
-	small: string
-	large: string
-}
-export type UserType = {
-	id: number
-	name: string
-	status: string
-	photos: PhotosType
-	followed: boolean
-}
+
 export type UsersReducerType = {
 	users: UserType[]
 	pageSize: number
@@ -97,11 +87,6 @@ export type UsersReducerType = {
 	totalCount: number
 	isPreloading: boolean
 	buttonDisabled: number[]
-}
-export type ResponseUserType = {
-	items: UserType[]
-	totalCount: number
-	error: string
 }
 export type UsersReducerActionType =
 	| ReturnType<typeof setUsers>

@@ -1,10 +1,11 @@
+import { UserType } from "api/API"
 import React, { FC } from "react"
 import { Paginator } from "../paginator/Paginator"
 import { User } from "./user/User"
-import { UserType } from "redux/UsersReducer"
 
 export const Users: FC<UsersPropsType> = (props) => {
 	let { users, pageSize, currentPage, totalCount, buttonDisabled, onPageChanged, followUser, unFollowUser } = props
+	document.title = "SocialNetwork - users"
 	return (
 		<>
 			<Paginator totalCount={totalCount} pageSize={pageSize} currentPage={currentPage} onPageChanged={onPageChanged} />

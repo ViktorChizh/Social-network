@@ -1,4 +1,4 @@
-import { api } from "api/API"
+import { api, ResponseAuthType } from "api/API"
 import { Dispatch } from "redux"
 import defaultAvatar from "../assets/avatar.webp"
 
@@ -24,15 +24,10 @@ export const authReducer = (state: AuthReducerType = initialState, action: AuthR
 	}
 }
 //types
-export type AuthReducerType = AuthType & { isAuth: boolean; ownUserAvatar: string | null }
-export type AuthType = {
-	id: number | null
-	email: string | null
-	login: string | null
-}
+export type AuthReducerType = ResponseAuthType & { isAuth: boolean; ownUserAvatar: string | null }
 export type AuthReducerActionType = ReturnType<typeof setAuthUserData>
 //actions
-export const setAuthUserData = (data: AuthType, ownUserAvatar: string | null) => ({
+export const setAuthUserData = (data: ResponseAuthType, ownUserAvatar: string | null) => ({
 	type: "SET_USER_DATA" as const,
 	payload: { data, ownUserAvatar },
 })

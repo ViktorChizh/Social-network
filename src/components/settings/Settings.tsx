@@ -1,20 +1,13 @@
-import React, { FC, useEffect } from "react"
-import { Redirect } from "react-router-dom"
-import s from "./Settings.module.css"
+import React, { FC } from "react"
 import { PageSizeSetting } from "../pageSizeSettings/PageSizeSetting"
+import s from "./Settings.module.css"
 
 type SettingsPropsType = {
-	isAuth: boolean
 	pageSize: number
 	setPageSize: (pageSize: number) => void
 }
-export const Settings: FC<SettingsPropsType> = ({ isAuth, pageSize, setPageSize }) => {
-	useEffect(() => {
-		setTimeout(() => {
-			document.title = "SocialNetwork - settings"
-		}, 500)
-	})
-	if (!isAuth) return <Redirect to={"login"} />
+export const Settings: FC<SettingsPropsType> = ({ pageSize, setPageSize }) => {
+	document.title = "SocialNetwork - settings"
 	return (
 		<div className={s.main}>
 			<PageSizeSetting pageSize={pageSize} setPageSize={setPageSize} />

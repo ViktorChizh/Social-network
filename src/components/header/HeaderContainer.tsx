@@ -1,5 +1,6 @@
-import React, { PureComponent } from "react"
+import React, { ComponentType, PureComponent } from "react"
 import { connect } from "react-redux"
+import { compose } from "redux"
 import { StateReduxType } from "redux/_Store-Redux"
 import { getAuthUserData } from "redux/AuthReducer"
 import { Header } from "./Header"
@@ -32,12 +33,6 @@ const MapStateToProps = (state: StateReduxType): mStPType => ({
 	ownUserAvatar: state.auth.ownUserAvatar,
 })
 
-export const HeaderContainer = connect<mStPType, mDtPType, unknown, StateReduxType>(MapStateToProps, {
-	getAuthUserData,
-})(HeaderAPIContainer)
-
-export type ResponseServerType<D = {}> = {
-	data: D
-	resultCode: 0 | 1 | 10
-	messages: string[]
-}
+export const HeaderContainer = compose<ComponentType>(
+	connect<mStPType, mDtPType, unknown, StateReduxType>(MapStateToProps, { getAuthUserData }),
+)(HeaderAPIContainer)

@@ -1,6 +1,6 @@
+import { UserType } from "api/API"
 import React, { FC } from "react"
 import { NavLink } from "react-router-dom"
-import { UserType } from "redux/UsersReducer"
 import ava from "../../../assets/avatar.webp"
 import s from "../Users.module.css"
 

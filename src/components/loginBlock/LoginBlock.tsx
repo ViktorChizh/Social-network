@@ -15,11 +15,13 @@ export const LoginBlock: FC<PropsType> = memo((props) => {
 		<div className={s.loginBlock}>
 			{props.isAuth ? (
 				<div className={s.login}>
-					<img src={props.ownUserAvatar || ""} alt="" />
+					<img src={props.ownUserAvatar || ""} alt="" className={s.loginImg} />
 					<p>{props.login}</p>
 				</div>
 			) : (
-				<NavLink to={"/login"}>LOGIN</NavLink>
+				<NavLink to={"/login"}>
+					<i>login</i>
+				</NavLink>
 			)}
 		</div>
 	)

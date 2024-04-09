@@ -1,11 +1,11 @@
 import React, { FC } from "react"
+import { ProfileUserType } from "redux/ProfileReducer"
 import s from "../Profile.module.css"
-import { ResponseUserProfileType } from "redux/ProfileReducer"
 import { Preloader } from "../../preloader/Preloader"
 import ava from "assets/avatar.webp"
 
 type PropsType = {
-	profile: ResponseUserProfileType | null
+	profile: ProfileUserType | null
 	width: string
 	height: string
 }
