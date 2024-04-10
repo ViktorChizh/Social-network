@@ -7,24 +7,18 @@ import ava from "assets/avatar.webp"
 
 type PropsType = {
 	profile: ProfileUserType | null
-	width: string
-	height: string
+	status: string
+	updateStatus: (status: string) => void
 }
-export const ProfileInfo: FC<PropsType> = ({ profile, height, width }) => {
+export const ProfileInfo: FC<PropsType> = ({ profile, status, updateStatus }) => {
 	return (
 		<>
 			{profile ? (
 				<div className={s.description}>
-					<img
-						className={s.avatarImg}
-						src={profile.photos.small || ava}
-						alt={"UserAvatar"}
-						width={width}
-						height={height}
-					/>
+					<img className={s.avatarImg} src={profile.photos.small || ava} alt={"UserAvatar"} />
 					<div className={s.textBlock}>
 						<span>{profile.fullName}</span>
-						<ProfileStatus value="hello" />
+						<ProfileStatus status={status} updateStatus={updateStatus} />
 					</div>
 				</div>
 			) : (

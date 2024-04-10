@@ -5,6 +5,7 @@ import { Dispatch } from "redux"
 
 let initialState = {
 	profile: null,
+	status: "",
 	posts: [
 		{
 			id: 1,
@@ -33,6 +34,12 @@ export const profifeReducer = (state: ProfileType = initialState, action: Profif
 		case "SET-PROFILE": {
 			return { ...state, profile: action.payload.profile }
 		}
+		case "SET-STATUS": {
+			return { ...state, status: action.payload.status }
+		}
+		case "CHANGE-STATUS": {
+			return { ...state, status: action.payload.status }
+		}
 		default:
 			return state
 	}
@@ -41,16 +48,29 @@ export const profifeReducer = (state: ProfileType = initialState, action: Profif
 export const addPostAC = () => ({ type: "ADD-POST" as const })
 export const updateNewPostTextAC = (post: string) => ({ type: "UPDATE-NEW-POST-TEXT" as const, payload: { post } })
 export const setProfile = (profile: ProfileUserType) => ({ type: "SET-PROFILE" as const, payload: { profile } })
+export const setStatus = (status: string) => ({ type: "SET-STATUS" as const, payload: { status } })
+export const changeStatus = (status: string) => ({ type: "CHANGE-STATUS" as const, payload: { status } })
 //thunks
 export const getProfile = (userId: string) => async (dispatch: Dispatch) => {
 	const res = await api.getProfile(+userId)
 	dispatch(setProfile(res))
+}
+export const getStatus = (userId: string) => async (dispatch: Dispatch) => {
+	const res = await api.getStatus(+userId)
+	dispatch(setStatus(res))
+}
+export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
+	const res = await api.updateStatus(status)
+	if (res.resultCode === 0) {
+		dispatch(changeStatus(status))
+	}
 }
 //types
 export type ProfileUserType = ResponseProfileUserType & { userId: number }
 
 export type ProfileType = {
 	profile: ProfileUserType | null
+	status: string
 	posts: PostType[]
 	newPostText: string
 }
@@ -59,3 +79,5 @@ export type ProfifeReducerActionType =
 	| ReturnType<typeof addPostAC>
 	| ReturnType<typeof updateNewPostTextAC>
 	| ReturnType<typeof setProfile>
+	| ReturnType<typeof setStatus>
+	| ReturnType<typeof changeStatus>

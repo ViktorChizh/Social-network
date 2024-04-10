@@ -6,6 +6,8 @@ import { MyPostsContainer } from "./myPosts/MyPostsContainer"
 
 type PropsType = {
 	profile: ProfileUserType | null
+	status: string
+	updateStatus: (status: string) => void
 }
 export const Profile: FC<PropsType> = (props) => {
 	useEffect(() => {
@@ -15,7 +17,7 @@ export const Profile: FC<PropsType> = (props) => {
 	})
 	return (
 		<div className={s.main}>
-			<ProfileInfo profile={props.profile} width={"100px"} height={"100px"} />
+			<ProfileInfo profile={props.profile} updateStatus={props.updateStatus} status={props.status} />
 			<MyPostsContainer />
 		</div>
 	)

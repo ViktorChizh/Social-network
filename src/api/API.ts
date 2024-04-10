@@ -27,6 +27,13 @@ export const api = {
 	getProfile(id: number | null) {
 		return instance.get<ResponseProfileUserType>(`profile/${id}`).then((res) => res.data)
 	},
+
+	getStatus(id: number) {
+		return instance.get<string>(`profile/status/${id}`).then((res) => res.data)
+	},
+	updateStatus(status: string) {
+		return instance.put<ResponseServerType>(`profile/status/`, { status }).then((res) => res.data)
+	},
 }
 //types
 export type ResponseAuthType = {
