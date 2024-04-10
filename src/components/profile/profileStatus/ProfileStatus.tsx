@@ -12,10 +12,7 @@ export class ProfileStatus extends Component<PropsType> {
 		editMode: false,
 		status: this.props.status,
 	}
-	// стрелочная функция позволяет не байндить метод
 	toggleEditMode = () => {
-		// this.state.editMode = !this.state.editMode
-		// this.forceUpdate()
 		if (this.props.isOwnStatus) {
 			this.setState({
 				editMode: !this.state.editMode,
