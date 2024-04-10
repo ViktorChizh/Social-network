@@ -8,9 +8,10 @@ import ava from "assets/avatar.webp"
 type PropsType = {
 	profile: ProfileUserType | null
 	status: string
+	isOwnStatus: boolean
 	updateStatus: (status: string) => void
 }
-export const ProfileInfo: FC<PropsType> = ({ profile, status, updateStatus }) => {
+export const ProfileInfo: FC<PropsType> = ({ profile, status, isOwnStatus, updateStatus }) => {
 	return (
 		<>
 			{profile ? (
@@ -18,7 +19,7 @@ export const ProfileInfo: FC<PropsType> = ({ profile, status, updateStatus }) =>
 					<img className={s.avatarImg} src={profile.photos.small || ava} alt={"UserAvatar"} />
 					<div className={s.textBlock}>
 						<span>{profile.fullName}</span>
-						<ProfileStatus status={status} updateStatus={updateStatus} />
+						<ProfileStatus status={status} updateStatus={updateStatus} isOwnStatus={isOwnStatus} />
 					</div>
 				</div>
 			) : (

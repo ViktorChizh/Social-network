@@ -3,6 +3,7 @@ import s from "../Profile.module.css"
 
 type PropsType = {
 	status: string
+	isOwnStatus: boolean
 	updateStatus: (status: string) => void
 }
 
@@ -15,11 +16,13 @@ export class ProfileStatus extends Component<PropsType> {
 	toggleEditMode = () => {
 		// this.state.editMode = !this.state.editMode
 		// this.forceUpdate()
-		this.setState({
-			editMode: !this.state.editMode,
-			status: this.props.status,
-		})
-		this.props.updateStatus(this.state.status)
+		if (this.props.isOwnStatus) {
+			this.setState({
+				editMode: !this.state.editMode,
+				status: this.props.status,
+			})
+			this.props.updateStatus(this.state.status)
+		}
 	}
 	onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		this.setState({

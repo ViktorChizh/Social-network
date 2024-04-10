@@ -7,6 +7,7 @@ import { MyPostsContainer } from "./myPosts/MyPostsContainer"
 type PropsType = {
 	profile: ProfileUserType | null
 	status: string
+	isOwnStatus: boolean
 	updateStatus: (status: string) => void
 }
 export const Profile: FC<PropsType> = (props) => {
@@ -17,7 +18,12 @@ export const Profile: FC<PropsType> = (props) => {
 	})
 	return (
 		<div className={s.main}>
-			<ProfileInfo profile={props.profile} updateStatus={props.updateStatus} status={props.status} />
+			<ProfileInfo
+				profile={props.profile}
+				updateStatus={props.updateStatus}
+				status={props.status}
+				isOwnStatus={props.isOwnStatus}
+			/>
 			<MyPostsContainer />
 		</div>
 	)

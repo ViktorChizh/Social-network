@@ -8,13 +8,28 @@ import { getProfile, getStatus, ProfileUserType, updateStatus } from "redux/Prof
 import { Profile } from "./Profile"
 
 class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
+	state = {
+		isOwnStatus: true,
+	}
 	componentDidMount() {
+		if (!this.props.match.params.userId || this.props.match.params.userId === "29529") {
+			this.setState({ isOwnStatus: true })
+		} else {
+			this.setState({ isOwnStatus: false })
+		}
 		this.props.getProfile(this.props.match.params.userId || "29529")
 		this.props.getStatus(this.props.match.params.userId || "29529")
 	}
 
 	render() {
-		return <Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />
+		return (
+			<Profile
+				profile={this.props.profile}
+				status={this.props.status}
+				updateStatus={this.props.updateStatus}
+				isOwnStatus={this.state.isOwnStatus}
+			/>
+		)
 	}
 }
 
