@@ -1,0 +1,30 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid #b1e5e7;
+	border-radius: 20px;
+	padding: 20px;
+	min-width: 170px;
+	max-width: 170px;
+	height: 20vw;
+	min-height: 200px;
+	max-height: 300px;
+	h1 {
+		width: 100%;
+		margin-top: 0;
+		text-align: center;
+	}
+}
+.formBlock {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 10px;
+}
+.button {
+	align-self: center;
+	button {
+		padding: 5px 10px;
+	}
+}

@@ -1,4 +1,5 @@
 import axios from "axios"
+import { FormType } from "components/login/loginForm/LoginForm"
 
 const instance = axios.create({
 	baseURL: "https://social-network.samuraijs.com/api/1.0/",
@@ -11,6 +12,12 @@ const instance = axios.create({
 export const api = {
 	getMe() {
 		return instance.get<ResponseServerType<ResponseAuthType>>(`auth/me`).then((res) => res.data)
+	},
+	login(formData: FormType) {
+		return instance.post<ResponseServerType<{ id: number }>>(`auth/login`, formData).then((res) => res.data)
+	},
+	logout() {
+		return instance.delete<ResponseServerType>(`auth/login`).then((res) => res.data)
 	},
 
 	getFollow(id: number) {

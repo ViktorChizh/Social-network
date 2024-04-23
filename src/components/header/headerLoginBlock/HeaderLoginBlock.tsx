@@ -1,22 +1,28 @@
 import React, { FC, memo, useEffect } from "react"
-import s from "./LoginBlock.module.css"
+import s from "components/header/headerLoginBlock/HeaderLoginBlock.module.css"
 import { NavLink } from "react-router-dom"
-import { Preloader } from "../preloader/Preloader"
+import { Preloader } from "components/preloader/Preloader"
 
 type PropsType = {
 	isAuth: boolean
 	login: string | null
 	ownUserAvatar: string | null
+	onClickHandler: () => void
 }
 
-export const LoginBlock: FC<PropsType> = memo((props) => {
-	useEffect(() => {}, [props.login])
+export const HeaderLoginBlock: FC<PropsType> = memo((props) => {
+	// useEffect(() => {}, [props.login])
 	return (
 		<div className={s.loginBlock}>
 			{props.isAuth ? (
 				<div className={s.login}>
 					<img src={props.ownUserAvatar || ""} alt="" className={s.loginImg} />
-					<p>{props.login}</p>
+					<div>
+						<p>{props.login}</p>
+						<p onClick={props.onClickHandler} className={s.logout}>
+							logout
+						</p>
+					</div>
 				</div>
 			) : (
 				<NavLink to={"/login"}>

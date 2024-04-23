@@ -12,15 +12,14 @@ class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
 		isOwnStatus: true,
 	}
 	componentDidMount() {
-		if (!this.props.match.params.userId || this.props.match.params.userId === "29529") {
+		if (this.props.match.params.userId === "29529") {
 			this.setState({ isOwnStatus: true })
 		} else {
 			this.setState({ isOwnStatus: false })
 		}
-		this.props.getProfile(this.props.match.params.userId || "29529")
-		this.props.getStatus(this.props.match.params.userId || "29529")
+		this.props.getProfile(this.props.match.params.userId || this.props.id?.toString() || "29529")
+		this.props.getStatus(this.props.match.params.userId || this.props.id?.toString() || "29529")
 	}
-
 	render() {
 		return (
 			<Profile
@@ -36,17 +35,18 @@ class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
 const mapStateToProps = (state: StateReduxType): MStPType => ({
 	profile: state.profilePage.profile,
 	status: state.profilePage.status,
+	id: state.auth.id,
 })
 type MStPType = {
 	profile: ProfileUserType | null
 	status: string
+	id: number | null
 }
 type MDtPType = {
 	getProfile: (userId: string) => void
 	getStatus: (userId: string) => void
 	updateStatus: (status: string) => void
 }
-
 type WithRouterProfileComponentType = MStPType & MDtPType & RouteComponentProps<{ userId?: string }>
 
 export const ProfileContainer = compose<ComponentType>(

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent, Component } from "react"
+import React, { ChangeEvent, Component, KeyboardEvent } from "react"
 import s from "../Profile.module.css"
 
 type PropsType = {
@@ -6,9 +6,12 @@ type PropsType = {
 	isOwnStatus: boolean
 	updateStatus: (status: string) => void
 }
-
+type Statetype = {
+	editMode: boolean
+	status: string
+}
 export class ProfileStatus extends Component<PropsType> {
-	state = {
+	state: Statetype = {
 		editMode: false,
 		status: this.props.status,
 	}
@@ -32,6 +35,14 @@ export class ProfileStatus extends Component<PropsType> {
 	}
 	onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
 		if (e.code === "Enter" || e.code === "NumpadEnter") this.toggleEditMode()
+	}
+
+	componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<Statetype>) {
+		if (prevProps.status !== this.props.status) {
+			this.setState({
+				status: this.props.status,
+			})
+		}
 	}
 	render() {
 		return (
