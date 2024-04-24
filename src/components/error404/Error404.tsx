@@ -1,11 +1,8 @@
-import React, { useEffect } from "react"
+import React from "react"
 import s from "./Error.module.css"
 
 export const Error404 = () => {
-	useEffect(() => {
-		setTimeout(() => {
-			document.title = "SocialNetwork - error404"
-		}, 500)
-	})
+	document.title = "SocialNetwork - error404"
+
 	return <div className={s.main} />
 }

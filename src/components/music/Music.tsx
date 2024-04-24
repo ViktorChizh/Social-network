@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import s from "./Music.module.css"
 
 type MusicBaseType = {
@@ -40,16 +40,12 @@ const musicBase: MusicBaseType[] = [
 ]
 
 export const Music = () => {
-	useEffect(() => {
-		setTimeout(() => {
-			document.title = "SocialNetwork - music"
-		}, 500)
-	})
+	document.title = "SocialNetwork - music"
 	return (
 		<div className={s.main}>
 			{musicBase.map((e) => {
 				return (
-					<a className={s.block} href={e.radioLink} target="_blanc">
+					<a className={s.block} href={e.radioLink} target="_blanc" key={e.radioTitle}>
 						<img src={e.imgLink} alt={e.imgAlt} />
 						{e.radioTitle}
 					</a>

@@ -1,4 +1,7 @@
 import React from "react"
+import { Provider } from "react-redux"
+import { BrowserRouter } from "react-router-dom"
+import { store } from "redux/_Store-Redux"
 import { HeaderContainer } from "./HeaderContainer"
 
 export default {
@@ -7,5 +10,11 @@ export default {
 }
 
 export const HeaderDemo = () => {
-	return <HeaderContainer />
+	return (
+		<Provider store={store}>
+			<BrowserRouter>
+				<HeaderContainer />
+			</BrowserRouter>
+		</Provider>
+	)
 }

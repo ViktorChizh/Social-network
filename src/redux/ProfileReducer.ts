@@ -14,7 +14,6 @@ let initialState = {
 			avatar: ava,
 		},
 	],
-	newPostText: "",
 }
 
 export const profifeReducer = (state: ProfileType = initialState, action: ProfifeReducerActionType): ProfileType => {
@@ -22,14 +21,11 @@ export const profifeReducer = (state: ProfileType = initialState, action: Profif
 		case "ADD-POST": {
 			let newPost: PostType = {
 				id: state.posts[state.posts.length - 1].id + 1,
-				message: state.newPostText,
+				message: action.payload.post || "",
 				likesCount: 0,
 				avatar: ava,
 			}
-			return { ...state, posts: [...state.posts, newPost], newPostText: "" }
-		}
-		case "UPDATE-NEW-POST-TEXT": {
-			return { ...state, newPostText: action.payload.post }
+			return { ...state, posts: [...state.posts, newPost] }
 		}
 		case "SET-PROFILE": {
 			return { ...state, profile: action.payload.profile }
@@ -45,8 +41,7 @@ export const profifeReducer = (state: ProfileType = initialState, action: Profif
 	}
 }
 //actions
-export const addPostAC = () => ({ type: "ADD-POST" as const })
-export const updateNewPostTextAC = (post: string) => ({ type: "UPDATE-NEW-POST-TEXT" as const, payload: { post } })
+export const addPostAC = (post: string | undefined) => ({ type: "ADD-POST" as const, payload: { post } })
 export const setProfile = (profile: ProfileUserType) => ({ type: "SET-PROFILE" as const, payload: { profile } })
 export const setStatus = (status: string) => ({ type: "SET-STATUS" as const, payload: { status } })
 export const changeStatus = (status: string) => ({ type: "CHANGE-STATUS" as const, payload: { status } })
@@ -72,12 +67,10 @@ export type ProfileType = {
 	profile: ProfileUserType | null
 	status: string
 	posts: PostType[]
-	newPostText: string
 }
 
 export type ProfifeReducerActionType =
 	| ReturnType<typeof addPostAC>
-	| ReturnType<typeof updateNewPostTextAC>
 	| ReturnType<typeof setProfile>
 	| ReturnType<typeof setStatus>
 	| ReturnType<typeof changeStatus>

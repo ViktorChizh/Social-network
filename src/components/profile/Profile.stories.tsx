@@ -1,4 +1,7 @@
 import React from "react"
+import { Provider } from "react-redux"
+import { BrowserRouter } from "react-router-dom"
+import { store } from "redux/_Store-Redux"
 import { ProfileContainer } from "./ProfileContainer"
 
 export default {
@@ -7,5 +10,11 @@ export default {
 }
 
 export const ProfileDemo = () => {
-	return <ProfileContainer />
+	return (
+		<Provider store={store}>
+			<BrowserRouter>
+				<ProfileContainer />
+			</BrowserRouter>
+		</Provider>
+	)
 }

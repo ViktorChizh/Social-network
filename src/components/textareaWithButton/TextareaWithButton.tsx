@@ -1,30 +1,26 @@
-import React, { FC, LegacyRef } from "react"
+import React, { FC } from "react"
+import { Field, InjectedFormProps, reduxForm } from "redux-form"
 import s from "./TextareaWithButton.module.css"
-import { StoreActionType } from "../../redux/_Store-Redux"
 
-export type TextareaButtonPropsType = {
+type OwnPropsType = {
 	buttonName: string
-	newText: string
-	dispatch: (AC: StoreActionType) => void
-	addAC: () => StoreActionType
-	newTextAC: (refElement: string) => StoreActionType
+	placeholder: string
+	name: string
 }
+export type TextFormType = {
+	addPost?: string
+	addMessage?: string
+	addDialog?: string
+}
+const TextareaWithButton_: FC<InjectedFormProps<TextFormType, OwnPropsType> & OwnPropsType> = (props) => {
+	const { buttonName, placeholder, name, handleSubmit } = props
 
-export const TextareaWithButton: FC<TextareaButtonPropsType> = (props) => {
-	const { buttonName, newText, addAC, newTextAC, dispatch } = props
-
-	const refElement: LegacyRef<HTMLTextAreaElement> | undefined = React.createRef()
-
-	const updateNewTextHandler = () => {
-		refElement.current && dispatch(newTextAC(refElement.current.value))
-	}
-	const addTextHandler = () => {
-		dispatch(addAC())
-	}
 	return (
-		<div className={s.textareaButton}>
-			<textarea ref={refElement} value={newText} onChange={updateNewTextHandler} />
-			<button onClick={addTextHandler}> {buttonName} </button>
-		</div>
+		<form onSubmit={handleSubmit} className={s.textareaButton}>
+			<Field component={"textarea"} name={name} placeholder={placeholder} />
+			<button> {buttonName} </button>
+		</form>
 	)
 }
+
+export const TextareaWithButton = reduxForm<TextFormType, OwnPropsType>({ form: "textArea" })(TextareaWithButton_)

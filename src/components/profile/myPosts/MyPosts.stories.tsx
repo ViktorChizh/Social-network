@@ -1,4 +1,6 @@
 import React from "react"
+import { Provider } from "react-redux"
+import { store } from "redux/_Store-Redux"
 import { MyPostsContainer } from "./MyPostsContainer"
 
 export default {
@@ -7,5 +9,9 @@ export default {
 }
 
 export const MyPostDemo = () => {
-	return <MyPostsContainer />
+	return (
+		<Provider store={store}>
+			<MyPostsContainer />
+		</Provider>
+	)
 }

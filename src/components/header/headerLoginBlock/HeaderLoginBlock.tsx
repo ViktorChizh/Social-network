@@ -1,7 +1,5 @@
-import React, { FC, memo, useEffect } from "react"
 import s from "components/header/headerLoginBlock/HeaderLoginBlock.module.css"
-import { NavLink } from "react-router-dom"
-import { Preloader } from "components/preloader/Preloader"
+import React, { FC, memo } from "react"
 
 type PropsType = {
 	isAuth: boolean
@@ -11,10 +9,9 @@ type PropsType = {
 }
 
 export const HeaderLoginBlock: FC<PropsType> = memo((props) => {
-	// useEffect(() => {}, [props.login])
 	return (
 		<div className={s.loginBlock}>
-			{props.isAuth ? (
+			{props.isAuth && (
 				<div className={s.login}>
 					<img src={props.ownUserAvatar || ""} alt="" className={s.loginImg} />
 					<div>
@@ -24,10 +21,6 @@ export const HeaderLoginBlock: FC<PropsType> = memo((props) => {
 						</p>
 					</div>
 				</div>
-			) : (
-				<NavLink to={"/login"}>
-					<i>login</i>
-				</NavLink>
 			)}
 		</div>
 	)

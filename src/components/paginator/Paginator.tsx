@@ -29,7 +29,10 @@ export const Paginator: FC<PaginatorPropsType> = ({ totalCount, pageSize, onPage
 			</span>
 			<span style={{ color: "#b1e5e7", fontWeight: "bolder" }}>{"<"}</span>
 			{pages.map((i) => (
-				<span className={i === currentPage ? `${s.selected} ${s.pages}` : s.pages} onClick={() => onPageChanged(i)}>
+				<span
+					key={i}
+					className={i === currentPage ? `${s.selected} ${s.pages}` : s.pages}
+					onClick={() => onPageChanged(i)}>
 					{i}
 				</span>
 			))}

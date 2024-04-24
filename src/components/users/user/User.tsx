@@ -6,7 +6,7 @@ import s from "../Users.module.css"
 
 export const User: FC<UserPropsType> = ({ user, followUser, unFollowUser, buttonDisabled }) => {
 	return (
-		<div className={s.block}>
+		<div className={s.block} key={user.id}>
 			<div className={s.blockImg}>
 				<NavLink to={`/profile/${user.id}`}>
 					<img src={user.photos.small ? user.photos.small : ava} width="50px" height="50px" alt="avatar" />
