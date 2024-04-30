@@ -1,17 +1,22 @@
 .textareaButton {
 	display: flex;
-	gap: 5px;
 	button {
-		align-self: stretch;
+		align-self: flex-start;
 		border: 2px solid #b1e5e7;
 		border-radius: 5px;
 		font-weight: bold;
 		background-color: #383fcc;
 		color: #b1e5e7;
+		margin-left: 10px;
+		height: 2.75rem;
 	}
 	textarea {
+		box-sizing: border-box;
 		border: 2px solid #b1e5e7;
 		border-radius: 5px;
 		resize: none;
+		margin: 0;
+		height: 100%;
+		width: 100%;
 	}
 }

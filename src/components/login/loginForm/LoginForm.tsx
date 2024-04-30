@@ -1,17 +1,20 @@
+import { Input } from "components/validatedComponent/ValidatedComponent"
 import React, { FC } from "react"
 import { Field, InjectedFormProps, reduxForm } from "redux-form"
+import { emailValidator, minLengthCreator, required } from "utils/validators/textAreaValidator"
 import s from "./LoginForm.module.css"
 
+const minLength4 = minLengthCreator(4)
 const LoginForm: FC<InjectedFormProps<FormType, OwnPropsType> & OwnPropsType> = (props) => {
 	return (
 		<div className={s.main}>
 			<h1>LOGIN</h1>
 			<form className={s.formBlock} onSubmit={props.handleSubmit}>
 				<div>
-					<Field component={"input"} name={"email"} placeholder="Login" />
+					<Field component={Input} name={"email"} placeholder="Login" validate={[required, emailValidator]} />
 				</div>
 				<div>
-					<Field component={"input"} name={"password"} placeholder="Password" />
+					<Field component={Input} name={"password"} placeholder="Password" validate={[required, minLength4]} />
 				</div>
 				<div>
 					<Field component={"input"} type="checkbox" name={"rememberMe"} /> <i>remember me</i>

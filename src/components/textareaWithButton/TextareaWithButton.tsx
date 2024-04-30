@@ -1,5 +1,7 @@
-import React, { FC } from "react"
+import { TextArea } from "components/validatedComponent/ValidatedComponent"
+import React from "react"
 import { Field, InjectedFormProps, reduxForm } from "redux-form"
+import { maxLengthCreator, required } from "utils/validators/textAreaValidator"
 import s from "./TextareaWithButton.module.css"
 
 type OwnPropsType = {
@@ -12,12 +14,14 @@ export type TextFormType = {
 	addMessage?: string
 	addDialog?: string
 }
-const TextareaWithButton_: FC<InjectedFormProps<TextFormType, OwnPropsType> & OwnPropsType> = (props) => {
-	const { buttonName, placeholder, name, handleSubmit } = props
+export type TextAreaProps = InjectedFormProps<TextFormType, OwnPropsType> & OwnPropsType
+const maxLength100 = maxLengthCreator(100)
 
+const TextareaWithButton_ = (props: TextAreaProps) => {
+	const { buttonName, placeholder, name, handleSubmit } = props
 	return (
 		<form onSubmit={handleSubmit} className={s.textareaButton}>
-			<Field component={"textarea"} name={name} placeholder={placeholder} />
+			<Field component={TextArea} name={name} placeholder={placeholder} validate={[maxLength100]} />
 			<button> {buttonName} </button>
 		</form>
 	)
