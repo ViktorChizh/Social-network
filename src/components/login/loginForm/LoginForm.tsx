@@ -1,18 +1,14 @@
 import { Input } from "components/validatedComponent/ValidatedComponent"
-import React, { useEffect } from "react"
+import React from "react"
 import { Field, InjectedFormProps, reduxForm } from "redux-form"
 import { emailValidator, minLengthCreator, required } from "utils/validators/textAreaValidator"
 import s from "./LoginForm.module.css"
 
 const minLength4 = minLengthCreator(4)
 const LoginForm = (props: InjectedFormProps<FormType, OwnPropsType> & OwnPropsType) => {
-	const { error } = props
-	console.log(error)
-	useEffect(() => {}, [error])
 	return (
 		<div className={s.main}>
 			<h1>LOGIN</h1>
-			{!!error && <p style={{ color: "red" }}>{error}</p>}
 			<form className={s.formBlock} onSubmit={props.handleSubmit}>
 				<div>
 					<Field
@@ -35,6 +31,7 @@ const LoginForm = (props: InjectedFormProps<FormType, OwnPropsType> & OwnPropsTy
 				<div>
 					<Field component={"input"} type="checkbox" name={"rememberMe"} /> <i>remember me</i>
 				</div>
+
 				<div className={s.button}>
 					<button>Login</button>
 				</div>
@@ -49,6 +46,4 @@ export type FormType = {
 	password: string
 	rememberMe: boolean
 }
-type OwnPropsType = {
-	error: string
-}
+type OwnPropsType = {}

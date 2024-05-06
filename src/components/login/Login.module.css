@@ -13,3 +13,11 @@
 	align-items: center;
 	justify-content: center;
 }
+.error {
+	color: red;
+	background-color: #b1e5e7;
+	font-weight: bolder;
+	font-style: italic;
+	padding: 2px 5px;
+	border-radius: 5px;
+}

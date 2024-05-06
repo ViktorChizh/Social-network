@@ -15,7 +15,8 @@ class Login_ extends Component<mapStateToPropsType & mapDispatchToPropsType> {
 		if (this.props.isAuth) return <Redirect to={"/profile"} />
 		return (
 			<div className={s.loginBlock}>
-				<LoginReduxForm onSubmit={this.onSubmit} error={this.props.error} />
+				<LoginReduxForm onSubmit={this.onSubmit} />
+				{!!this.props.error ? <p className={s.error}>{this.props.error}</p> : <p>{""}</p>}
 			</div>
 		)
 	}
