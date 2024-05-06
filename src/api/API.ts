@@ -10,35 +10,35 @@ const instance = axios.create({
 })
 
 export const api = {
-	getMe() {
+	async getMe() {
 		return instance.get<ResponseServerType<ResponseAuthType>>(`auth/me`).then((res) => res.data)
 	},
-	login(formData: FormType) {
+	async login(formData: FormType) {
 		return instance.post<ResponseServerType<{ id: number }>>(`auth/login`, formData).then((res) => res.data)
 	},
-	logout() {
+	async logout() {
 		return instance.delete<ResponseServerType>(`auth/login`).then((res) => res.data)
 	},
 
-	getFollow(id: number) {
+	async getFollow(id: number) {
 		return instance.post<ResponseServerType>(`follow/${id}`, {}).then((res) => res.data)
 	},
-	getUnFollow(id: number) {
+	async getUnFollow(id: number) {
 		return instance.delete<ResponseServerType>(`follow/${id}`).then((res) => res.data)
 	},
 
-	getUsers(pageSize: number, currentPage: number) {
+	async getUsers(pageSize: number, currentPage: number) {
 		return instance.get<ResponseUserType>(`users?count=${pageSize}&page=${currentPage}`).then((res) => res.data)
 	},
 
-	getProfile(id: number | null) {
+	async getProfile(id: number | null) {
 		return instance.get<ResponseProfileUserType>(`profile/${id}`).then((res) => res.data)
 	},
 
-	getStatus(id: number) {
+	async getStatus(id: number) {
 		return instance.get<string>(`profile/status/${id}`).then((res) => res.data)
 	},
-	updateStatus(status: string) {
+	async updateStatus(status: string) {
 		return instance.put<ResponseServerType>(`profile/status/`, { status }).then((res) => res.data)
 	},
 }

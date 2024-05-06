@@ -1,20 +1,36 @@
 import { Input } from "components/validatedComponent/ValidatedComponent"
-import React, { FC } from "react"
+import React, { useEffect } from "react"
 import { Field, InjectedFormProps, reduxForm } from "redux-form"
 import { emailValidator, minLengthCreator, required } from "utils/validators/textAreaValidator"
 import s from "./LoginForm.module.css"
 
 const minLength4 = minLengthCreator(4)
-const LoginForm: FC<InjectedFormProps<FormType, OwnPropsType> & OwnPropsType> = (props) => {
+const LoginForm = (props: InjectedFormProps<FormType, OwnPropsType> & OwnPropsType) => {
+	const { error } = props
+	console.log(error)
+	useEffect(() => {}, [error])
 	return (
 		<div className={s.main}>
 			<h1>LOGIN</h1>
+			{!!error && <p style={{ color: "red" }}>{error}</p>}
 			<form className={s.formBlock} onSubmit={props.handleSubmit}>
 				<div>
-					<Field component={Input} name={"email"} placeholder="Login" validate={[required, emailValidator]} />
+					<Field
+						component={Input}
+						name={"email"}
+						type="email"
+						placeholder="Login"
+						validate={[required, emailValidator]}
+					/>
 				</div>
 				<div>
-					<Field component={Input} name={"password"} placeholder="Password" validate={[required, minLength4]} />
+					<Field
+						component={Input}
+						name={"password"}
+						type="password"
+						placeholder="Password"
+						validate={[required, minLength4]}
+					/>
 				</div>
 				<div>
 					<Field component={"input"} type="checkbox" name={"rememberMe"} /> <i>remember me</i>
@@ -33,4 +49,6 @@ export type FormType = {
 	password: string
 	rememberMe: boolean
 }
-type OwnPropsType = {}
+type OwnPropsType = {
+	error: string
+}
