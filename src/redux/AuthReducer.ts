@@ -1,7 +1,7 @@
 import { api, ResponseAuthType } from "api/API"
-import { AxiosError } from "axios"
 import { FormType } from "components/login/loginForm/LoginForm"
 import { Dispatch } from "redux"
+import { stopSubmit } from "redux-form"
 import { ThunkDispatch } from "redux-thunk"
 import defaultAvatar from "../assets/avatar.webp"
 
@@ -11,7 +11,6 @@ let initialState: AuthReducerType = {
 	login: null,
 	isAuth: false,
 	ownUserAvatar: null,
-	error: "",
 }
 
 export const authReducer = (state: AuthReducerType = initialState, action: AuthReducerActionType): AuthReducerType => {
@@ -25,8 +24,6 @@ export const authReducer = (state: AuthReducerType = initialState, action: AuthR
 			}
 		case "LOGOUT_USER":
 			return initialState
-		case "SET_ERROR":
-			return { ...state, error: action.payload.error }
 		default:
 			return state
 	}
@@ -35,12 +32,8 @@ export const authReducer = (state: AuthReducerType = initialState, action: AuthR
 export type AuthReducerType = ResponseAuthType & {
 	isAuth: boolean
 	ownUserAvatar: string | null
-	error: string
 }
-export type AuthReducerActionType =
-	| ReturnType<typeof setAuthUserData>
-	| ReturnType<typeof logoutUser>
-	| ReturnType<typeof setError>
+export type AuthReducerActionType = ReturnType<typeof setAuthUserData> | ReturnType<typeof logoutUser>
 //actions
 export const setAuthUserData = (data: ResponseAuthType, ownUserAvatar: string | null) => ({
 	type: "SET_USER_DATA" as const,
@@ -68,7 +61,9 @@ export const login =
 		if (res.resultCode === 0) {
 			await dispatch(getAuthUserData())
 		} else {
-			dispatch(setError(res.messages[0]))
+			dispatch(stopSubmit("login", { _error: res.messages.length > 0 ? res.messages[0] : "Some error" }))
+			// если указать конкретное поле, то будет подсвечивать его (если сервер дает такую инфу):
+			// dispatch(stopSubmit("login", { `${res.messages.field}`: `${res.messages.message}`})) // или промапать
 		}
 	}
 export const logout = () => async (dispatch: Dispatch) => {

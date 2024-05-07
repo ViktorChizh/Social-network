@@ -31,7 +31,7 @@ const LoginForm = (props: InjectedFormProps<FormType, OwnPropsType> & OwnPropsTy
 				<div>
 					<Field component={"input"} type="checkbox" name={"rememberMe"} /> <i>remember me</i>
 				</div>
-
+				{props.error && <div className={s.errorServer}>{props.error}</div>}
 				<div className={s.button}>
 					<button>Login</button>
 				</div>

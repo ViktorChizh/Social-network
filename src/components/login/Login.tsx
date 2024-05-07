@@ -16,7 +16,6 @@ class Login_ extends Component<mapStateToPropsType & mapDispatchToPropsType> {
 		return (
 			<div className={s.loginBlock}>
 				<LoginReduxForm onSubmit={this.onSubmit} />
-				{!!this.props.error ? <p className={s.error}>{this.props.error}</p> : <p>{""}</p>}
 			</div>
 		)
 	}
@@ -24,11 +23,9 @@ class Login_ extends Component<mapStateToPropsType & mapDispatchToPropsType> {
 
 const mapStateToProps = (state: StateReduxType): mapStateToPropsType => ({
 	isAuth: state.auth.isAuth,
-	error: state.auth.error,
 })
 type mapStateToPropsType = {
 	isAuth: boolean
-	error: string
 }
 type mapDispatchToPropsType = {
 	login: (formData: FormType) => void
