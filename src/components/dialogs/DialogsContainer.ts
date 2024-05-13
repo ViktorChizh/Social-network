@@ -8,6 +8,7 @@ import { compose, Dispatch } from "redux"
 
 const mapStateToProps = (state: StateReduxType): mStPType => ({
 	dialog: state.dialogsPage,
+	isLoggedIn: state.auth.isLoggedIn,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch): mDtPType => ({ dispatch })
@@ -19,6 +20,7 @@ export const DialogsContainer = compose<ComponentType>(
 //types
 type mStPType = {
 	dialog: DialogType
+	isLoggedIn: boolean
 }
 type mDtPType = {
 	dispatch: (AC: StoreActionType) => void

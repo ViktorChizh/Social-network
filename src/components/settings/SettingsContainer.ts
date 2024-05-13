@@ -8,6 +8,7 @@ import { withAuthRedirect } from "hoc/withAuthRedirect"
 
 const mapStateToProps = (state: StateReduxType): mStPType => ({
 	pageSize: state.usersPage.pageSize,
+	isLoggedIn: state.auth.isLoggedIn,
 })
 
 export const SettingsContainer = compose<ComponentType>(
@@ -17,6 +18,7 @@ export const SettingsContainer = compose<ComponentType>(
 //types
 type mStPType = {
 	pageSize: number
+	isLoggedIn: boolean
 }
 type mDtPType = {
 	setPageSize: (pageSize: number) => void

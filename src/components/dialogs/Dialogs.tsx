@@ -1,4 +1,5 @@
 import React, { FC } from "react"
+import { Redirect } from "react-router-dom"
 import { addDialogAC, addMessageAC } from "../../redux/DialogReducer"
 import { TextareaWithButton, TextFormType } from "../textareaWithButton/TextareaWithButton"
 import { DialogItem } from "./dialogItem/DialogItem"
@@ -6,11 +7,12 @@ import s from "./Dialogs.module.css"
 import { DialogsContainerType } from "./DialogsContainer"
 import { Message } from "./message/Message"
 
-export const Dialogs: FC<DialogsContainerType> = ({ dialog, dispatch }) => {
+export const Dialogs: FC<DialogsContainerType> = ({ dialog, dispatch, isLoggedIn }) => {
 	document.title = "SocialNetwork - dialogs"
 	const addDialog = (formData: TextFormType) => dispatch(addDialogAC(formData.addDialog))
 	const addMessage = (formData: TextFormType) => dispatch(addMessageAC(formData.addMessage))
 
+	if (!isLoggedIn) return <Redirect to={"/login"} />
 	return (
 		<div className={s.dialogs}>
 			<div className={s.dialogsItem}>

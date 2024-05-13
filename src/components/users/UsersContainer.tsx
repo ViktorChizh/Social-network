@@ -2,6 +2,7 @@ import { UserType } from "api/API"
 import { withAuthRedirect } from "hoc/withAuthRedirect"
 import React, { Component, ComponentType } from "react"
 import { connect } from "react-redux"
+import { Redirect } from "react-router-dom"
 import { compose } from "redux"
 import { StateReduxType } from "redux/_Store-Redux"
 import { followUser, getUsers, setCurrentPage, unFollowUser } from "redux/UsersReducer"
@@ -20,6 +21,7 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
 	}
 
 	render() {
+		if (!this.props.isLoggedIn) return <Redirect to={"/login"} />
 		return (
 			<div className={s.users}>
 				{this.props.isPreloading ? (
@@ -47,6 +49,7 @@ const mapStateToProps = (state: StateReduxType): mStPType => ({
 	totalCount: state.usersPage.totalCount,
 	isPreloading: state.usersPage.isPreloading,
 	buttonDisabled: state.usersPage.buttonDisabled,
+	isLoggedIn: state.auth.isLoggedIn,
 })
 export const UsersContainer = compose<ComponentType>(
 	withAuthRedirect,
@@ -60,6 +63,7 @@ type mStPType = {
 	totalCount: number
 	isPreloading: boolean
 	buttonDisabled: number[]
+	isLoggedIn: boolean
 }
 type mDtPType = {
 	setCurrentPage: (currentPage: number) => void
