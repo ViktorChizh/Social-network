@@ -12,7 +12,7 @@ class Login_ extends Component<mapStateToPropsType & mapDispatchToPropsType> {
 		this.props.login(formData)
 	}
 	render() {
-		if (this.props.isAuth) return <Redirect to={"/profile"} />
+		if (this.props.isLoggedIn) return <Redirect to={"/profile"} />
 		return (
 			<div className={s.loginBlock}>
 				<LoginReduxForm onSubmit={this.onSubmit} />
@@ -22,10 +22,10 @@ class Login_ extends Component<mapStateToPropsType & mapDispatchToPropsType> {
 }
 
 const mapStateToProps = (state: StateReduxType): mapStateToPropsType => ({
-	isAuth: state.auth.isAuth,
+	isLoggedIn: state.auth.isLoggedIn,
 })
 type mapStateToPropsType = {
-	isAuth: boolean
+	isLoggedIn: boolean
 }
 type mapDispatchToPropsType = {
 	login: (formData: FormType) => void

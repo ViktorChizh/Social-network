@@ -2,7 +2,7 @@ import s from "components/header/headerLoginBlock/HeaderLoginBlock.module.css"
 import React, { FC, memo } from "react"
 
 type PropsType = {
-	isAuth: boolean
+	isLoggedIn: boolean
 	login: string | null
 	ownUserAvatar: string | null
 	onClickHandler: () => void
@@ -11,7 +11,7 @@ type PropsType = {
 export const HeaderLoginBlock: FC<PropsType> = memo((props) => {
 	return (
 		<div className={s.loginBlock}>
-			{props.isAuth && (
+			{props.isLoggedIn && (
 				<div className={s.login}>
 					<img src={props.ownUserAvatar || ""} alt="" className={s.loginImg} />
 					<div>

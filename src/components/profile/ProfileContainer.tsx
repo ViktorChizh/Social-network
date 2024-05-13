@@ -1,7 +1,7 @@
 import { withAuthRedirect } from "hoc/withAuthRedirect"
 import React, { Component, ComponentType } from "react"
 import { connect } from "react-redux"
-import { RouteComponentProps, withRouter } from "react-router-dom"
+import { Redirect, RouteComponentProps, withRouter } from "react-router-dom"
 import { compose } from "redux"
 import { StateReduxType } from "redux/_Store-Redux"
 import { getProfile, getStatus, ProfileUserType, updateStatus } from "redux/ProfileReducer"
@@ -24,6 +24,7 @@ class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
 		}
 	}
 	render() {
+		if (!this.props.isLoggedIn) return <Redirect to={"/login"} />
 		return (
 			<Profile
 				profile={this.props.profile}
@@ -36,11 +37,13 @@ class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
 }
 
 const mapStateToProps = (state: StateReduxType): MStPType => ({
+	isLoggedIn: state.auth.isLoggedIn,
 	profile: state.profilePage.profile,
 	status: state.profilePage.status,
 	id: state.auth.id,
 })
 type MStPType = {
+	isLoggedIn: boolean
 	profile: ProfileUserType | null
 	status: string
 	id: number | null

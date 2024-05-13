@@ -15,7 +15,7 @@ class HeaderAPIContainer extends PureComponent<HeaderAPIContainerPropsType> {
 		return (
 			<Header
 				login={this.props.login}
-				isAuth={this.props.isAuth}
+				isLoggedIn={this.props.isLoggedIn}
 				ownUserAvatar={this.props.ownUserAvatar}
 				onClickHandler={this.props.logout}
 			/>
@@ -24,7 +24,7 @@ class HeaderAPIContainer extends PureComponent<HeaderAPIContainerPropsType> {
 }
 
 type mStPType = {
-	isAuth: boolean
+	isLoggedIn: boolean
 	login: string | null
 	ownUserAvatar: string | null
 }
@@ -35,7 +35,7 @@ type mDtPType = {
 type HeaderAPIContainerPropsType = mStPType & mDtPType
 
 const MapStateToProps = (state: StateReduxType): mStPType => ({
-	isAuth: state.auth.isAuth,
+	isLoggedIn: state.auth.isLoggedIn,
 	login: state.auth.login,
 	ownUserAvatar: state.auth.ownUserAvatar,
 })

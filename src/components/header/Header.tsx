@@ -4,7 +4,7 @@ import { HeaderLoginBlock } from "components/header/headerLoginBlock/HeaderLogin
 import s from "./Header.module.css"
 
 export type PropsType = {
-	isAuth: boolean
+	isLoggedIn: boolean
 	login: string | null
 	ownUserAvatar: string | null
 	onClickHandler: () => void

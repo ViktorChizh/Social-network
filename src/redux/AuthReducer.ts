@@ -10,20 +10,23 @@ let initialState: AuthReducerType = {
 	email: null,
 	login: null,
 	isAuth: false,
+	isLoggedIn: false,
 	ownUserAvatar: null,
 }
 
 export const authReducer = (state: AuthReducerType = initialState, action: AuthReducerActionType): AuthReducerType => {
 	switch (action.type) {
+		case "INITIALIZE":
+			return { ...state, isAuth: true }
 		case "SET_USER_DATA":
 			return {
 				...state,
 				...action.payload.data,
-				isAuth: true,
+				isLoggedIn: true,
 				ownUserAvatar: action.payload.ownUserAvatar || defaultAvatar,
 			}
 		case "LOGOUT_USER":
-			return initialState
+			return { ...initialState, isAuth: true }
 		default:
 			return state
 	}
@@ -31,22 +34,34 @@ export const authReducer = (state: AuthReducerType = initialState, action: AuthR
 //types
 export type AuthReducerType = ResponseAuthType & {
 	isAuth: boolean
+	isLoggedIn: boolean
 	ownUserAvatar: string | null
 }
-export type AuthReducerActionType = ReturnType<typeof setAuthUserData> | ReturnType<typeof logoutUser>
+export type AuthReducerActionType =
+	| ReturnType<typeof setAuthUserData>
+	| ReturnType<typeof logoutUser>
+	| ReturnType<typeof initialize>
 //actions
 export const setAuthUserData = (data: ResponseAuthType, ownUserAvatar: string | null) => ({
 	type: "SET_USER_DATA" as const,
 	payload: { data, ownUserAvatar },
 })
+export const initialize = (isLoggedIn: boolean) => ({
+	type: "INITIALIZE" as const,
+	payload: { isLoggedIn },
+})
 export const logoutUser = () => ({
 	type: "LOGOUT_USER" as const,
 })
-export const setError = (error: string) => ({
-	type: "SET_ERROR" as const,
-	payload: { error },
-})
 // thunks
+export const checkInitialize = () => async (dispatch: Dispatch) => {
+	const res = await api.getMe()
+	if (res.resultCode === 0) {
+		dispatch(initialize(true))
+	} else {
+		dispatch(initialize(false))
+	}
+}
 export const getAuthUserData = () => async (dispatch: Dispatch) => {
 	const res = await api.getMe()
 	if (res.resultCode === 0) {
