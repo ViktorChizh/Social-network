@@ -33,10 +33,6 @@ export const User: FC<UserPropsType> = ({ user, followUser, unFollowUser, button
 				</NavLink>
 				<span className={s.status}>{user.status}</span>
 			</div>
-			{/*<div className={s.blockLocation}>*/}
-			{/*    <span>{'user.location.country'}</span>*/}
-			{/*    <span>{'user.location.city'}</span>*/}
-			{/*</div>*/}
 		</div>
 	)
 }

@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import { Redirect } from "react-router-dom"
-import { PageSizeSetting } from "../pageSizeSettings/PageSizeSetting"
+import { PageSizeSetting } from "./pageSizeSettings/PageSizeSetting"
 import s from "./Settings.module.css"
 
 type SettingsPropsType = {

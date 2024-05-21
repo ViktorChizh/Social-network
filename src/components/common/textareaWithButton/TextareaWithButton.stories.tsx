@@ -1,7 +1,7 @@
 import React from "react"
 import { Provider } from "react-redux"
 import { store } from "redux/_Store-Redux"
-import { TextareaWithButton, TextFormType } from "./TextareaWithButton"
+import { TextareaWithButton, TextFormType } from "components/common/textareaWithButton/TextareaWithButton"
 
 export default {
 	title: "TextareaWithButton",

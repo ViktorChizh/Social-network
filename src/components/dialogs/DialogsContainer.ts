@@ -1,5 +1,6 @@
-import { withAuthRedirect } from "hoc/withAuthRedirect"
+import { withAuthRedirect } from "utils/hoc/withAuthRedirect"
 import { ComponentType } from "react"
+import { dialogSelector, isLoggedInSelector } from "utils/selectors/selectors"
 import { Dialogs } from "./Dialogs"
 import { connect } from "react-redux"
 import { StateReduxType, StoreActionType } from "redux/_Store-Redux"
@@ -7,8 +8,8 @@ import { DialogType } from "redux/DialogReducer"
 import { compose, Dispatch } from "redux"
 
 const mapStateToProps = (state: StateReduxType): mStPType => ({
-	dialog: state.dialogsPage,
-	isLoggedIn: state.auth.isLoggedIn,
+	dialog: dialogSelector(state),
+	isLoggedIn: isLoggedInSelector(state),
 })
 
 const mapDispatchToProps = (dispatch: Dispatch): mDtPType => ({ dispatch })

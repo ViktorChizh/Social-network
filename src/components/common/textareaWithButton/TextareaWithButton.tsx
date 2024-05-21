@@ -1,8 +1,8 @@
-import { TextArea } from "components/validatedComponent/ValidatedComponent"
+import { TextArea } from "components/common/validatedComponent/ValidatedComponent"
 import React from "react"
 import { Field, InjectedFormProps, reduxForm } from "redux-form"
 import { maxLengthCreator, required } from "utils/validators/textAreaValidator"
-import s from "./TextareaWithButton.module.css"
+import s from "components/common/textareaWithButton/TextareaWithButton.module.css"
 
 type OwnPropsType = {
 	buttonName: string

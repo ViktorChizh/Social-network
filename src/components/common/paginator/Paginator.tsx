@@ -1,5 +1,5 @@
 import React, { FC } from "react"
-import s from "./Paginator.module.css"
+import s from "components/common/paginator/Paginator.module.css"
 
 export const Paginator: FC<PaginatorPropsType> = ({ totalCount, pageSize, onPageChanged, currentPage }) => {
 	let pagesCount = Math.ceil(totalCount / pageSize)

@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import s from "./MyPosts.module.css"
 import { Post } from "./post/Post"
-import { TextareaWithButton, TextFormType } from "../../textareaWithButton/TextareaWithButton"
+import { TextareaWithButton, TextFormType } from "../../common/textareaWithButton/TextareaWithButton"
 import { addPostAC } from "../../../redux/ProfileReducer"
 import { MyPostsContainerType } from "./MyPostsContainer"
 

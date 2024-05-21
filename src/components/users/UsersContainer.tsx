@@ -1,12 +1,21 @@
 import { UserType } from "api/API"
-import { withAuthRedirect } from "hoc/withAuthRedirect"
+import { withAuthRedirect } from "utils/hoc/withAuthRedirect"
 import React, { Component, ComponentType } from "react"
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { compose } from "redux"
 import { StateReduxType } from "redux/_Store-Redux"
 import { followUser, getUsers, setCurrentPage, unFollowUser } from "redux/UsersReducer"
-import { Preloader } from "../preloader/Preloader"
+import {
+	buttonDisabledSelector,
+	currentPageSelector,
+	isLoggedInSelector,
+	isPreloadingSelector,
+	pageSizeSelector,
+	totalCountSelector,
+	usersSelector,
+} from "utils/selectors/selectors"
+import { Preloader } from "../common/preloader/Preloader"
 import { Users } from "./Users"
 import s from "./Users.module.css"
 
@@ -43,13 +52,13 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
 	}
 }
 const mapStateToProps = (state: StateReduxType): mStPType => ({
-	users: state.usersPage.users,
-	pageSize: state.usersPage.pageSize,
-	currentPage: state.usersPage.currentPage,
-	totalCount: state.usersPage.totalCount,
-	isPreloading: state.usersPage.isPreloading,
-	buttonDisabled: state.usersPage.buttonDisabled,
-	isLoggedIn: state.auth.isLoggedIn,
+	users: usersSelector(state),
+	pageSize: pageSizeSelector(state),
+	currentPage: currentPageSelector(state),
+	totalCount: totalCountSelector(state),
+	isPreloading: isPreloadingSelector(state),
+	buttonDisabled: buttonDisabledSelector(state),
+	isLoggedIn: isLoggedInSelector(state),
 })
 export const UsersContainer = compose<ComponentType>(
 	withAuthRedirect,

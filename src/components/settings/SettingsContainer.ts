@@ -1,14 +1,15 @@
 import { ComponentType } from "react"
 import { connect } from "react-redux"
 import { compose } from "redux"
+import { isLoggedInSelector, pageSizeSelector } from "utils/selectors/selectors"
 import { StateReduxType } from "../../redux/_Store-Redux"
 import { setPageSize } from "../../redux/UsersReducer"
 import { Settings } from "./Settings"
-import { withAuthRedirect } from "hoc/withAuthRedirect"
+import { withAuthRedirect } from "utils/hoc/withAuthRedirect"
 
 const mapStateToProps = (state: StateReduxType): mStPType => ({
-	pageSize: state.usersPage.pageSize,
-	isLoggedIn: state.auth.isLoggedIn,
+	pageSize: pageSizeSelector(state),
+	isLoggedIn: isLoggedInSelector(state),
 })
 
 export const SettingsContainer = compose<ComponentType>(

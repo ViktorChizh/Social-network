@@ -1,11 +1,11 @@
 import { DialogsContainer } from "components/dialogs/DialogsContainer"
 import { Error404 } from "components/error404/Error404"
 import { HeaderContainer } from "components/header/HeaderContainer"
-import { Login } from "components/login/Login"
+import { LoginContainer } from "components/login/LoginContainer"
 import { Music } from "components/music/Music"
 import { NavBar } from "components/navbar/NavBar"
 import { News } from "components/news/News"
-import { Preloader } from "components/preloader/Preloader"
+import { Preloader } from "components/common/preloader/Preloader"
 import { ProfileContainer } from "components/profile/ProfileContainer"
 import { SettingsContainer } from "components/settings/SettingsContainer"
 import { UsersContainer } from "components/users/UsersContainer"
@@ -39,7 +39,7 @@ class App extends React.Component<mStPType & mDtPType> {
 						<Route path="/music" component={Music} />
 						<Route path="/settings" component={SettingsContainer} />
 						<Route path="/2-samurai-way-main#" render={() => <Redirect to="/profile" />} />
-						<Route path="/login" render={() => <Login />} />
+						<Route path="/login" render={() => <LoginContainer />} />
 						<Route path="/error404" render={() => <Error404 />} />
 						<Route path="/" exact render={() => <Redirect to="/profile" />} />
 						<Route path="/*" render={() => <Redirect to="/error404" />} />

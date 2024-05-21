@@ -1,6 +1,6 @@
 import { UserType } from "api/API"
 import React, { FC } from "react"
-import { Paginator } from "../paginator/Paginator"
+import { Paginator } from "../common/paginator/Paginator"
 import { User } from "./user/User"
 
 export const Users: FC<UsersPropsType> = (props) => {

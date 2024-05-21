@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import { Redirect } from "react-router-dom"
 import { addDialogAC, addMessageAC } from "../../redux/DialogReducer"
-import { TextareaWithButton, TextFormType } from "../textareaWithButton/TextareaWithButton"
+import { TextareaWithButton, TextFormType } from "../common/textareaWithButton/TextareaWithButton"
 import { DialogItem } from "./dialogItem/DialogItem"
 import s from "./Dialogs.module.css"
 import { DialogsContainerType } from "./DialogsContainer"

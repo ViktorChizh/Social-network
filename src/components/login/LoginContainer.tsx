@@ -5,9 +5,10 @@ import { Redirect } from "react-router-dom"
 import { compose } from "redux"
 import { StateReduxType } from "redux/_Store-Redux"
 import { login } from "redux/AuthReducer"
+import { isLoggedInSelector } from "utils/selectors/selectors"
 import s from "./Login.module.css"
 
-class Login_ extends Component<mapStateToPropsType & mapDispatchToPropsType> {
+class Login extends Component<mStPType & mDtPType> {
 	onSubmit = (formData: FormType) => {
 		this.props.login(formData)
 	}
@@ -21,16 +22,16 @@ class Login_ extends Component<mapStateToPropsType & mapDispatchToPropsType> {
 	}
 }
 
-const mapStateToProps = (state: StateReduxType): mapStateToPropsType => ({
-	isLoggedIn: state.auth.isLoggedIn,
+const mapStateToProps = (state: StateReduxType): mStPType => ({
+	isLoggedIn: isLoggedInSelector(state),
 })
-type mapStateToPropsType = {
+type mStPType = {
 	isLoggedIn: boolean
 }
-type mapDispatchToPropsType = {
+type mDtPType = {
 	login: (formData: FormType) => void
 }
 
-export const Login = compose<ComponentType>(
-	connect<mapStateToPropsType, mapDispatchToPropsType, unknown, StateReduxType>(mapStateToProps, { login }),
-)(Login_)
+export const LoginContainer = compose<ComponentType>(
+	connect<mStPType, mDtPType, unknown, StateReduxType>(mapStateToProps, { login }),
+)(Login)

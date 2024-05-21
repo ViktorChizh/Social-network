@@ -2,7 +2,7 @@ import { ProfileStatus } from "components/profile/profileStatus/ProfileStatus"
 import React, { FC } from "react"
 import { ProfileUserType } from "redux/ProfileReducer"
 import s from "../Profile.module.css"
-import { Preloader } from "../../preloader/Preloader"
+import { Preloader } from "../../common/preloader/Preloader"
 import ava from "assets/avatar.webp"
 
 type PropsType = {

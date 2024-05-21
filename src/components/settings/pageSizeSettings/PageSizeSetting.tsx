@@ -1,5 +1,5 @@
 import React, { FC } from "react"
-import s from "./PageSizeSetting.module.css"
+import s from "components/settings/pageSizeSettings/PageSizeSetting.module.css"
 
 type PageSizeSettingPropsType = {
 	pageSize: number

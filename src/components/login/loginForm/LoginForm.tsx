@@ -1,4 +1,4 @@
-import { Input } from "components/validatedComponent/ValidatedComponent"
+import { Input } from "components/common/validatedComponent/ValidatedComponent"
 import React from "react"
 import { Field, InjectedFormProps, reduxForm } from "redux-form"
 import { emailValidator, minLengthCreator, required } from "utils/validators/textAreaValidator"
@@ -15,7 +15,7 @@ const LoginForm = (props: InjectedFormProps<FormType, OwnPropsType> & OwnPropsTy
 						component={Input}
 						name={"email"}
 						type="email"
-						placeholder="Login"
+						placeholder="LoginContainer"
 						validate={[required, emailValidator]}
 					/>
 				</div>
@@ -33,7 +33,7 @@ const LoginForm = (props: InjectedFormProps<FormType, OwnPropsType> & OwnPropsTy
 				</div>
 				{props.error && <div className={s.errorServer}>{props.error}</div>}
 				<div className={s.button}>
-					<button>Login</button>
+					<button>LoginContainer</button>
 				</div>
 			</form>
 		</div>

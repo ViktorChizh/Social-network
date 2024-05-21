@@ -1,6 +1,6 @@
 import classNames from "classnames"
 import React from "react"
-import s from "components/validatedComponent/validatedComponent.module.css"
+import s from "components/common/validatedComponent/validatedComponent.module.css"
 
 const ValidatedComponent = ({ input, meta, ...props }: any) => {
 	return (

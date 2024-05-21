@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { compose } from "redux"
 import { StateReduxType } from "redux/_Store-Redux"
 import { getAuthUserData, logout } from "redux/AuthReducer"
+import { isLoggedInSelector, loginSelector, ownUserAvatarSelector } from "utils/selectors/selectors"
 import { Header } from "./Header"
 
 class HeaderAPIContainer extends PureComponent<HeaderAPIContainerPropsType> {
@@ -35,9 +36,9 @@ type mDtPType = {
 type HeaderAPIContainerPropsType = mStPType & mDtPType
 
 const MapStateToProps = (state: StateReduxType): mStPType => ({
-	isLoggedIn: state.auth.isLoggedIn,
-	login: state.auth.login,
-	ownUserAvatar: state.auth.ownUserAvatar,
+	isLoggedIn: isLoggedInSelector(state),
+	login: loginSelector(state),
+	ownUserAvatar: ownUserAvatarSelector(state),
 })
 
 export const HeaderContainer = compose<ComponentType>(
