@@ -7,7 +7,7 @@
 // superSelectorUsers будет пересчитывать только при изменении users, получаемых в selectorUsers (простом селекторе)
 // в mapStatetoProps мы просто прописываем: users: superSelectorUsers(state)
 
-// в данном проекте нет сложных селекторов, поэтому создает только простые
+// в данном проекте нет сложных селекторов, поэтому создаем только простые
 
 import { StateReduxType } from "redux/_Store-Redux"
 
