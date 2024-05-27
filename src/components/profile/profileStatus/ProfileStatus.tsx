@@ -1,5 +1,5 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
-import s from '../Profile.module.css'
+import React, { ChangeEvent, KeyboardEvent, useState } from "react"
+import s from "../Profile.module.css"
 
 type PropsType = {
 	status: string
@@ -7,7 +7,7 @@ type PropsType = {
 	updateStatus: (status: string) => void
 }
 
-export const ProfileStatus = ({isOwnStatus, status, updateStatus}: PropsType) => {
+export const ProfileStatus = ({ isOwnStatus, status, updateStatus }: PropsType) => {
 	const [editMode, setEditMode] = useState(false)
 	const [currentStatus, setCurrentStatus] = useState(status)
 	const toggleEditMode = () => {
@@ -26,7 +26,7 @@ export const ProfileStatus = ({isOwnStatus, status, updateStatus}: PropsType) =>
 		<div className={s.statusBlock}>
 			{!editMode ? (
 				<div>
-					<span onDoubleClick={toggleEditMode}>{currentStatus || "empty status"}</span>
+					<span onDoubleClick={toggleEditMode}>{status || "empty status"}</span>
 				</div>
 			) : (
 				<div>

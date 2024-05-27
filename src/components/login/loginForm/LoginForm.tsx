@@ -9,6 +9,9 @@ const LoginForm = (props: InjectedFormProps<FormType, OwnPropsType> & OwnPropsTy
 	return (
 		<div className={s.main}>
 			<h1>LOGIN</h1>
+			<p>данные тестового аккаунта:</p>
+			<p>Email: free@samuraijs.com</p>
+			<p>Password: free</p>
 			<form className={s.formBlock} onSubmit={props.handleSubmit}>
 				<div>
 					<Field
@@ -33,7 +36,7 @@ const LoginForm = (props: InjectedFormProps<FormType, OwnPropsType> & OwnPropsTy
 				</div>
 				{props.error && <div className={s.errorServer}>{props.error}</div>}
 				<div className={s.button}>
-					<button>LoginContainer</button>
+					<button>Login</button>
 				</div>
 			</form>
 		</div>

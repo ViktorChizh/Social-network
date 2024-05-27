@@ -13,15 +13,12 @@ class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
 		isOwnStatus: true,
 	}
 	componentDidMount() {
-		if (this.props.match.params.userId === "29529") {
-			//не хочу менять статус, если зашел через общий аккаунт
-			this.setState({ isOwnStatus: true })
-		} else {
-			this.setState({ isOwnStatus: false })
-		}
 		if (this.props.id) {
 			this.props.getProfile(this.props.match.params.userId || this.props.id?.toString())
 			this.props.getStatus(this.props.match.params.userId || this.props.id?.toString())
+		}
+		if (this.props.match.params.userId && this.props.match.params.userId !== this.props.id?.toString()) {
+			this.setState({ isOwnStatus: false })
 		}
 	}
 	render() {
