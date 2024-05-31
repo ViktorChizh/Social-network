@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from "react"
+import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from "react"
 import s from "../Profile.module.css"
 
 type PropsType = {
@@ -10,6 +10,9 @@ type PropsType = {
 export const ProfileStatus = ({ isOwnStatus, status, updateStatus }: PropsType) => {
 	const [editMode, setEditMode] = useState(false)
 	const [currentStatus, setCurrentStatus] = useState(status)
+	useEffect(() => {
+		setCurrentStatus(status)
+	}, [status])
 	const toggleEditMode = () => {
 		if (isOwnStatus) {
 			setEditMode(!editMode)
