@@ -27,13 +27,13 @@ export const profifeReducer = (state: ProfileType = initialState, action: Profif
 			}
 			return { ...state, posts: [...state.posts, newPost] }
 		}
+		case "DELETE-POST": {
+			return { ...state, posts: state.posts.filter((p) => p.id !== action.payload.id) }
+		}
 		case "SET-PROFILE": {
 			return { ...state, profile: action.payload.profile }
 		}
 		case "SET-STATUS": {
-			return { ...state, status: action.payload.status }
-		}
-		case "CHANGE-STATUS": {
 			return { ...state, status: action.payload.status }
 		}
 		default:
@@ -42,9 +42,10 @@ export const profifeReducer = (state: ProfileType = initialState, action: Profif
 }
 //actions
 export const addPostAC = (post: string | undefined) => ({ type: "ADD-POST" as const, payload: { post } })
+export const deletePostAC = (id: number) => ({ type: "DELETE-POST" as const, payload: { id } })
 export const setProfile = (profile: ProfileUserType) => ({ type: "SET-PROFILE" as const, payload: { profile } })
 export const setStatus = (status: string) => ({ type: "SET-STATUS" as const, payload: { status } })
-export const changeStatus = (status: string) => ({ type: "CHANGE-STATUS" as const, payload: { status } })
+
 //thunks
 export const getProfile = (userId: string) => async (dispatch: Dispatch) => {
 	const res = await api.getProfile(+userId)
@@ -57,7 +58,7 @@ export const getStatus = (userId: string) => async (dispatch: Dispatch) => {
 export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
 	const res = await api.updateStatus(status)
 	if (res.resultCode === 0) {
-		dispatch(changeStatus(status))
+		dispatch(setStatus(status))
 	}
 }
 //types
@@ -71,6 +72,6 @@ export type ProfileType = {
 
 export type ProfifeReducerActionType =
 	| ReturnType<typeof addPostAC>
+	| ReturnType<typeof deletePostAC>
 	| ReturnType<typeof setProfile>
 	| ReturnType<typeof setStatus>
-	| ReturnType<typeof changeStatus>
