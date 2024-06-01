@@ -16,16 +16,16 @@ let initialState: AuthReducerType = {
 
 export const authReducer = (state: AuthReducerType = initialState, action: AuthReducerActionType): AuthReducerType => {
 	switch (action.type) {
-		case "INITIALIZE":
+		case "auth/INITIALIZE":
 			return { ...state, isAuth: true }
-		case "SET_USER_DATA":
+		case "auth/SET_USER_DATA":
 			return {
 				...state,
 				...action.payload.data,
 				isLoggedIn: true,
 				ownUserAvatar: action.payload.ownUserAvatar || defaultAvatar,
 			}
-		case "LOGOUT_USER":
+		case "auth/LOGOUT_USER":
 			return { ...initialState, isAuth: true }
 		default:
 			return state
@@ -43,15 +43,15 @@ export type AuthReducerActionType =
 	| ReturnType<typeof initialize>
 //actions
 export const setAuthUserData = (data: ResponseAuthType, ownUserAvatar: string | null) => ({
-	type: "SET_USER_DATA" as const,
+	type: "auth/SET_USER_DATA" as const,
 	payload: { data, ownUserAvatar },
 })
 export const initialize = (isLoggedIn: boolean) => ({
-	type: "INITIALIZE" as const,
+	type: "auth/INITIALIZE" as const,
 	payload: { isLoggedIn },
 })
 export const logoutUser = () => ({
-	type: "LOGOUT_USER" as const,
+	type: "auth/LOGOUT_USER" as const,
 })
 // thunks
 export const checkInitialize = () => async (dispatch: Dispatch) => {

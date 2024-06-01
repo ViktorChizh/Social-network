@@ -4,8 +4,8 @@
 	border: 2px solid #b1e5e7;
 	border-radius: 20px;
 	padding: 20px;
-	min-width: 170px;
-	max-width: 170px;
+	min-width: 220px;
+	max-width: 220px;
 	height: 20vw;
 	min-height: 200px;
 	max-height: 300px;
@@ -16,8 +16,10 @@
 	}
 	p {
 		margin: 0;
-		/*text-align: center;*/
 		font-size: 14px;
+		b {
+			color: white;
+		}
 	}
 }
 .formBlock {

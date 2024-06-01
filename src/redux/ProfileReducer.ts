@@ -2,6 +2,7 @@ import { api, ResponseProfileUserType } from "api/API"
 import ava from "assets/postAvatar.jpg"
 import { PostType } from "components/profile/myPosts/post/Post"
 import { Dispatch } from "redux"
+import { filterObjectInArray } from "utils/functions/filterInArray"
 
 let initialState = {
 	profile: null,
@@ -18,7 +19,7 @@ let initialState = {
 
 export const profifeReducer = (state: ProfileType = initialState, action: ProfifeReducerActionType): ProfileType => {
 	switch (action.type) {
-		case "ADD-POST": {
+		case "profile/ADD-POST": {
 			let newPost: PostType = {
 				id: state.posts[state.posts.length - 1].id + 1,
 				message: action.payload.post || "",
@@ -27,13 +28,13 @@ export const profifeReducer = (state: ProfileType = initialState, action: Profif
 			}
 			return { ...state, posts: [...state.posts, newPost] }
 		}
-		case "DELETE-POST": {
-			return { ...state, posts: state.posts.filter((p) => p.id !== action.payload.id) }
+		case "profile/DELETE-POST": {
+			return { ...state, posts: filterObjectInArray(state.posts, "id", action.payload.id) }
 		}
-		case "SET-PROFILE": {
+		case "profile/SET-PROFILE": {
 			return { ...state, profile: action.payload.profile }
 		}
-		case "SET-STATUS": {
+		case "profile/SET-STATUS": {
 			return { ...state, status: action.payload.status }
 		}
 		default:
@@ -41,10 +42,10 @@ export const profifeReducer = (state: ProfileType = initialState, action: Profif
 	}
 }
 //actions
-export const addPostAC = (post: string | undefined) => ({ type: "ADD-POST" as const, payload: { post } })
-export const deletePostAC = (id: number) => ({ type: "DELETE-POST" as const, payload: { id } })
-export const setProfile = (profile: ProfileUserType) => ({ type: "SET-PROFILE" as const, payload: { profile } })
-export const setStatus = (status: string) => ({ type: "SET-STATUS" as const, payload: { status } })
+export const addPostAC = (post: string | undefined) => ({ type: "profile/ADD-POST" as const, payload: { post } })
+export const deletePostAC = (id: number) => ({ type: "profile/DELETE-POST" as const, payload: { id } })
+export const setProfile = (profile: ProfileUserType) => ({ type: "profile/SET-PROFILE" as const, payload: { profile } })
+export const setStatus = (status: string) => ({ type: "profile/SET-STATUS" as const, payload: { status } })
 
 //thunks
 export const getProfile = (userId: string) => async (dispatch: Dispatch) => {

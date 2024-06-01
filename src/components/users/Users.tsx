@@ -4,13 +4,13 @@ import { Paginator } from "../common/paginator/Paginator"
 import { User } from "./user/User"
 
 export const Users: FC<UsersPropsType> = (props) => {
-	let { users, pageSize, currentPage, totalCount, buttonDisabled, onPageChanged, followUser, unFollowUser } = props
+	let { users, pageSize, currentPage, totalCount, buttonDisabled, onPageChanged, toggleFollowUser } = props
 	document.title = "SocialNetwork - users"
 	return (
 		<>
 			<Paginator totalCount={totalCount} pageSize={pageSize} currentPage={currentPage} onPageChanged={onPageChanged} />
 			{users.map((u) => (
-				<User key={u.id} user={u} followUser={followUser} unFollowUser={unFollowUser} buttonDisabled={buttonDisabled} />
+				<User key={u.id} user={u} toggleFollowUser={toggleFollowUser} buttonDisabled={buttonDisabled} />
 			))}
 		</>
 	)
@@ -23,6 +23,5 @@ type UsersPropsType = {
 	totalCount: number
 	buttonDisabled: number[]
 	onPageChanged: (pageNumber: number) => void
-	followUser: (userId: number) => void
-	unFollowUser: (userId: number) => void
+	toggleFollowUser: (userId: number, followed: boolean) => void
 }

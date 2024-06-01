@@ -1,5 +1,7 @@
 import { api, UserType } from "api/API"
 import { Dispatch } from "redux"
+import { filterObjectInArray } from "utils/functions/filterInArray"
+import { updateObjectInArray } from "utils/functions/updateObjectInArray"
 
 const initialstate: UsersReducerType = {
 	users: [],
@@ -15,47 +17,53 @@ export const usersReducer = (
 	action: UsersReducerActionType,
 ): UsersReducerType => {
 	switch (action.type) {
-		case "SET-USERS":
+		case "users/SET-USERS":
 			return { ...state, users: action.payload.users }
-		case "SET-TOTALCOUNT":
+		case "users/SET-TOTALCOUNT":
 			return { ...state, totalCount: action.payload.totalCount }
-		case "SET-CURRENTPAGE":
+		case "users/SET-CURRENTPAGE":
 			return { ...state, currentPage: action.payload.currentPage }
-		case "SET-PAGESIZE":
+		case "users/SET-PAGESIZE":
 			return { ...state, pageSize: action.payload.pageSize }
-		case "SET-PRELOADER":
+		case "users/SET-PRELOADER":
 			return { ...state, isPreloading: action.payload.isPreloading }
-		case "FOLLOW":
+		case "users/FOLLOW-UNFOLLOW":
 			return {
 				...state,
-				users: state.users.map((u) => (u.id === action.payload.userId ? { ...u, followed: true } : u)),
+				users: updateObjectInArray(state.users, "id", action.payload.userId, { followed: action.payload.followed }),
 			}
-		case "UNFOLLOW":
-			return {
-				...state,
-				users: state.users.map((u) => (u.id === action.payload.userId ? { ...u, followed: false } : u)),
-			}
-		case "SET-BUTTON_DISABLED":
+		case "users/SET-BUTTON_DISABLED":
 			return {
 				...state,
 				buttonDisabled: action.payload.isDisabled
 					? [...state.buttonDisabled, action.payload.id]
-					: state.buttonDisabled.filter((id) => id !== action.payload.id),
+					: filterObjectInArray(state.buttonDisabled, null, action.payload.id),
 			}
 		default:
 			return state
 	}
 }
 //actions
-export const follow = (userId: number) => ({ type: "FOLLOW" as const, payload: { userId } })
-export const unFollow = (userId: number) => ({ type: "UNFOLLOW" as const, payload: { userId } })
-export const setUsers = (users: UserType[]) => ({ type: "SET-USERS" as const, payload: { users } })
-export const setTotalCount = (totalCount: number) => ({ type: "SET-TOTALCOUNT" as const, payload: { totalCount } })
-export const setCurrentPage = (currentPage: number) => ({ type: "SET-CURRENTPAGE" as const, payload: { currentPage } })
-export const setPageSize = (pageSize: number) => ({ type: "SET-PAGESIZE" as const, payload: { pageSize } })
-export const setPreloader = (isPreloading: boolean) => ({ type: "SET-PRELOADER" as const, payload: { isPreloading } })
+export const followUnFollow = (userId: number, followed: boolean) => ({
+	type: "users/FOLLOW-UNFOLLOW" as const,
+	payload: { userId, followed },
+})
+export const setUsers = (users: UserType[]) => ({ type: "users/SET-USERS" as const, payload: { users } })
+export const setPageSize = (pageSize: number) => ({ type: "users/SET-PAGESIZE" as const, payload: { pageSize } })
+export const setTotalCount = (totalCount: number) => ({
+	type: "users/SET-TOTALCOUNT" as const,
+	payload: { totalCount },
+})
+export const setCurrentPage = (currentPage: number) => ({
+	type: "users/SET-CURRENTPAGE" as const,
+	payload: { currentPage },
+})
+export const setPreloader = (isPreloading: boolean) => ({
+	type: "users/SET-PRELOADER" as const,
+	payload: { isPreloading },
+})
 export const setButtonDisabled = (isDisabled: boolean, id: number) => ({
-	type: "SET-BUTTON_DISABLED" as const,
+	type: "users/SET-BUTTON_DISABLED" as const,
 	payload: { isDisabled, id },
 })
 //thunks
@@ -66,16 +74,15 @@ export const getUsers = (pageSize: number, currentPage: number) => async (dispat
 	dispatch(setUsers(data.items))
 	dispatch(setTotalCount(data.totalCount))
 }
-export const followUser = (id: number) => async (dispatch: Dispatch) => {
+export const toggleFollowUser = (id: number, followed: boolean) => async (dispatch: Dispatch) => {
 	dispatch(setButtonDisabled(true, id))
-	const data = await api.getUnFollow(id)
-	if (data.resultCode === 0) dispatch(unFollow(id))
-	dispatch(setButtonDisabled(false, id))
-}
-export const unFollowUser = (id: number) => async (dispatch: Dispatch) => {
-	dispatch(setButtonDisabled(true, id))
-	const data = await api.getFollow(id)
-	if (data.resultCode === 0) dispatch(follow(id))
+	if (!followed) {
+		const data = await api.getUnFollow(id)
+		if (data.resultCode === 0) dispatch(followUnFollow(id, followed))
+	} else {
+		const data = await api.getFollow(id)
+		if (data.resultCode === 0) dispatch(followUnFollow(id, followed))
+	}
 	dispatch(setButtonDisabled(false, id))
 }
 //types
@@ -93,7 +100,6 @@ export type UsersReducerActionType =
 	| ReturnType<typeof setTotalCount>
 	| ReturnType<typeof setCurrentPage>
 	| ReturnType<typeof setPageSize>
-	| ReturnType<typeof follow>
-	| ReturnType<typeof unFollow>
+	| ReturnType<typeof followUnFollow>
 	| ReturnType<typeof setPreloader>
 	| ReturnType<typeof setButtonDisabled>

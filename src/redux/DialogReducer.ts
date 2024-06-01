@@ -16,14 +16,14 @@ let initialState = {
 
 export const dialogReducer = (state: DialogType = initialState, action: DialogReducerActionType): DialogType => {
 	switch (action.type) {
-		case "ADD-DIALOG": {
+		case "dialog/ADD-DIALOG": {
 			let newDialog: DialogItemProps = {
 				id: state.dialogs[state.dialogs.length - 1].id + 1,
 				name: action.payload.dialog || "",
 			}
 			return { ...state, dialogs: [...state.dialogs, newDialog] }
 		}
-		case "ADD-MESSAGE": {
+		case "dialog/ADD-MESSAGE": {
 			let newMessage: MessageType = {
 				id: state.messages[state.messages.length - 1].id + 1,
 				message: action.payload.message || "",
@@ -41,5 +41,8 @@ export type DialogType = {
 }
 export type DialogReducerActionType = ReturnType<typeof addDialogAC> | ReturnType<typeof addMessageAC>
 //actions
-export const addDialogAC = (dialog: string | undefined) => ({ type: "ADD-DIALOG" as const, payload: { dialog } })
-export const addMessageAC = (message: string | undefined) => ({ type: "ADD-MESSAGE" as const, payload: { message } })
+export const addDialogAC = (dialog: string | undefined) => ({ type: "dialog/ADD-DIALOG" as const, payload: { dialog } })
+export const addMessageAC = (message: string | undefined) => ({
+	type: "dialog/ADD-MESSAGE" as const,
+	payload: { message },
+})

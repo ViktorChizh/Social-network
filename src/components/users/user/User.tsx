@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 import ava from "../../../assets/avatar.webp"
 import s from "../Users.module.css"
 
-export const User: FC<UserPropsType> = ({ user, followUser, unFollowUser, buttonDisabled }) => {
+export const User: FC<UserPropsType> = ({ user, toggleFollowUser, buttonDisabled }) => {
 	return (
 		<div className={s.block} key={user.id}>
 			<div className={s.blockImg}>
@@ -15,14 +15,14 @@ export const User: FC<UserPropsType> = ({ user, followUser, unFollowUser, button
 					<button
 						disabled={buttonDisabled.some((id) => id === user.id)}
 						style={{ opacity: buttonDisabled.some((id) => id === user.id) ? "0.3" : "1" }}
-						onClick={() => followUser(user.id)}>
+						onClick={() => toggleFollowUser(user.id, false)}>
 						FOLLOW
 					</button>
 				) : (
 					<button
 						disabled={buttonDisabled.some((id) => id === user.id)}
 						style={{ opacity: buttonDisabled.some((id) => id === user.id) ? "0.3" : "1" }}
-						onClick={() => unFollowUser(user.id)}>
+						onClick={() => toggleFollowUser(user.id, true)}>
 						UNFOLLOW
 					</button>
 				)}
@@ -40,6 +40,5 @@ export const User: FC<UserPropsType> = ({ user, followUser, unFollowUser, button
 type UserPropsType = {
 	user: UserType
 	buttonDisabled: number[]
-	followUser: (userId: number) => void
-	unFollowUser: (userId: number) => void
+	toggleFollowUser: (userId: number, followed: boolean) => void
 }

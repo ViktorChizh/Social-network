@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { compose } from "redux"
 import { StateReduxType } from "redux/_Store-Redux"
-import { followUser, getUsers, setCurrentPage, unFollowUser } from "redux/UsersReducer"
+import { toggleFollowUser, getUsers, setCurrentPage } from "redux/UsersReducer"
 import {
 	buttonDisabledSelector,
 	currentPageSelector,
@@ -38,8 +38,7 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
 				) : (
 					<Users
 						users={this.props.users}
-						followUser={this.props.followUser}
-						unFollowUser={this.props.unFollowUser}
+						toggleFollowUser={this.props.toggleFollowUser}
 						totalCount={this.props.totalCount}
 						currentPage={this.props.currentPage}
 						pageSize={this.props.pageSize}
@@ -62,7 +61,7 @@ const mapStateToProps = (state: StateReduxType): mStPType => ({
 })
 export const UsersContainer = compose<ComponentType>(
 	withAuthRedirect,
-	connect(mapStateToProps, { setCurrentPage, followUser, unFollowUser, getUsers }),
+	connect(mapStateToProps, { setCurrentPage, toggleFollowUser, getUsers }),
 )(UsersAPIComponent)
 //types
 type mStPType = {
@@ -76,8 +75,7 @@ type mStPType = {
 }
 type mDtPType = {
 	setCurrentPage: (currentPage: number) => void
-	followUser: (userId: number) => void
-	unFollowUser: (userId: number) => void
+	toggleFollowUser: (userId: number, followed: boolean) => void
 	getUsers: (pageSize: number, currentPage: number) => void
 }
 type UsersAPIComponentPropsType = mStPType & mDtPType
