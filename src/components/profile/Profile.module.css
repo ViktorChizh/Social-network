@@ -11,7 +11,7 @@
 	align-items: center;
 	gap: 10px;
 	color: #b1e5e7;
-	font-size: 40px;
+	font-size: 30px;
 	font-weight: bolder;
 	height: 80px;
 	padding: 2px;
@@ -25,6 +25,7 @@
 	border-radius: 50%;
 	border: 2px solid #b1e5e7;
 	margin-right: 10px;
+	cursor: pointer;
 }
 
 .headerImg {
@@ -40,4 +41,8 @@
 }
 .statusBlock {
 	font-size: 16px;
+}
+
+.changeAvetarBlock {
+	display: flex;
 }

@@ -5,9 +5,10 @@ import s from "./Profile.module.css"
 import { ProfileInfo } from "./profileInfo/ProfileInfo"
 
 type PropsType = {
-	profile: ProfileUserType | null
+	profile: Partial<ProfileUserType> | null
 	status: string
 	isOwnStatus: boolean
+	saveAvatar: (file: File) => void
 	updateStatus: (status: string) => void
 }
 export const Profile: FC<PropsType> = (props) => {
@@ -15,6 +16,7 @@ export const Profile: FC<PropsType> = (props) => {
 	return (
 		<div className={s.main}>
 			<ProfileInfo
+				saveAvatar={props.saveAvatar}
 				profile={props.profile}
 				updateStatus={props.updateStatus}
 				status={props.status}

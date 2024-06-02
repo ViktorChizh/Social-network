@@ -41,6 +41,17 @@ export const api = {
 	async updateStatus(status: string) {
 		return instance.put<ResponseServerType>(`profile/status/`, { status }).then((res) => res.data)
 	},
+	async updateAvatar(file: File) {
+		const formData = new FormData()
+		formData.append("image", file)
+		return instance
+			.put<ResponseServerType<PhotosType>>(`profile/photo/`, formData, {
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
+			})
+			.then((res) => res.data)
+	},
 }
 //types
 export type ResponseAuthType = {

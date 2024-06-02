@@ -4,11 +4,14 @@ import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { compose } from "redux"
 import { StateReduxType } from "redux/_Store-Redux"
-import { login } from "redux/AuthReducer"
+import { getAuthUserData, login } from "redux/AuthReducer"
 import { isLoggedInSelector } from "utils/selectors/selectors"
 import s from "./Login.module.css"
 
 class Login extends Component<mStPType & mDtPType> {
+	componentDidMount() {
+		this.props.getAuthUserData()
+	}
 	onSubmit = (formData: FormType) => {
 		this.props.login(formData)
 	}
@@ -30,8 +33,9 @@ type mStPType = {
 }
 type mDtPType = {
 	login: (formData: FormType) => void
+	getAuthUserData: () => void
 }
 
 export const LoginContainer = compose<ComponentType>(
-	connect<mStPType, mDtPType, unknown, StateReduxType>(mapStateToProps, { login }),
+	connect<mStPType, mDtPType, unknown, StateReduxType>(mapStateToProps, { login, getAuthUserData }),
 )(Login)

@@ -1,4 +1,4 @@
-import { api, ResponseProfileUserType } from "api/API"
+import { api, PhotosType, ResponseProfileUserType } from "api/API"
 import ava from "assets/postAvatar.jpg"
 import { PostType } from "components/profile/myPosts/post/Post"
 import { Dispatch } from "redux"
@@ -37,6 +37,9 @@ export const profifeReducer = (state: ProfileType = initialState, action: Profif
 		case "profile/SET-STATUS": {
 			return { ...state, status: action.payload.status }
 		}
+		case "profile/SET-AVATAR": {
+			return { ...state, profile: { ...state.profile, photos: action.payload.photos } }
+		}
 		default:
 			return state
 	}
@@ -46,6 +49,7 @@ export const addPostAC = (post: string | undefined) => ({ type: "profile/ADD-POS
 export const deletePostAC = (id: number) => ({ type: "profile/DELETE-POST" as const, payload: { id } })
 export const setProfile = (profile: ProfileUserType) => ({ type: "profile/SET-PROFILE" as const, payload: { profile } })
 export const setStatus = (status: string) => ({ type: "profile/SET-STATUS" as const, payload: { status } })
+export const setAvatar = (photos: PhotosType) => ({ type: "profile/SET-AVATAR" as const, payload: { photos } })
 
 //thunks
 export const getProfile = (userId: string) => async (dispatch: Dispatch) => {
@@ -62,11 +66,17 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
 		dispatch(setStatus(status))
 	}
 }
+export const saveAvatar = (file: File, userId: number) => async (dispatch: Dispatch) => {
+	const res = await api.updateAvatar(file)
+	if (res.resultCode === 0) {
+		dispatch(setAvatar(res.data))
+	}
+}
 //types
 export type ProfileUserType = ResponseProfileUserType & { userId: number }
 
 export type ProfileType = {
-	profile: ProfileUserType | null
+	profile: Partial<ProfileUserType> | null
 	status: string
 	posts: PostType[]
 }
@@ -76,3 +86,4 @@ export type ProfifeReducerActionType =
 	| ReturnType<typeof deletePostAC>
 	| ReturnType<typeof setProfile>
 	| ReturnType<typeof setStatus>
+	| ReturnType<typeof setAvatar>
