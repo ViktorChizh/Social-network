@@ -32,7 +32,7 @@ const newsBase: NewsBaseType[] = [
 	},
 ]
 
-export const News = () => {
+const News = () => {
 	document.title = "SocialNetwork - news"
 	return (
 		<div className={s.main}>
@@ -47,3 +47,5 @@ export const News = () => {
 		</div>
 	)
 }
+
+export default News

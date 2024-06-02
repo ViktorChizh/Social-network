@@ -14,10 +14,7 @@ const mapStateToProps = (state: StateReduxType): mStPType => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): mDtPType => ({ dispatch })
 
-export const DialogsContainer = compose<ComponentType>(
-	withAuthRedirect,
-	connect(mapStateToProps, mapDispatchToProps),
-)(Dialogs)
+const DialogsContainer = compose<ComponentType>(withAuthRedirect, connect(mapStateToProps, mapDispatchToProps))(Dialogs)
 //types
 type mStPType = {
 	dialog: DialogType
@@ -27,3 +24,5 @@ type mDtPType = {
 	dispatch: (AC: StoreActionType) => void
 }
 export type DialogsContainerType = mStPType & mDtPType
+
+export default DialogsContainer

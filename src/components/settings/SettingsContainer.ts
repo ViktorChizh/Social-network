@@ -12,10 +12,7 @@ const mapStateToProps = (state: StateReduxType): mStPType => ({
 	isLoggedIn: isLoggedInSelector(state),
 })
 
-export const SettingsContainer = compose<ComponentType>(
-	withAuthRedirect,
-	connect(mapStateToProps, { setPageSize }),
-)(Settings)
+const SettingsContainer = compose<ComponentType>(withAuthRedirect, connect(mapStateToProps, { setPageSize }))(Settings)
 //types
 type mStPType = {
 	pageSize: number
@@ -25,3 +22,5 @@ type mDtPType = {
 	setPageSize: (pageSize: number) => void
 }
 export type DialogsContainerType = mStPType & mDtPType
+
+export default SettingsContainer

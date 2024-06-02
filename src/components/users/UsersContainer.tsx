@@ -59,7 +59,7 @@ const mapStateToProps = (state: StateReduxType): mStPType => ({
 	buttonDisabled: buttonDisabledSelector(state),
 	isLoggedIn: isLoggedInSelector(state),
 })
-export const UsersContainer = compose<ComponentType>(
+const UsersContainer = compose<ComponentType>(
 	withAuthRedirect,
 	connect(mapStateToProps, { setCurrentPage, toggleFollowUser, getUsers }),
 )(UsersAPIComponent)
@@ -79,3 +79,5 @@ type mDtPType = {
 	getUsers: (pageSize: number, currentPage: number) => void
 }
 type UsersAPIComponentPropsType = mStPType & mDtPType
+
+export default UsersContainer

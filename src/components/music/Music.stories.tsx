@@ -1,5 +1,5 @@
 import React from "react"
-import { Music } from "./Music"
+import Music from "./Music"
 
 export default {
 	title: "Music",

@@ -39,7 +39,7 @@ const musicBase: MusicBaseType[] = [
 	},
 ]
 
-export const Music = () => {
+const Music = () => {
 	document.title = "SocialNetwork - music"
 	return (
 		<div className={s.main}>
@@ -54,3 +54,5 @@ export const Music = () => {
 		</div>
 	)
 }
+
+export default Music
