@@ -1,10 +1,10 @@
 import { ComponentType } from "react"
-import { profilePageSelector, profileSelector } from "utils/selectors/selectors"
-import { MyPosts } from "./MyPosts"
-import { StateReduxType, StoreActionType } from "redux/_Store-Redux"
-import { compose, Dispatch } from "redux"
 import { connect } from "react-redux"
+import { compose, Dispatch } from "redux"
+import { StateReduxType, StoreActionType } from "redux/_Store-Redux"
 import { ProfileType } from "redux/ProfileReducer"
+import { profilePageSelector } from "utils/selectors/selectors"
+import { MyPosts } from "./MyPosts"
 
 const mapStateToProps = (state: StateReduxType): mStPType => ({
 	profile: profilePageSelector(state),
