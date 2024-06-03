@@ -1,12 +1,17 @@
 import { api, PhotosType, ResponseProfileUserType } from "api/API"
 import ava from "assets/postAvatar.jpg"
 import { PostType } from "components/profile/myPosts/post/Post"
-import { Dispatch } from "redux"
+import { ProfileFormType } from "components/profile/profileInfo/profileFormData/ProfileFormData"
+import { Action, Dispatch } from "redux"
+import { stopSubmit } from "redux-form"
+import { ThunkAction, ThunkDispatch } from "redux-thunk"
+import { StateReduxType, store, StoreActionType } from "redux/_Store-Redux"
 import { filterObjectInArray } from "utils/functions/filterInArray"
 
 let initialState = {
 	profile: {} as ProfileUserType,
 	status: "",
+	isError: false,
 	posts: [
 		{
 			id: 1,
@@ -40,6 +45,9 @@ export const profifeReducer = (state: ProfileType = initialState, action: Profif
 		case "profile/SET-AVATAR": {
 			return { ...state, profile: { ...state.profile, photos: action.payload.photos } }
 		}
+		case "profile/SET-ISERROR": {
+			return { ...state, isError: action.payload.isError }
+		}
 		default:
 			return state
 	}
@@ -50,6 +58,7 @@ export const deletePostAC = (id: number) => ({ type: "profile/DELETE-POST" as co
 export const setProfile = (profile: ProfileUserType) => ({ type: "profile/SET-PROFILE" as const, payload: { profile } })
 export const setStatus = (status: string) => ({ type: "profile/SET-STATUS" as const, payload: { status } })
 export const setAvatar = (photos: PhotosType) => ({ type: "profile/SET-AVATAR" as const, payload: { photos } })
+export const setIsError = (isError: boolean) => ({ type: "profile/SET-ISERROR" as const, payload: { isError } })
 
 //thunks
 export const getProfile = (userId: string) => async (dispatch: Dispatch) => {
@@ -66,7 +75,19 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
 		dispatch(setStatus(status))
 	}
 }
-export const saveAvatar = (file: File, userId: number) => async (dispatch: Dispatch) => {
+export const updateProfuleData =
+	(formdata: ProfileFormType): ThunkAction<void, StateReduxType, unknown, Action> =>
+	async (dispatch, getState) => {
+		const res = await api.updateProfuleData(formdata)
+		if (res.resultCode === 0) {
+			getProfile(getState().auth.id?.toString() || "")
+			dispatch(setIsError(false))
+		} else {
+			dispatch(stopSubmit("profile", { _error: res.messages.join(`<br/>`) }))
+			dispatch(setIsError(true))
+		}
+	}
+export const saveAvatar = (file: File) => async (dispatch: Dispatch) => {
 	const res = await api.updateAvatar(file)
 	if (res.resultCode === 0) {
 		dispatch(setAvatar(res.data))
@@ -78,6 +99,7 @@ export type ProfileUserType = ResponseProfileUserType & { userId: number }
 export type ProfileType = {
 	profile: ProfileUserType
 	status: string
+	isError: boolean
 	posts: PostType[]
 }
 
@@ -87,3 +109,4 @@ export type ProfifeReducerActionType =
 	| ReturnType<typeof setProfile>
 	| ReturnType<typeof setStatus>
 	| ReturnType<typeof setAvatar>
+	| ReturnType<typeof setIsError>

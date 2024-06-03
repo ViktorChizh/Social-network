@@ -5,27 +5,42 @@ import React, { ChangeEvent, FC, useState } from "react"
 import { ProfileUserType } from "redux/ProfileReducer"
 import { Preloader } from "../../common/preloader/Preloader"
 import s from "../Profile.module.css"
+import { ProfileFormData, ProfileFormType } from "./profileFormData/ProfileFormData"
 
 type PropsType = {
 	profile: ProfileUserType
 	status: string
 	isOwnStatus: boolean
+	isError: boolean
 	updateStatus: (status: string) => void
 	saveAvatar: (file: File) => void
+	updateProfuleData: (formdata: ProfileFormType) => void
 }
-export const ProfileInfo: FC<PropsType> = ({ profile, status, isOwnStatus, updateStatus, saveAvatar }) => {
+export const ProfileInfo: FC<PropsType> = ({
+	profile,
+	status,
+	isOwnStatus,
+	isError,
+	updateStatus,
+	saveAvatar,
+	updateProfuleData,
+}) => {
 	const [changeAVatar, setChangeAvatar] = useState(false)
+	const [isEditMode, setIsEditMode] = useState(false)
 
 	const changeAvatarHendler = (e: ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files?.length) {
 			saveAvatar(e.target.files[0])
 		}
 	}
-
+	const onSubmit = (formdata: ProfileFormType) => {
+		updateProfuleData(formdata)
+		isError && setIsEditMode(false)
+	}
 	return (
-		<>
+		<div style={{ width: "100%" }}>
 			{profile ? (
-				<div>
+				<div style={{ width: "100%" }}>
 					<div className={s.infoBlock}>
 						<img
 							style={{ cursor: isOwnStatus ? "pointer" : "default" }}
@@ -48,11 +63,15 @@ export const ProfileInfo: FC<PropsType> = ({ profile, status, isOwnStatus, updat
 							</div>
 						</div>
 					</div>
-					<ProfileData profile={profile} />
+					{!isEditMode ? (
+						<ProfileData profile={profile} isOwnStatus={isOwnStatus} setIsEditMode={setIsEditMode} />
+					) : (
+						<ProfileFormData initialValues={profile} profile={profile} onSubmit={onSubmit} />
+					)}
 				</div>
 			) : (
 				<Preloader style={{ width: "25%", height: "25%" }} />
 			)}
-		</>
+		</div>
 	)
 }

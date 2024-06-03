@@ -1,11 +1,25 @@
-import { withAuthRedirect } from "utils/hoc/withAuthRedirect"
+import { ProfileFormType } from "components/profile/profileInfo/profileFormData/ProfileFormData"
 import React, { Component, ComponentType } from "react"
 import { connect } from "react-redux"
 import { Redirect, RouteComponentProps, withRouter } from "react-router-dom"
 import { compose } from "redux"
 import { StateReduxType } from "redux/_Store-Redux"
-import { getProfile, getStatus, ProfileUserType, saveAvatar, updateStatus } from "redux/ProfileReducer"
-import { idSelector, isLoggedInSelector, profileSelector, statusSelector } from "utils/selectors/selectors"
+import {
+	getProfile,
+	getStatus,
+	ProfileUserType,
+	saveAvatar,
+	updateProfuleData,
+	updateStatus,
+} from "redux/ProfileReducer"
+import { withAuthRedirect } from "utils/hoc/withAuthRedirect"
+import {
+	idSelector,
+	isErrorSelector,
+	isLoggedInSelector,
+	profileSelector,
+	statusSelector,
+} from "utils/selectors/selectors"
 import { Profile } from "./Profile"
 
 class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
@@ -41,11 +55,13 @@ class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
 		if (!this.props.isLoggedIn) return <Redirect to={"/login"} />
 		return (
 			<Profile
+				updateProfuleData={this.props.updateProfuleData}
 				saveAvatar={this.changeAvatar}
 				profile={this.props.profile}
 				status={this.props.status}
 				updateStatus={this.props.updateStatus}
 				isOwnStatus={this.state.isOwnStatus}
+				isError={this.props.isError}
 			/>
 		)
 	}
@@ -56,17 +72,20 @@ const mapStateToProps = (state: StateReduxType): MStPType => ({
 	profile: profileSelector(state),
 	status: statusSelector(state),
 	id: idSelector(state),
+	isError: isErrorSelector(state),
 })
 type MStPType = {
 	isLoggedIn: boolean
 	profile: ProfileUserType
 	status: string
 	id: number | null
+	isError: boolean
 }
 type MDtPType = {
 	getProfile: (userId: string) => void
 	getStatus: (userId: string) => void
 	updateStatus: (status: string) => void
+	updateProfuleData: (formdata: ProfileFormType) => void
 	saveAvatar: (file: File, userId: number) => void
 }
 type WithRouterProfileComponentType = MStPType & MDtPType & RouteComponentProps<{ userId?: string }>
@@ -74,5 +93,5 @@ type WithRouterProfileComponentType = MStPType & MDtPType & RouteComponentProps<
 export const ProfileContainer = compose<ComponentType>(
 	withAuthRedirect,
 	withRouter,
-	connect(mapStateToProps, { getProfile, getStatus, updateStatus, saveAvatar }),
+	connect(mapStateToProps, { getProfile, getStatus, updateStatus, updateProfuleData, saveAvatar }),
 )(ProfileAPIComponent)

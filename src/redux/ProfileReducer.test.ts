@@ -4,6 +4,7 @@ import { addPostAC, deletePostAC, profifeReducer, ProfileUserType, setStatus } f
 let state = {
 	profile: {} as ProfileUserType,
 	status: "",
+	isError: false,
 	posts: [
 		{
 			id: 1,

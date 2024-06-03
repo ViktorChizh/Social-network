@@ -22,6 +22,7 @@ export const dialogSelector = (state: StateReduxType) => state.dialogsPage
 export const profilePageSelector = (state: StateReduxType) => state.profilePage
 export const statusSelector = (state: StateReduxType) => state.profilePage.status
 export const profileSelector = (state: StateReduxType) => state.profilePage.profile
+export const isErrorSelector = (state: StateReduxType) => state.profilePage.isError
 //users
 export const usersSelector = (state: StateReduxType) => state.usersPage.users
 export const pageSizeSelector = (state: StateReduxType) => state.usersPage.pageSize
