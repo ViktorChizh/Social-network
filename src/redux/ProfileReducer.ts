@@ -5,7 +5,7 @@ import { Dispatch } from "redux"
 import { filterObjectInArray } from "utils/functions/filterInArray"
 
 let initialState = {
-	profile: null,
+	profile: {} as ProfileUserType,
 	status: "",
 	posts: [
 		{
@@ -76,7 +76,7 @@ export const saveAvatar = (file: File, userId: number) => async (dispatch: Dispa
 export type ProfileUserType = ResponseProfileUserType & { userId: number }
 
 export type ProfileType = {
-	profile: Partial<ProfileUserType> | null
+	profile: ProfileUserType
 	status: string
 	posts: PostType[]
 }

@@ -1,8 +1,8 @@
 import ava from "assets/postAvatar.jpg"
-import { addPostAC, deletePostAC, profifeReducer, setStatus } from "redux/ProfileReducer"
+import { addPostAC, deletePostAC, profifeReducer, ProfileUserType, setStatus } from "redux/ProfileReducer"
 
 let state = {
-	profile: null,
+	profile: {} as ProfileUserType,
 	status: "",
 	posts: [
 		{

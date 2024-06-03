@@ -87,14 +87,15 @@ export type UserType = {
 	followed: boolean
 }
 export type ContactsType = {
-	facebook: string | null
-	website: string | null
-	vk: string | null
-	twitter: string | null
-	instagram: string | null
-	youtub: string | null
-	github: string | null
-	mainLink: string | null
+	facebook: string
+	website: string
+	vk: string
+	twitter: string
+	instagram: string
+	youtub: string
+	github: string
+	mainLink: string
+	[key: string]: string
 }
 export type PhotosType = {
 	small: string

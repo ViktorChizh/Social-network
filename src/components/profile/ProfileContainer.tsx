@@ -16,6 +16,7 @@ class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
 		if (this.props.id) {
 			this.props.getProfile(this.props.match.params.userId || this.props.id?.toString())
 			this.props.getStatus(this.props.match.params.userId || this.props.id?.toString())
+			this.setState({ isOwnStatus: true })
 		}
 		if (this.props.match.params.userId && this.props.match.params.userId !== this.props.id?.toString()) {
 			this.setState({ isOwnStatus: false })
@@ -58,7 +59,7 @@ const mapStateToProps = (state: StateReduxType): MStPType => ({
 })
 type MStPType = {
 	isLoggedIn: boolean
-	profile: Partial<ProfileUserType> | null
+	profile: ProfileUserType
 	status: string
 	id: number | null
 }

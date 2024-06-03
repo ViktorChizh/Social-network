@@ -5,7 +5,7 @@ import s from "./Profile.module.css"
 import { ProfileInfo } from "./profileInfo/ProfileInfo"
 
 type PropsType = {
-	profile: Partial<ProfileUserType> | null
+	profile: ProfileUserType
 	status: string
 	isOwnStatus: boolean
 	saveAvatar: (file: File) => void
