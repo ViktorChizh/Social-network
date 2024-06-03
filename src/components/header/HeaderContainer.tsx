@@ -4,27 +4,26 @@ import { connect } from "react-redux"
 import { compose } from "redux"
 import { StateReduxType } from "redux/_Store-Redux"
 import { getAuthUserData, logout } from "redux/AuthReducer"
-import { getProfile, ProfileUserType } from "redux/ProfileReducer"
-import { isLoggedInSelector, profileSelector } from "utils/selectors/selectors"
+import { idSelector, isLoggedInSelector, loginSelector, ownUserAvatarSelector } from "utils/selectors/selectors"
 import { Header } from "./Header"
 
 class HeaderAPIContainer extends PureComponent<HeaderAPIContainerPropsType> {
 	componentDidMount() {
-		if (this.props.profile?.fullName === null) {
+		if (this.props.login === null) {
 			this.props.getAuthUserData()
 		}
 	}
 	componentDidUpdate(prevProps: Readonly<HeaderAPIContainerPropsType>) {
-		if (this.props.profile?.photos?.small !== prevProps.profile?.photos?.small) {
-			this.props.getProfile(this.props.profile?.userId?.toString() || "")
+		if (this.props.ownUserAvatar !== prevProps.ownUserAvatar) {
+			this.props.getAuthUserData()
 		}
 	}
 	render() {
 		return (
 			<Header
-				login={this.props.profile?.fullName || ""}
+				login={this.props.login || ""}
 				isLoggedIn={this.props.isLoggedIn}
-				ownUserAvatar={this.props.profile?.photos?.small || ava}
+				ownUserAvatar={this.props.ownUserAvatar || ava}
 				onClickHandler={this.props.logout}
 			/>
 		)
@@ -33,10 +32,11 @@ class HeaderAPIContainer extends PureComponent<HeaderAPIContainerPropsType> {
 
 type mStPType = {
 	isLoggedIn: boolean
-	profile: Partial<ProfileUserType> | null
+	ownUserAvatar: string
+	login: string
+	userId: number | null
 }
 type mDtPType = {
-	getProfile: (userId: string) => void
 	getAuthUserData: () => void
 	logout: () => void
 }
@@ -44,9 +44,11 @@ type HeaderAPIContainerPropsType = mStPType & mDtPType
 
 const MapStateToProps = (state: StateReduxType): mStPType => ({
 	isLoggedIn: isLoggedInSelector(state),
-	profile: profileSelector(state),
+	ownUserAvatar: ownUserAvatarSelector(state) || "",
+	login: loginSelector(state) || "",
+	userId: idSelector(state) || null,
 })
 
 export const HeaderContainer = compose<ComponentType>(
-	connect<mStPType, mDtPType, unknown, StateReduxType>(MapStateToProps, { getAuthUserData, logout, getProfile }),
+	connect<mStPType, mDtPType, unknown, StateReduxType>(MapStateToProps, { getAuthUserData, logout }),
 )(HeaderAPIContainer)

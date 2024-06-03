@@ -6,7 +6,7 @@ import s from "./Header.module.css"
 export type PropsType = {
 	isLoggedIn: boolean
 	login: string | null
-	ownUserAvatar: string | null
+	ownUserAvatar: string
 	onClickHandler: () => void
 }
 
