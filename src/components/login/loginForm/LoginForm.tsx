@@ -17,7 +17,7 @@ const LoginForm = (props: InjectedFormProps<FormType, OwnPropsType> & OwnPropsTy
 				Password: <b>free</b>
 			</p>
 			<form className={s.formBlock} onSubmit={props.handleSubmit}>
-				{createField("", Input, "email", "email", "LoginContainer", [required, emailValidator])}
+				{createField("", Input, "email", "email", "email", [required, emailValidator])}
 				{createField("", Input, "password", "password", "password", [required, minLength4])}
 				{createField("", "input", "rememberMe", "checkbox", undefined, undefined, <i>remember me</i>)}
 				{props.error && <div className={s.errorServer}>{props.error}</div>}

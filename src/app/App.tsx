@@ -22,11 +22,19 @@ const Music = React.lazy(() => import("components/music/Music"))
 const News = React.lazy(() => import("components/news/News"))
 
 class App extends React.Component<mStPType & mDtPType> {
+	catchAllUnhandledErrors = (promiseRejectionEvent: PromiseRejectionEvent) => {
+		alert(promiseRejectionEvent.reason || "some error occured")
+	}
 	componentDidMount() {
 		if (this.props.isAuth === false) {
 			this.props.checkInitialize()
 		}
+		window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors)
 	}
+	componentWillUnmount() {
+		window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors)
+	}
+
 	render() {
 		if (!this.props.isAuth) return <Preloader />
 

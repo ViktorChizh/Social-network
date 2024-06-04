@@ -24,7 +24,7 @@ export const TextArea = (props: any) => {
 export const Input = (props: any) => {
 	return (
 		<ValidatedComponent {...props}>
-			<input {...props.input} {...props} />
+			<input {...props.input} {...props} autoComplete={""} />
 		</ValidatedComponent>
 	)
 }
