@@ -16,6 +16,7 @@ export const idSelector = (state: StateReduxType) => state.auth.id
 export const loginSelector = (state: StateReduxType) => state.auth.login
 export const isLoggedInSelector = (state: StateReduxType) => state.auth.isLoggedIn
 export const ownUserAvatarSelector = (state: StateReduxType) => state.auth.ownUserAvatar
+export const captchaUrlSelector = (state: StateReduxType) => state.auth.captchaUrl
 //dialogs
 export const dialogSelector = (state: StateReduxType) => state.dialogsPage
 //profile

@@ -13,7 +13,7 @@ export const ProfileData = ({ profile, isOwnStatus, setIsEditMode }: Props) => {
 		<div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
 			{isOwnStatus && (
 				<button
-					style={{ alignSelf: "self-start", padding: "10px", width: "30%", marginBottom: "10px" }}
+					style={{ alignSelf: "self-start", padding: "10px", width: "35%", marginBottom: "10px" }}
 					onClick={() => setIsEditMode(true)}>
 					edit profile data
 				</button>

@@ -21,6 +21,10 @@ export const api = {
 		return instance.delete<ResponseServerType>(`auth/login`).then((res) => res.data)
 	},
 
+	async getCaptcha() {
+		return instance.get<captchaResponse>(`security/get-captcha-url`).then((res) => res.data)
+	},
+
 	async getFollow(id: number) {
 		return instance.post<ResponseServerType>(`follow/${id}`, {}).then((res) => res.data)
 	},
@@ -104,4 +108,8 @@ export type ContactsType = {
 export type PhotosType = {
 	small: string
 	large: string
+}
+
+export type captchaResponse = {
+	url: string
 }

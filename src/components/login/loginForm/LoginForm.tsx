@@ -21,6 +21,8 @@ const LoginForm = (props: InjectedFormProps<FormType, OwnPropsType> & OwnPropsTy
 				{createField("", Input, "password", "password", "password", [required, minLength4])}
 				{createField("", "input", "rememberMe", "checkbox", undefined, undefined, <i>remember me</i>)}
 				{props.error && <div className={s.errorServer}>{props.error}</div>}
+				{props.captchaUrl && <img src={props.captchaUrl} width="100%" height="20%" />}
+				{props.captchaUrl && createField("", Input, "captcha", "text", "captcha", [required])}
 				<div className={s.button}>
 					<button>Login</button>
 				</div>
@@ -34,5 +36,8 @@ export type FormType = {
 	email: string
 	password: string
 	rememberMe: boolean
+	captcha?: string
 }
-type OwnPropsType = {}
+type OwnPropsType = {
+	captchaUrl: string | null
+}
