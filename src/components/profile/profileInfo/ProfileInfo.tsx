@@ -35,7 +35,7 @@ export const ProfileInfo: FC<PropsType> = ({
 	}
 	const onSubmit = (formdata: ProfileFormType) => {
 		updateProfuleData(formdata)
-		isError && setIsEditMode(false)
+		!isError && setIsEditMode(false)
 	}
 	return (
 		<div style={{ width: "100%" }}>
