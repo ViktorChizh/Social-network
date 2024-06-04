@@ -1,2 +1,1 @@
-# 2-react-way-of-samurai
-studies and writing Social Network
+# Social network - educational personal project
