@@ -1,7 +1,7 @@
 import ava from "assets/avatar.webp"
 import { ProfileData } from "components/profile/profileInfo/profileData/ProfileData"
 import { ProfileStatus } from "components/profile/profileStatus/ProfileStatus"
-import React, { ChangeEvent, FC, useState } from "react"
+import React, { ChangeEvent, FC, useEffect, useState } from "react"
 import { ProfileUserType } from "redux/ProfileReducer"
 import { Preloader } from "../../common/preloader/Preloader"
 import s from "../Profile.module.css"
@@ -35,8 +35,11 @@ export const ProfileInfo: FC<PropsType> = ({
 	}
 	const onSubmit = (formdata: ProfileFormType) => {
 		updateProfuleData(formdata)
-		!isError && setIsEditMode(false)
 	}
+	useEffect(() => {
+		setIsEditMode(isError)
+	}, [isError, profile])
+
 	return (
 		<div style={{ width: "100%" }}>
 			{profile ? (

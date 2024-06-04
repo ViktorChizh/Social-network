@@ -80,10 +80,10 @@ export const updateProfuleData =
 	async (dispatch, getState) => {
 		const res = await api.updateProfuleData(formdata)
 		if (res.resultCode === 0) {
-			getProfile(getState().auth.id?.toString() || "")
+			await dispatch(getProfile(getState().auth.id?.toString() || ""))
 			dispatch(setIsError(false))
 		} else {
-			dispatch(stopSubmit("profile", { _error: res.messages.join(`<br/>`) }))
+			dispatch(stopSubmit("profile", { _error: res.messages.join(`-----`) }))
 			dispatch(setIsError(true))
 		}
 	}
