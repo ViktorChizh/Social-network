@@ -4,8 +4,8 @@ import { PostType } from "components/profile/myPosts/post/Post"
 import { ProfileFormType } from "components/profile/profileInfo/profileFormData/ProfileFormData"
 import { Action, Dispatch } from "redux"
 import { stopSubmit } from "redux-form"
-import { ThunkAction, ThunkDispatch } from "redux-thunk"
-import { StateReduxType, store, StoreActionType } from "redux/_Store-Redux"
+import { ThunkAction } from "redux-thunk"
+import { StateReduxType } from "redux/_Store-Redux"
 import { filterObjectInArray } from "utils/functions/filterInArray"
 
 let initialState = {

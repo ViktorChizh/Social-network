@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Social-network---educational-personal-project/static/css/main.616b20d7.css",
-    "main.js": "/Social-network---educational-personal-project/static/js/main.d3bf043b.js",
+    "main.js": "/Social-network---educational-personal-project/static/js/main.138b790b.js",
     "static/css/102.b6adfa23.chunk.css": "/Social-network---educational-personal-project/static/css/102.b6adfa23.chunk.css",
     "static/js/102.7cb7bc46.chunk.js": "/Social-network---educational-personal-project/static/js/102.7cb7bc46.chunk.js",
     "static/css/842.215c614e.chunk.css": "/Social-network---educational-personal-project/static/css/842.215c614e.chunk.css",
@@ -25,7 +25,7 @@
     "static/media/preloader.svg": "/Social-network---educational-personal-project/static/media/preloader.04380076273f54b28f86b28d4208a023.svg",
     "index.html": "/Social-network---educational-personal-project/index.html",
     "main.616b20d7.css.map": "/Social-network---educational-personal-project/static/css/main.616b20d7.css.map",
-    "main.d3bf043b.js.map": "/Social-network---educational-personal-project/static/js/main.d3bf043b.js.map",
+    "main.138b790b.js.map": "/Social-network---educational-personal-project/static/js/main.138b790b.js.map",
     "102.b6adfa23.chunk.css.map": "/Social-network---educational-personal-project/static/css/102.b6adfa23.chunk.css.map",
     "102.7cb7bc46.chunk.js.map": "/Social-network---educational-personal-project/static/js/102.7cb7bc46.chunk.js.map",
     "842.215c614e.chunk.css.map": "/Social-network---educational-personal-project/static/css/842.215c614e.chunk.css.map",
@@ -39,6 +39,6 @@
   },
   "entrypoints": [
     "static/css/main.616b20d7.css",
-    "static/js/main.d3bf043b.js"
+    "static/js/main.138b790b.js"
   ]
 }
