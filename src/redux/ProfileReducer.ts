@@ -1,4 +1,4 @@
-import { api, PhotosType, ResponseProfileUserType } from "api/API"
+import { api, Photos, ResponseProfileUser } from "api/API"
 import ava from "assets/postAvatar.jpg"
 import { PostType } from "components/profile/myPosts/post/Post"
 import { ProfileFormType } from "components/profile/profileInfo/profileFormData/ProfileFormData"
@@ -57,7 +57,7 @@ export const addPostAC = (post: string | undefined) => ({ type: "profile/ADD-POS
 export const deletePostAC = (id: number) => ({ type: "profile/DELETE-POST" as const, payload: { id } })
 export const setProfile = (profile: ProfileUserType) => ({ type: "profile/SET-PROFILE" as const, payload: { profile } })
 export const setStatus = (status: string) => ({ type: "profile/SET-STATUS" as const, payload: { status } })
-export const setAvatar = (photos: PhotosType) => ({ type: "profile/SET-AVATAR" as const, payload: { photos } })
+export const setAvatar = (photos: Photos) => ({ type: "profile/SET-AVATAR" as const, payload: { photos } })
 export const setIsError = (isError: boolean) => ({ type: "profile/SET-ISERROR" as const, payload: { isError } })
 
 //thunks
@@ -94,7 +94,7 @@ export const saveAvatar = (file: File) => async (dispatch: Dispatch) => {
 	}
 }
 //types
-export type ProfileUserType = ResponseProfileUserType & { userId: number }
+export type ProfileUserType = ResponseProfileUser & { userId: number }
 
 export type ProfileType = {
 	profile: ProfileUserType

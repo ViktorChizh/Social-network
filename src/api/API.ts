@@ -12,48 +12,48 @@ const instance = axios.create({
 
 export const api = {
 	async getMe() {
-		return instance.get<ResponseServerType<ResponseAuthType>>(`auth/me`).then((res) => res.data)
+		return instance.get<ResponseServer<ResponseAuth>>(`auth/me`).then((res) => res.data)
 	},
 	async login(formData: FormType) {
-		return instance.post<ResponseServerType<{ id: number }>>(`auth/login`, formData).then((res) => res.data)
+		return instance.post<ResponseServer<{ id: number }>>(`auth/login`, formData).then((res) => res.data)
 	},
 	async logout() {
-		return instance.delete<ResponseServerType>(`auth/login`).then((res) => res.data)
+		return instance.delete<ResponseServer>(`auth/login`).then((res) => res.data)
 	},
 
 	async getCaptcha() {
-		return instance.get<captchaResponse>(`security/get-captcha-url`).then((res) => res.data)
+		return instance.get<СaptchaResponse>(`security/get-captcha-url`).then((res) => res.data)
 	},
 
 	async getFollow(id: number) {
-		return instance.post<ResponseServerType>(`follow/${id}`, {}).then((res) => res.data)
+		return instance.post<ResponseServer>(`follow/${id}`, {}).then((res) => res.data)
 	},
 	async getUnFollow(id: number) {
-		return instance.delete<ResponseServerType>(`follow/${id}`).then((res) => res.data)
+		return instance.delete<ResponseServer>(`follow/${id}`).then((res) => res.data)
 	},
 
 	async getUsers(pageSize: number, currentPage: number) {
-		return instance.get<ResponseUserType>(`users?count=${pageSize}&page=${currentPage}`).then((res) => res.data)
+		return instance.get<ResponseUser>(`users?count=${pageSize}&page=${currentPage}`).then((res) => res.data)
 	},
 
 	async getProfile(id: number | null) {
-		return instance.get<ResponseProfileUserType>(`profile/${id}`).then((res) => res.data)
+		return instance.get<ResponseProfileUser>(`profile/${id}`).then((res) => res.data)
 	},
 
 	async getStatus(id: number) {
 		return instance.get<string>(`profile/status/${id}`).then((res) => res.data)
 	},
 	async updateStatus(status: string) {
-		return instance.put<ResponseServerType>(`profile/status/`, { status }).then((res) => res.data)
+		return instance.put<ResponseServer>(`profile/status/`, { status }).then((res) => res.data)
 	},
 	async updateProfuleData(formdata: ProfileFormType) {
-		return instance.put<ResponseServerType>(`profile/`, formdata).then((res) => res.data)
+		return instance.put<ResponseServer>(`profile/`, formdata).then((res) => res.data)
 	},
 	async updateAvatar(file: File) {
 		const formData = new FormData()
 		formData.append("image", file)
 		return instance
-			.put<ResponseServerType<PhotosType>>(`profile/photo/`, formData, {
+			.put<ResponseServer<Photos>>(`profile/photo/`, formData, {
 				headers: {
 					"Content-Type": "multipart/form-data",
 				},
@@ -62,39 +62,39 @@ export const api = {
 	},
 }
 //types
-export type ResponseAuthType = {
+export type ResponseAuth = {
 	id: number | null
 	email: string | null
 	login: string | null
 }
-export type ResponseServerType<D = {}> = {
+export type ResponseServer<D = {}> = {
 	data: D
 	resultCode: 0 | 1 | 10
 	messages: string[]
 }
-export type ResponseUserType = {
+export type ResponseUser = {
 	items: UserType[]
 	totalCount: number
 	error: string
 }
-export type ResponseProfileUserType = {
+export type ResponseProfileUser = {
 	aboutMe: string
-	contacts: ContactsType
+	contacts: Contacts
 	lookingForAJob: boolean
 	lookingForAJobDescription: string
 	fullName: string
 	userId: number
-	photos: PhotosType
+	photos: Photos
 }
 
 export type UserType = {
 	id: number
 	name: string
 	status: string
-	photos: PhotosType
+	photos: Photos
 	followed: boolean
 }
-export type ContactsType = {
+export type Contacts = {
 	facebook: string
 	website: string
 	vk: string
@@ -105,11 +105,11 @@ export type ContactsType = {
 	mainLink: string
 	[key: string]: string
 }
-export type PhotosType = {
+export type Photos = {
 	small: string
 	large: string
 }
 
-export type captchaResponse = {
+export type СaptchaResponse = {
 	url: string
 }

@@ -1,4 +1,4 @@
-import { api, ResponseAuthType } from "api/API"
+import { api, ResponseAuth } from "api/API"
 import { FormType } from "components/login/loginForm/LoginForm"
 import { Dispatch } from "redux"
 import { stopSubmit } from "redux-form"
@@ -37,7 +37,7 @@ export const authReducer = (state: AuthReducerType = initialState, action: AuthR
 	}
 }
 //types
-export type AuthReducerType = ResponseAuthType & {
+export type AuthReducerType = ResponseAuth & {
 	isAuth: boolean
 	isLoggedIn: boolean
 	ownUserAvatar: string | null
@@ -50,7 +50,7 @@ export type AuthReducerActionType =
 	| ReturnType<typeof setCaptchaUrl>
 	| ReturnType<typeof setIsLoggedIn>
 //actions
-export const setAuthUserData = (data: ResponseAuthType, ownUserAvatar: string | null) => ({
+export const setAuthUserData = (data: ResponseAuth, ownUserAvatar: string | null) => ({
 	type: "auth/SET_USER_DATA" as const,
 	payload: { data, ownUserAvatar },
 })
