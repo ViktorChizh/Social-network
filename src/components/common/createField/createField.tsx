@@ -3,18 +3,19 @@ import { Field } from "redux-form"
 
 // make function (not component) in educational reasons
 export const createField = (
-	text1: ReactNode | string = "",
+	textStart: ReactNode | string,
 	component: ReactNode | string,
 	name: string,
 	type: string,
-	placeholder?: string,
-	validate?: any[],
-	text: ReactNode | string = "",
+	placeholder: string,
+	validate: any[],
+	textEnd?: ReactNode | string,
 ) => {
 	return (
 		<div style={{ display: "flex", gap: "10px" }}>
-			{text1} <Field component={component} name={name} type={type} placeholder={placeholder} validate={validate} />
-			{text}
+			{textStart}
+			<Field component={component} name={name} type={type} placeholder={placeholder} validate={validate}/>
+			{textEnd}
 		</div>
 	)
 }

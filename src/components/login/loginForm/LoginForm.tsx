@@ -19,7 +19,7 @@ const LoginForm = (props: InjectedFormProps<FormType, OwnPropsType> & OwnPropsTy
 			<form className={s.formBlock} onSubmit={props.handleSubmit}>
 				{createField("", Input, "email", "email", "email", [required, emailValidator])}
 				{createField("", Input, "password", "password", "password", [required, minLength4])}
-				{createField("", "input", "rememberMe", "checkbox", undefined, undefined, <i>remember me</i>)}
+				{createField("", "input", "rememberMe", "checkbox", '', [], <i>remember me</i>)}
 				{props.error && <div className={s.errorServer}>{props.error}</div>}
 				{props.captchaUrl && <img src={props.captchaUrl} width="100%" height="20%" alt={"captcha"} />}
 				{props.captchaUrl && createField("", Input, "captcha", "text", "captcha", [required])}

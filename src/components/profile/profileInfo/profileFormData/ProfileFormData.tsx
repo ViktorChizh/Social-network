@@ -13,10 +13,8 @@ export const _ProfileFormData = (props: InjectedFormProps<ProfileFormType, OwnPr
 			style={{ display: "flex", width: "100%", flexDirection: "column", justifyContent: "space-between", gap: "5px" }}>
 			<form style={{ color: "white", width: "100%" }} onSubmit={props.handleSubmit}>
 				{createField(<b>Full Name: </b>, Input, "fullName", "text", "full name", [required])}
-				{createField(<b>Looking for a job: </b>, "input", "lookingForAJob", "checkbox")}
-				{createField(<b>My professional skills: </b>, TextArea, "lookingForAJobDescription", "text", "Skills", [
-					required,
-				])}
+				{createField(<b>Looking for a job: </b>, "input", "lookingForAJob", "checkbox",'',[])}
+				{createField(<b>My professional skills: </b>, TextArea, "lookingForAJobDescription", "text", "Skills", [required])}
 				{createField(<b>About me: </b>, Input, "aboutMe", "text", "About me", [required])}
 				<div style={{ width: "100%" }}>
 					<b>Contacts: </b>
@@ -26,7 +24,7 @@ export const _ProfileFormData = (props: InjectedFormProps<ProfileFormType, OwnPr
 								<div
 									style={{ display: "flex", width: "50%", justifyContent: "space-between", margin: "2.5px 0 0 20px" }}
 									key={key}>
-									{createField(<b>{key}: </b>, Input, "contacts." + key, "text", key)}
+									{createField(<b>{key}: </b>, Input, "contacts." + key, "text", key,[])}
 								</div>
 							)
 						})}
