@@ -9,12 +9,12 @@ type OwnPropsType = {
 	placeholder: string
 	name: string
 }
-export type TextFormType = {
+export type TextForm = {
 	addPost?: string
 	addMessage?: string
 	addDialog?: string
 }
-export type TextAreaProps = InjectedFormProps<TextFormType, OwnPropsType> & OwnPropsType
+export type TextAreaProps = InjectedFormProps<TextForm, OwnPropsType> & OwnPropsType
 const maxLength100 = maxLengthCreator(100)
 
 const TextareaWithButton_ = (props: TextAreaProps) => {
@@ -27,4 +27,4 @@ const TextareaWithButton_ = (props: TextAreaProps) => {
 	)
 }
 
-export const TextareaWithButton = reduxForm<TextFormType, OwnPropsType>({ form: "textArea" })(TextareaWithButton_)
+export const TextareaWithButton = reduxForm<TextForm, OwnPropsType>({ form: "textArea" })(TextareaWithButton_)
