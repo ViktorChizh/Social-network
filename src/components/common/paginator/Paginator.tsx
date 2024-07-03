@@ -1,7 +1,7 @@
-import React, { FC } from "react"
-import s from "components/common/paginator/Paginator.module.css"
+import s from 'components/common/paginator/Paginator.module.css'
+import React from 'react'
 
-export const Paginator: FC<PaginatorPropsType> = ({ totalCount, pageSize, onPageChanged, currentPage }) => {
+export const Paginator = ({ totalCount, pageSize, onPageChanged, currentPage }:PaginatorProps) => {
 	let pagesCount = Math.ceil(totalCount / pageSize)
 	let pages = Array(pagesCount)
 		.fill(0)
@@ -62,7 +62,7 @@ export const Paginator: FC<PaginatorPropsType> = ({ totalCount, pageSize, onPage
 	)
 }
 //types
-type PaginatorPropsType = {
+type PaginatorProps = {
 	totalCount: number
 	pageSize: number
 	currentPage: number
