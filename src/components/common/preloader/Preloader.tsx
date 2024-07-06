@@ -1,7 +1,7 @@
-import React, { FC } from "react"
-import preloader from "assets/preloader.svg"
+import preloader from 'assets/preloader.svg'
+import React from 'react'
 
-type PreloaderPropsType = {
+type PreloaderProps = {
 	style?: { [key: string]: string }
 }
 const setting = {
@@ -13,6 +13,6 @@ const setting = {
 	margin: "0 auto",
 	width: "50vw",
 }
-export const Preloader: FC<PreloaderPropsType> = ({ style }) => {
+export const Preloader= ({ style }: PreloaderProps) => {
 	return <img src={preloader} alt="LOADING..." style={{ ...setting, ...style }} />
 }
