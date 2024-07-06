@@ -3,7 +3,7 @@ import React, { ComponentType } from "react"
 import { connect } from "react-redux"
 import { compose } from "redux"
 
-import { StateReduxType } from "redux/_Store-Redux"
+import { StateRedux } from "redux/_Store-Redux"
 import { checkInitialize } from "redux/AuthReducer"
 import { withSuspense } from "utils/hoc/withSuspense"
 import "app/App.css"
@@ -68,11 +68,11 @@ type mStPType = {
 type mDtPType = {
 	checkInitialize: () => void
 }
-const MapStateToProps = (state: StateReduxType): mStPType => ({
+const MapStateToProps = (state: StateRedux): mStPType => ({
 	isAuth: state.auth.isAuth,
 })
 
 export default compose<ComponentType>(
 	withRouter,
-	connect<mStPType, mDtPType, unknown, StateReduxType>(MapStateToProps, { checkInitialize }),
+	connect<mStPType, mDtPType, unknown, StateRedux>(MapStateToProps, { checkInitialize }),
 )(App)

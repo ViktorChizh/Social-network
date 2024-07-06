@@ -4,7 +4,7 @@ import React, { Component, ComponentType } from "react"
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { compose } from "redux"
-import { StateReduxType } from "redux/_Store-Redux"
+import { StateRedux } from "redux/_Store-Redux"
 import { toggleFollowUser, getUsers, setCurrentPage } from "redux/UsersReducer"
 import {
 	buttonDisabledSelector,
@@ -50,7 +50,7 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
 		)
 	}
 }
-const mapStateToProps = (state: StateReduxType): mStPType => ({
+const mapStateToProps = (state: StateRedux): mStPType => ({
 	users: usersSelector(state),
 	pageSize: pageSizeSelector(state),
 	currentPage: currentPageSelector(state),

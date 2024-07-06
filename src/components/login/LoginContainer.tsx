@@ -3,7 +3,7 @@ import React, { Component, ComponentType } from "react"
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { compose } from "redux"
-import { StateReduxType } from "redux/_Store-Redux"
+import { StateRedux } from "redux/_Store-Redux"
 import { getAuthUserData, login } from "redux/AuthReducer"
 import { captchaUrlSelector, isLoggedInSelector } from "utils/selectors/selectors"
 import s from "./Login.module.css"
@@ -31,7 +31,7 @@ class Login extends Component<mStPType & mDtPType> {
 	}
 }
 
-const mapStateToProps = (state: StateReduxType): mStPType => ({
+const mapStateToProps = (state: StateRedux): mStPType => ({
 	isLoggedIn: isLoggedInSelector(state),
 	captchaUrl: captchaUrlSelector(state),
 })
@@ -45,5 +45,5 @@ type mDtPType = {
 }
 
 export const LoginContainer = compose<ComponentType>(
-	connect<mStPType, mDtPType, unknown, StateReduxType>(mapStateToProps, { login, getAuthUserData }),
+	connect<mStPType, mDtPType, unknown, StateRedux>(mapStateToProps, { login, getAuthUserData }),
 )(Login)

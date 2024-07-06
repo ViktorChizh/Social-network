@@ -5,7 +5,7 @@ import { ProfileFormType } from "components/profile/profileInfo/profileFormData/
 import { Action, Dispatch } from "redux"
 import { stopSubmit } from "redux-form"
 import { ThunkAction } from "redux-thunk"
-import { StateReduxType } from "redux/_Store-Redux"
+import { StateRedux } from "redux/_Store-Redux"
 import { filterObjectInArray } from "utils/functions/filterInArray"
 
 let initialState = {
@@ -76,7 +76,7 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
 	}
 }
 export const updateProfuleData =
-	(formdata: ProfileFormType): ThunkAction<void, StateReduxType, unknown, Action> =>
+	(formdata: ProfileFormType): ThunkAction<void, StateRedux, unknown, Action> =>
 	async (dispatch, getState) => {
 		const res = await api.updateProfuleData(formdata)
 		if (res.resultCode === 0) {

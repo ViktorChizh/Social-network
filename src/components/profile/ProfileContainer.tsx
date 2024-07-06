@@ -3,7 +3,7 @@ import React, { Component, ComponentType } from "react"
 import { connect } from "react-redux"
 import { Redirect, RouteComponentProps, withRouter } from "react-router-dom"
 import { compose } from "redux"
-import { StateReduxType } from "redux/_Store-Redux"
+import { StateRedux } from "redux/_Store-Redux"
 import { getAuthUserData } from "redux/AuthReducer"
 import {
 	getProfile,
@@ -83,7 +83,7 @@ class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
 	}
 }
 
-const mapStateToProps = (state: StateReduxType): MStPType => ({
+const mapStateToProps = (state: StateRedux): MStPType => ({
 	isLoggedIn: isLoggedInSelector(state),
 	profile: profileSelector(state),
 	status: statusSelector(state),

@@ -17,11 +17,11 @@ export const rootReduser = combineReducers({
 export const store = createStore(rootReduser, applyMiddleware(thunkMiddleWare))
 //types
 export type StoreReduxType = typeof store
-export type StoreActionType =
+export type StoreAction =
 	| ProfifeReducerActionType
 	| DialogReducerActionType
 	| UsersReducerActionType
 	| AuthReducerActionType
-export type StateReduxType = ReturnType<typeof rootReduser>
+export type StateRedux = ReturnType<typeof rootReduser>
 //@ts-ignore
 window.store = store

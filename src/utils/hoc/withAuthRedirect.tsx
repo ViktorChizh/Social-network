@@ -1,12 +1,12 @@
 import React, { ComponentType } from "react"
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
-import { StateReduxType } from "redux/_Store-Redux"
+import { StateRedux } from "redux/_Store-Redux"
 
 type MStPType = {
 	isAuth: boolean
 }
-const mapStateToProps = (state: StateReduxType): MStPType => ({
+const mapStateToProps = (state: StateRedux): MStPType => ({
 	isAuth: state.auth.isAuth,
 })
 // Т - это пропсы входящей компоненты. НЕ срабатывает в стрелочном синтаксисе, поэтому function-declaration:
@@ -18,7 +18,7 @@ export function withAuthRedirect<T>(Component: ComponentType<T>) {
 		return <Component {...(restprops as T)} />
 	}
 	// connect можно не типизировать
-	let ConnectedRedirectComponent = connect<MStPType, {}, unknown, StateReduxType>(mapStateToProps)(RedirectComponent)
+	let ConnectedRedirectComponent = connect<MStPType, {}, unknown, StateRedux>(mapStateToProps)(RedirectComponent)
 
 	return ConnectedRedirectComponent
 }

@@ -3,26 +3,26 @@ import { ComponentType } from "react"
 import { dialogSelector, isLoggedInSelector } from "utils/selectors/selectors"
 import { Dialogs } from "./Dialogs"
 import { connect } from "react-redux"
-import { StateReduxType, StoreActionType } from "redux/_Store-Redux"
+import { StateRedux, StoreAction } from "redux/_Store-Redux"
 import { DialogType } from "redux/DialogReducer"
 import { compose, Dispatch } from "redux"
 
-const mapStateToProps = (state: StateReduxType): mStPType => ({
+const mapStateToProps = (state: StateRedux): MStP => ({
 	dialog: dialogSelector(state),
 	isLoggedIn: isLoggedInSelector(state),
 })
 
-const mapDispatchToProps = (dispatch: Dispatch): mDtPType => ({ dispatch })
+const mapDispatchToProps = (dispatch: Dispatch): MDtP => ({ dispatch })
 
 const DialogsContainer = compose<ComponentType>(withAuthRedirect, connect(mapStateToProps, mapDispatchToProps))(Dialogs)
 //types
-type mStPType = {
+type MStP = {
 	dialog: DialogType
 	isLoggedIn: boolean
 }
-type mDtPType = {
-	dispatch: (AC: StoreActionType) => void
+type MDtP = {
+	dispatch: (AC: StoreAction) => void
 }
-export type DialogsContainerType = mStPType & mDtPType
+export type DialogsContainerType = MStP & MDtP
 
 export default DialogsContainer

@@ -2,7 +2,7 @@ import ava from "assets/avatar.webp"
 import React, { ComponentType, PureComponent } from "react"
 import { connect } from "react-redux"
 import { compose } from "redux"
-import { StateReduxType } from "redux/_Store-Redux"
+import { StateRedux } from "redux/_Store-Redux"
 import { getAuthUserData, logout } from "redux/AuthReducer"
 import { idSelector, isLoggedInSelector, loginSelector, ownUserAvatarSelector } from "utils/selectors/selectors"
 import { Header } from "./Header"
@@ -42,7 +42,7 @@ type mDtPType = {
 }
 type HeaderAPIContainerPropsType = mStPType & mDtPType
 
-const MapStateToProps = (state: StateReduxType): mStPType => ({
+const MapStateToProps = (state: StateRedux): mStPType => ({
 	isLoggedIn: isLoggedInSelector(state),
 	ownUserAvatar: ownUserAvatarSelector(state) || "",
 	login: loginSelector(state) || "",
@@ -50,5 +50,5 @@ const MapStateToProps = (state: StateReduxType): mStPType => ({
 })
 
 export const HeaderContainer = compose<ComponentType>(
-	connect<mStPType, mDtPType, unknown, StateReduxType>(MapStateToProps, { getAuthUserData, logout }),
+	connect<mStPType, mDtPType, unknown, StateRedux>(MapStateToProps, { getAuthUserData, logout }),
 )(HeaderAPIContainer)

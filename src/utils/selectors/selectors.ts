@@ -9,25 +9,25 @@
 
 // в данном проекте нет сложных селекторов, поэтому создаем только простые
 
-import { StateReduxType } from "redux/_Store-Redux"
+import { StateRedux } from "redux/_Store-Redux"
 
 //auth
-export const idSelector = (state: StateReduxType) => state.auth.id
-export const loginSelector = (state: StateReduxType) => state.auth.login
-export const isLoggedInSelector = (state: StateReduxType) => state.auth.isLoggedIn
-export const ownUserAvatarSelector = (state: StateReduxType) => state.auth.ownUserAvatar
-export const captchaUrlSelector = (state: StateReduxType) => state.auth.captchaUrl
+export const idSelector = (state: StateRedux) => state.auth.id
+export const loginSelector = (state: StateRedux) => state.auth.login
+export const isLoggedInSelector = (state: StateRedux) => state.auth.isLoggedIn
+export const ownUserAvatarSelector = (state: StateRedux) => state.auth.ownUserAvatar
+export const captchaUrlSelector = (state: StateRedux) => state.auth.captchaUrl
 //dialogs
-export const dialogSelector = (state: StateReduxType) => state.dialogsPage
+export const dialogSelector = (state: StateRedux) => state.dialogsPage
 //profile
-export const profilePageSelector = (state: StateReduxType) => state.profilePage
-export const statusSelector = (state: StateReduxType) => state.profilePage.status
-export const profileSelector = (state: StateReduxType) => state.profilePage.profile
-export const isErrorSelector = (state: StateReduxType) => state.profilePage.isError
+export const profilePageSelector = (state: StateRedux) => state.profilePage
+export const statusSelector = (state: StateRedux) => state.profilePage.status
+export const profileSelector = (state: StateRedux) => state.profilePage.profile
+export const isErrorSelector = (state: StateRedux) => state.profilePage.isError
 //users
-export const usersSelector = (state: StateReduxType) => state.usersPage.users
-export const pageSizeSelector = (state: StateReduxType) => state.usersPage.pageSize
-export const totalCountSelector = (state: StateReduxType) => state.usersPage.totalCount
-export const currentPageSelector = (state: StateReduxType) => state.usersPage.currentPage
-export const isPreloadingSelector = (state: StateReduxType) => state.usersPage.isPreloading
-export const buttonDisabledSelector = (state: StateReduxType) => state.usersPage.buttonDisabled
+export const usersSelector = (state: StateRedux) => state.usersPage.users
+export const pageSizeSelector = (state: StateRedux) => state.usersPage.pageSize
+export const totalCountSelector = (state: StateRedux) => state.usersPage.totalCount
+export const currentPageSelector = (state: StateRedux) => state.usersPage.currentPage
+export const isPreloadingSelector = (state: StateRedux) => state.usersPage.isPreloading
+export const buttonDisabledSelector = (state: StateRedux) => state.usersPage.buttonDisabled
