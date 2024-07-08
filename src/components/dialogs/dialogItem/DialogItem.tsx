@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import React from "react"
 import s from "../Dialogs.module.css"
 import { NavLink } from "react-router-dom"
 
@@ -7,7 +7,7 @@ export type DialogItemProps = {
 	name: string
 }
 
-export const DialogItem: FC<DialogItemProps> = ({ id, name }) => {
+export const DialogItem = ({ id, name }: DialogItemProps) => {
 	return (
 		<div className={s.dialog}>
 			<NavLink to={"/dialogs/" + id} activeClassName={s.active}>
