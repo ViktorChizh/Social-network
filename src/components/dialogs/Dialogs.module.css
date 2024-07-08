@@ -10,10 +10,13 @@
 	grid-template-columns: 1fr 1fr;
 }
 
-.dialogs span {
+.dialogs span,
+.messages span {
 	margin-left: 10px;
 	color: #b1e5e7;
 	font-size: 50px;
+	display: block;
+	margin-bottom: 20px;
 }
 
 .dialogsItem {
@@ -21,24 +24,15 @@
 	min-width: 50%;
 }
 
-.dialogsItem .dialog:first-of-type {
-	margin-top: 20px;
-}
-
 .dialog {
 	padding: 10px;
 	a {
 		color: #b1e5e7;
 		text-decoration: none;
+		&.active {
+			color: gold;
+		}
 	}
-}
-
-a.active {
-	color: gold;
-}
-
-.messages {
-	margin-top: 80px;
 }
 
 .message {
