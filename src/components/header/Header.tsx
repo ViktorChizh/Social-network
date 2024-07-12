@@ -1,16 +1,16 @@
-import React, { FC, memo } from "react"
-import logo from "../../assets/logo.jpg"
-import { HeaderLoginBlock } from "components/header/headerLoginBlock/HeaderLoginBlock"
-import s from "./Header.module.css"
+import {HeaderLoginBlock} from 'components/header/headerLoginBlock/HeaderLoginBlock'
+import React, {memo} from 'react'
+import logo from '../../assets/logo.jpg'
+import s from './Header.module.css'
 
-export type PropsType = {
+export type Props = {
 	isLoggedIn: boolean
 	login: string | null
 	ownUserAvatar: string
 	onClickHandler: () => void
 }
 
-export const Header: FC<PropsType> = memo((props) => {
+export const Header = memo((props:Props) => {
 	return (
 		<header className={s.header}>
 			<img src={logo} alt="logo" />
