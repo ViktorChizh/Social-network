@@ -1,5 +1,5 @@
 import { api, ResponseAuth } from "api/API"
-import { FormType } from "components/login/loginForm/LoginForm"
+import { Form } from "components/login/loginForm/LoginForm"
 import { Dispatch } from "redux"
 import { stopSubmit } from "redux-form"
 import { ThunkDispatch } from "redux-thunk"
@@ -90,7 +90,7 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
 	}
 }
 export const login =
-	(formData: FormType) => async (dispatch: ThunkDispatch<AuthReducerType, unknown, AuthReducerActionType>) => {
+	(formData: Form) => async (dispatch: ThunkDispatch<AuthReducerType, unknown, AuthReducerActionType>) => {
 		const res = await api.login(formData)
 		if (res.resultCode === 0) {
 			await dispatch(getAuthUserData())

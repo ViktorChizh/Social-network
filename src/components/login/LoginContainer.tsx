@@ -1,4 +1,4 @@
-import { FormType, LoginReduxForm } from "components/login/loginForm/LoginForm"
+import { Form, LoginReduxForm } from "components/login/loginForm/LoginForm"
 import React, { Component, ComponentType } from "react"
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
@@ -18,7 +18,7 @@ class Login extends Component<mStPType & mDtPType> {
 		}
 	}
 
-	onSubmit = (formData: FormType) => {
+	onSubmit = (formData: Form) => {
 		this.props.login(formData)
 	}
 	render() {
@@ -40,7 +40,7 @@ type mStPType = {
 	captchaUrl: string | null
 }
 type mDtPType = {
-	login: (formData: FormType) => void
+	login: (formData: Form) => void
 	getAuthUserData: () => void
 }
 

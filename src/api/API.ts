@@ -1,5 +1,5 @@
 import axios from "axios"
-import { FormType } from "components/login/loginForm/LoginForm"
+import { Form } from "components/login/loginForm/LoginForm"
 import { ProfileFormType } from "components/profile/profileInfo/profileFormData/ProfileFormData"
 
 const instance = axios.create({
@@ -14,7 +14,7 @@ export const api = {
 	async getMe() {
 		return instance.get<ResponseServer<ResponseAuth>>(`auth/me`).then((res) => res.data)
 	},
-	async login(formData: FormType) {
+	async login(formData: Form) {
 		return instance.post<ResponseServer<{ id: number }>>(`auth/login`, formData).then((res) => res.data)
 	},
 	async logout() {

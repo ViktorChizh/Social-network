@@ -6,7 +6,7 @@ import { createField } from "components/common/createField/createField"
 import s from "./LoginForm.module.css"
 
 const minLength4 = minLengthCreator(4)
-const LoginForm = (props: InjectedFormProps<FormType, OwnPropsType> & OwnPropsType) => {
+const LoginForm = (props: InjectedFormProps<Form, OwnProps> & OwnProps) => {
 	return (
 		<div className={s.main}>
 			<h1>LOGIN</h1>
@@ -30,14 +30,14 @@ const LoginForm = (props: InjectedFormProps<FormType, OwnPropsType> & OwnPropsTy
 		</div>
 	)
 }
-export const LoginReduxForm = reduxForm<FormType, OwnPropsType>({ form: "login" })(LoginForm)
+export const LoginReduxForm = reduxForm<Form, OwnProps>({ form: "login" })(LoginForm)
 
-export type FormType = {
+export type Form = {
 	email: string
 	password: string
 	rememberMe: boolean
 	captcha?: string
 }
-type OwnPropsType = {
+type OwnProps = {
 	captchaUrl: string | null
 }
