@@ -7,13 +7,13 @@ import { getAuthUserData, logout } from "redux/AuthReducer"
 import { idSelector, isLoggedInSelector, loginSelector, ownUserAvatarSelector } from "utils/selectors/selectors"
 import { Header } from "./Header"
 
-class HeaderAPIContainer extends PureComponent<HeaderAPIContainerPropsType> {
+class HeaderAPIContainer extends PureComponent<HeaderAPIContainerProps> {
 	componentDidMount() {
 		if (this.props.login === null) {
 			this.props.getAuthUserData()
 		}
 	}
-	componentDidUpdate(prevProps: Readonly<HeaderAPIContainerPropsType>) {
+	componentDidUpdate(prevProps: Readonly<HeaderAPIContainerProps>) {
 		if (this.props.ownUserAvatar !== prevProps.ownUserAvatar) {
 			this.props.getAuthUserData()
 		}
@@ -30,19 +30,19 @@ class HeaderAPIContainer extends PureComponent<HeaderAPIContainerPropsType> {
 	}
 }
 
-type mStPType = {
+type MStP = {
 	isLoggedIn: boolean
 	ownUserAvatar: string
 	login: string
 	userId: number | null
 }
-type mDtPType = {
+type MDtP = {
 	getAuthUserData: () => void
 	logout: () => void
 }
-type HeaderAPIContainerPropsType = mStPType & mDtPType
+type HeaderAPIContainerProps = MStP & MDtP
 
-const MapStateToProps = (state: StateRedux): mStPType => ({
+const MapStateToProps = (state: StateRedux): MStP => ({
 	isLoggedIn: isLoggedInSelector(state),
 	ownUserAvatar: ownUserAvatarSelector(state) || "",
 	login: loginSelector(state) || "",
@@ -50,5 +50,5 @@ const MapStateToProps = (state: StateRedux): mStPType => ({
 })
 
 export const HeaderContainer = compose<ComponentType>(
-	connect<mStPType, mDtPType, unknown, StateRedux>(MapStateToProps, { getAuthUserData, logout }),
+	connect<MStP, MDtP, unknown, StateRedux>(MapStateToProps, { getAuthUserData, logout }),
 )(HeaderAPIContainer)
