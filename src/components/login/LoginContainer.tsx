@@ -8,12 +8,12 @@ import { getAuthUserData, login } from "redux/AuthReducer"
 import { captchaUrlSelector, isLoggedInSelector } from "utils/selectors/selectors"
 import s from "./Login.module.css"
 
-class Login extends Component<mStPType & mDtPType> {
+class Login extends Component<MStP & MDtP> {
 	componentDidMount() {
 		this.props.getAuthUserData()
 	}
 
-	componentDidUpdate(prevProps: Readonly<mStPType & mDtPType>) {
+	componentDidUpdate(prevProps: Readonly<MStP & MDtP>) {
 		if (this.props.captchaUrl !== prevProps.captchaUrl) {
 		}
 	}
@@ -31,19 +31,19 @@ class Login extends Component<mStPType & mDtPType> {
 	}
 }
 
-const mapStateToProps = (state: StateRedux): mStPType => ({
+const mapStateToProps = (state: StateRedux): MStP => ({
 	isLoggedIn: isLoggedInSelector(state),
 	captchaUrl: captchaUrlSelector(state),
 })
-type mStPType = {
+type MStP = {
 	isLoggedIn: boolean
 	captchaUrl: string | null
 }
-type mDtPType = {
+type MDtP = {
 	login: (formData: Form) => void
 	getAuthUserData: () => void
 }
 
 export const LoginContainer = compose<ComponentType>(
-	connect<mStPType, mDtPType, unknown, StateRedux>(mapStateToProps, { login, getAuthUserData }),
+	connect<MStP, MDtP, unknown, StateRedux>(mapStateToProps, { login, getAuthUserData }),
 )(Login)
