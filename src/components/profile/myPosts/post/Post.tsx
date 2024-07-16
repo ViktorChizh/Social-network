@@ -1,7 +1,7 @@
-import React, { FC } from "react"
-import s from "./Post.module.css"
+import React from 'react'
+import s from './Post.module.css'
 
-export const Post: FC<PostPropsType> = (props) => {
+export const Post = (props: PostProps) => {
 	return (
 		<div className={s.post}>
 			<div className={s.ava}>
@@ -19,6 +19,6 @@ export type PostType = {
 	likesCount: number
 	avatar: string
 }
-type PostPropsType = {
+type PostProps = {
 	post: PostType
 }
