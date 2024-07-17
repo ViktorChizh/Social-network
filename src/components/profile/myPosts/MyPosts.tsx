@@ -1,11 +1,11 @@
-import React, { FC } from "react"
-import s from "./MyPosts.module.css"
-import { Post } from "./post/Post"
-import { TextareaWithButton, TextForm } from "../../common/textareaWithButton/TextareaWithButton"
-import { addPostAC } from "../../../redux/ProfileReducer"
-import { MyPostsContainerType } from "./MyPostsContainer"
+import React from 'react'
+import {addPostAC} from '../../../redux/ProfileReducer'
+import {TextareaWithButton, TextForm} from '../../common/textareaWithButton/TextareaWithButton'
+import s from './MyPosts.module.css'
+import {MyPostsContainerType} from './MyPostsContainer'
+import {Post} from './post/Post'
 
-export const MyPosts: FC<MyPostsContainerType> = ({ profile, dispatch }) => {
+export const MyPosts = ({ profile, dispatch }: MyPostsContainerType) => {
 	const addPost = (formData: TextForm) => dispatch(addPostAC(formData.addPost))
 
 	return (
