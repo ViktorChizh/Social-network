@@ -6,20 +6,20 @@ import { ProfileType } from "redux/ProfileReducer"
 import { profilePageSelector } from "utils/selectors/selectors"
 import { MyPosts } from "./MyPosts"
 
-const mapStateToProps = (state: StateRedux): mStPType => ({
+const mapStateToProps = (state: StateRedux): MStP => ({
 	profile: profilePageSelector(state),
 })
 
-const mapDispatchToProps = (dispatch: Dispatch): mDtPType => ({ dispatch })
+const mapDispatchToProps = (dispatch: Dispatch): MDtP => ({ dispatch })
 
 export const MyPostsContainer = compose<ComponentType>(
-	connect<mStPType, mDtPType, unknown, StateRedux>(mapStateToProps, mapDispatchToProps),
+	connect<MStP, MDtP, unknown, StateRedux>(mapStateToProps, mapDispatchToProps),
 )(MyPosts)
 //types
-type mStPType = {
+type MStP = {
 	profile: ProfileType
 }
-type mDtPType = {
+type MDtP = {
 	dispatch: (action: StoreAction) => void
 }
-export type MyPostsContainerType = mStPType & mDtPType
+export type PostsContainer = MStP & MDtP

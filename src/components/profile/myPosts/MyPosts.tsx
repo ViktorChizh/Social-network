@@ -2,10 +2,10 @@ import React from 'react'
 import {addPostAC} from '../../../redux/ProfileReducer'
 import {TextareaWithButton, TextForm} from '../../common/textareaWithButton/TextareaWithButton'
 import s from './MyPosts.module.css'
-import {MyPostsContainerType} from './MyPostsContainer'
+import {PostsContainer} from './MyPostsContainer'
 import {Post} from './post/Post'
 
-export const MyPosts = ({ profile, dispatch }: MyPostsContainerType) => {
+export const MyPosts = ({ profile, dispatch }: PostsContainer) => {
 	const addPost = (formData: TextForm) => dispatch(addPostAC(formData.addPost))
 
 	return (
