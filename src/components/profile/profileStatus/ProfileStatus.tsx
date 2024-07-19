@@ -1,13 +1,13 @@
 import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from "react"
 import s from "../Profile.module.css"
 
-type PropsType = {
+type Props = {
 	status: string
 	isOwnStatus: boolean
 	updateStatus: (status: string) => void
 }
 
-export const ProfileStatus = ({ isOwnStatus, status, updateStatus }: PropsType) => {
+export const ProfileStatus = ({ isOwnStatus, status, updateStatus }: Props) => {
 	const [editMode, setEditMode] = useState(false)
 	const [currentStatus, setCurrentStatus] = useState(status)
 	useEffect(() => {
