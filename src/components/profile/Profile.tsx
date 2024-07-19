@@ -1,11 +1,11 @@
-import { ProfileFormType } from "components/profile/profileInfo/profileFormData/ProfileFormData"
-import React, { FC } from "react"
-import { ProfileUserType } from "redux/ProfileReducer"
-import { MyPostsContainer } from "./myPosts/MyPostsContainer"
-import s from "./Profile.module.css"
-import { ProfileInfo } from "./profileInfo/ProfileInfo"
+import {ProfileFormType} from 'components/profile/profileInfo/profileFormData/ProfileFormData'
+import React from 'react'
+import {ProfileUserType} from 'redux/ProfileReducer'
+import {MyPostsContainer} from './myPosts/MyPostsContainer'
+import s from './Profile.module.css'
+import {ProfileInfo} from './profileInfo/ProfileInfo'
 
-type PropsType = {
+type Props = {
 	profile: ProfileUserType
 	status: string
 	isOwnStatus: boolean
@@ -14,7 +14,7 @@ type PropsType = {
 	updateStatus: (status: string) => void
 	updateProfuleData: (formdata: ProfileFormType) => void
 }
-export const Profile: FC<PropsType> = (props) => {
+export const Profile = (props:Props) => {
 	document.title = "SocialNetwork - profile"
 	return (
 		<div className={s.main}>
