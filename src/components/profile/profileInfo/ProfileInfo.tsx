@@ -1,13 +1,13 @@
-import ava from "assets/avatar.webp"
-import { ProfileData } from "components/profile/profileInfo/profileData/ProfileData"
-import { ProfileStatus } from "components/profile/profileStatus/ProfileStatus"
-import React, { ChangeEvent, FC, useEffect, useState } from "react"
-import { ProfileUserType } from "redux/ProfileReducer"
-import { Preloader } from "../../common/preloader/Preloader"
-import s from "../Profile.module.css"
-import { ProfileFormData, ProfileFormType } from "./profileFormData/ProfileFormData"
+import ava from 'assets/avatar.webp'
+import {ProfileData} from 'components/profile/profileInfo/profileData/ProfileData'
+import {ProfileStatus} from 'components/profile/profileStatus/ProfileStatus'
+import React, {ChangeEvent, useEffect, useState} from 'react'
+import {ProfileUserType} from 'redux/ProfileReducer'
+import {Preloader} from '../../common/preloader/Preloader'
+import s from '../Profile.module.css'
+import {ProfileFormData, ProfileFormType} from './profileFormData/ProfileFormData'
 
-type PropsType = {
+type Props = {
 	profile: ProfileUserType
 	status: string
 	isOwnStatus: boolean
@@ -16,15 +16,7 @@ type PropsType = {
 	saveAvatar: (file: File) => void
 	updateProfuleData: (formdata: ProfileFormType) => void
 }
-export const ProfileInfo: FC<PropsType> = ({
-	profile,
-	status,
-	isOwnStatus,
-	isError,
-	updateStatus,
-	saveAvatar,
-	updateProfuleData,
-}) => {
+export const ProfileInfo = ({profile, status, isOwnStatus, isError, updateStatus, saveAvatar, updateProfuleData }: Props) => {
 	const [changeAVatar, setChangeAvatar] = useState(false)
 	const [isEditMode, setIsEditMode] = useState(false)
 
