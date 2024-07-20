@@ -1,10 +1,10 @@
 import s from "components/profile/Profile.module.css"
 import { Contact } from "components/profile/profileInfo/contact/Contact"
 import React from "react"
-import { ProfileUserType } from "redux/ProfileReducer"
+import { ProfileUser } from "redux/ProfileReducer"
 
 type Props = {
-	profile: ProfileUserType
+	profile: ProfileUser
 	isOwnStatus: boolean
 	setIsEditMode: (isEditMode: boolean) => void
 }

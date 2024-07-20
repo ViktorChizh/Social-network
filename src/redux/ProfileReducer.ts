@@ -1,7 +1,7 @@
 import { api, Photos, ResponseProfileUser } from "api/API"
 import ava from "assets/postAvatar.jpg"
 import { PostType } from "components/profile/myPosts/post/Post"
-import { ProfileFormType } from "components/profile/profileInfo/profileFormData/ProfileFormData"
+import { ProfileForm } from "components/profile/profileInfo/profileFormData/ProfileFormData"
 import { Action, Dispatch } from "redux"
 import { stopSubmit } from "redux-form"
 import { ThunkAction } from "redux-thunk"
@@ -9,7 +9,7 @@ import { StateRedux } from "redux/_Store-Redux"
 import { filterObjectInArray } from "utils/functions/filterInArray"
 
 let initialState = {
-	profile: {} as ProfileUserType,
+	profile: {} as ProfileUser,
 	status: "",
 	isError: false,
 	posts: [
@@ -55,7 +55,7 @@ export const profifeReducer = (state: ProfileType = initialState, action: Profif
 //actions
 export const addPostAC = (post: string | undefined) => ({ type: "profile/ADD-POST" as const, payload: { post } })
 export const deletePostAC = (id: number) => ({ type: "profile/DELETE-POST" as const, payload: { id } })
-export const setProfile = (profile: ProfileUserType) => ({ type: "profile/SET-PROFILE" as const, payload: { profile } })
+export const setProfile = (profile: ProfileUser) => ({ type: "profile/SET-PROFILE" as const, payload: { profile } })
 export const setStatus = (status: string) => ({ type: "profile/SET-STATUS" as const, payload: { status } })
 export const setAvatar = (photos: Photos) => ({ type: "profile/SET-AVATAR" as const, payload: { photos } })
 export const setIsError = (isError: boolean) => ({ type: "profile/SET-ISERROR" as const, payload: { isError } })
@@ -76,7 +76,7 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
 	}
 }
 export const updateProfuleData =
-	(formdata: ProfileFormType): ThunkAction<void, StateRedux, unknown, Action> =>
+	(formdata: ProfileForm): ThunkAction<void, StateRedux, unknown, Action> =>
 	async (dispatch, getState) => {
 		const res = await api.updateProfuleData(formdata)
 		if (res.resultCode === 0) {
@@ -94,10 +94,10 @@ export const saveAvatar = (file: File) => async (dispatch: Dispatch) => {
 	}
 }
 //types
-export type ProfileUserType = ResponseProfileUser & { userId: number }
+export type ProfileUser = ResponseProfileUser & { userId: number }
 
 export type ProfileType = {
-	profile: ProfileUserType
+	profile: ProfileUser
 	status: string
 	isError: boolean
 	posts: PostType[]

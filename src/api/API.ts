@@ -1,6 +1,6 @@
 import axios from "axios"
 import { Form } from "components/login/loginForm/LoginForm"
-import { ProfileFormType } from "components/profile/profileInfo/profileFormData/ProfileFormData"
+import { ProfileForm } from "components/profile/profileInfo/profileFormData/ProfileFormData"
 
 const instance = axios.create({
 	baseURL: "https://social-network.samuraijs.com/api/1.0/",
@@ -46,7 +46,7 @@ export const api = {
 	async updateStatus(status: string) {
 		return instance.put<ResponseServer>(`profile/status/`, { status }).then((res) => res.data)
 	},
-	async updateProfuleData(formdata: ProfileFormType) {
+	async updateProfuleData(formdata: ProfileForm) {
 		return instance.put<ResponseServer>(`profile/`, formdata).then((res) => res.data)
 	},
 	async updateAvatar(file: File) {

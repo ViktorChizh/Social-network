@@ -2,19 +2,19 @@ import ava from 'assets/avatar.webp'
 import {ProfileData} from 'components/profile/profileInfo/profileData/ProfileData'
 import {ProfileStatus} from 'components/profile/profileStatus/ProfileStatus'
 import React, {ChangeEvent, useEffect, useState} from 'react'
-import {ProfileUserType} from 'redux/ProfileReducer'
+import {ProfileUser} from 'redux/ProfileReducer'
 import {Preloader} from '../../common/preloader/Preloader'
 import s from '../Profile.module.css'
-import {ProfileFormData, ProfileFormType} from './profileFormData/ProfileFormData'
+import {ProfileFormData, ProfileForm} from './profileFormData/ProfileFormData'
 
 type Props = {
-	profile: ProfileUserType
+	profile: ProfileUser
 	status: string
 	isOwnStatus: boolean
 	isError: boolean
 	updateStatus: (status: string) => void
 	saveAvatar: (file: File) => void
-	updateProfuleData: (formdata: ProfileFormType) => void
+	updateProfuleData: (formdata: ProfileForm) => void
 }
 export const ProfileInfo = ({profile, status, isOwnStatus, isError, updateStatus, saveAvatar, updateProfuleData }: Props) => {
 	const [changeAVatar, setChangeAvatar] = useState(false)
@@ -25,7 +25,7 @@ export const ProfileInfo = ({profile, status, isOwnStatus, isError, updateStatus
 			saveAvatar(e.target.files[0])
 		}
 	}
-	const onSubmit = (formdata: ProfileFormType) => {
+	const onSubmit = (formdata: ProfileForm) => {
 		updateProfuleData(formdata)
 	}
 	useEffect(() => {

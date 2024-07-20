@@ -3,10 +3,10 @@ import { Input, TextArea } from "components/common/validatedComponent/ValidatedC
 import s from "components/login/loginForm/LoginForm.module.css"
 import React from "react"
 import { InjectedFormProps, reduxForm } from "redux-form"
-import { ProfileUserType } from "redux/ProfileReducer"
+import { ProfileUser } from "redux/ProfileReducer"
 import { required } from "utils/validators/textAreaValidator"
 
-export const _ProfileFormData = (props: InjectedFormProps<ProfileFormType, OwnPropsType> & OwnPropsType) => {
+export const _ProfileFormData = (props: InjectedFormProps<ProfileForm, OwnPropsType> & OwnPropsType) => {
 	const { profile } = props
 	return (
 		<div
@@ -38,9 +38,9 @@ export const _ProfileFormData = (props: InjectedFormProps<ProfileFormType, OwnPr
 	)
 }
 
-export const ProfileFormData = reduxForm<ProfileFormType, OwnPropsType>({ form: "profile" })(_ProfileFormData)
+export const ProfileFormData = reduxForm<ProfileForm, OwnPropsType>({ form: "profile" })(_ProfileFormData)
 
 type OwnPropsType = {
-	profile: ProfileUserType
+	profile: ProfileUser
 }
-export type ProfileFormType = Omit<ProfileUserType, "photos" | "userId">
+export type ProfileForm = Omit<ProfileUser, "photos" | "userId">

@@ -1,4 +1,4 @@
-import { ProfileFormType } from "components/profile/profileInfo/profileFormData/ProfileFormData"
+import { ProfileForm } from "components/profile/profileInfo/profileFormData/ProfileFormData"
 import React, { Component, ComponentType } from "react"
 import { connect } from "react-redux"
 import { Redirect, RouteComponentProps, withRouter } from "react-router-dom"
@@ -8,7 +8,7 @@ import { getAuthUserData } from "redux/AuthReducer"
 import {
 	getProfile,
 	getStatus,
-	ProfileUserType,
+	ProfileUser,
 	saveAvatar,
 	updateProfuleData,
 	updateStatus,
@@ -92,7 +92,7 @@ const mapStateToProps = (state: StateRedux): MStPType => ({
 })
 type MStPType = {
 	isLoggedIn: boolean
-	profile: ProfileUserType
+	profile: ProfileUser
 	status: string
 	id: number | null
 	isError: boolean
@@ -101,7 +101,7 @@ type MDtPType = {
 	getProfile: (userId: string) => void
 	getStatus: (userId: string) => void
 	updateStatus: (status: string) => void
-	updateProfuleData: (formdata: ProfileFormType) => void
+	updateProfuleData: (formdata: ProfileForm) => void
 	getAuthUserData: () => void
 	saveAvatar: (file: File, userId: number) => void
 }
