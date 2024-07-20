@@ -3,6 +3,7 @@
   "homepage": "https://ViktorChizh.github.io/Social-network/",
   "version": "0.1.0",
   "private": false,
+  "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "12.0.0",

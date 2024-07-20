@@ -1,10 +1,10 @@
-import { UserType } from "api/API"
-import React, { FC } from "react"
-import { NavLink } from "react-router-dom"
-import ava from "../../../assets/avatar.webp"
-import s from "../Users.module.css"
+import {UserType} from 'api/API'
+import React from 'react'
+import {NavLink} from 'react-router-dom'
+import ava from '../../../assets/avatar.webp'
+import s from '../Users.module.css'
 
-export const User: FC<UserPropsType> = ({ user, toggleFollowUser, buttonDisabled }) => {
+export const User = ({ user, toggleFollowUser, buttonDisabled }: UserProps) => {
 	return (
 		<div className={s.block} key={user.id}>
 			<div className={s.blockImg}>
@@ -37,7 +37,7 @@ export const User: FC<UserPropsType> = ({ user, toggleFollowUser, buttonDisabled
 	)
 }
 //types
-type UserPropsType = {
+type UserProps = {
 	user: UserType
 	buttonDisabled: number[]
 	toggleFollowUser: (userId: number, followed: boolean) => void
