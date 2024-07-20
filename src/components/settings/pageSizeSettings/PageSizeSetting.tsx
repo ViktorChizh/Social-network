@@ -1,11 +1,11 @@
-import React, { FC } from "react"
-import s from "components/settings/pageSizeSettings/PageSizeSetting.module.css"
+import s from 'components/settings/pageSizeSettings/PageSizeSetting.module.css'
+import React from 'react'
 
-type PageSizeSettingPropsType = {
+type PageSizeSettingProps = {
 	pageSize: number
 	setPageSize: (pageSize: number) => void
 }
-export const PageSizeSetting: FC<PageSizeSettingPropsType> = ({ pageSize, setPageSize }) => {
+export const PageSizeSetting = ({ pageSize, setPageSize }:PageSizeSettingProps) => {
 	return (
 		<div className={s.settings}>
 			<span>Number of users on the page (from 1 to 10): </span>
