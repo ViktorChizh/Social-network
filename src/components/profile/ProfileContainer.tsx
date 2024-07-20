@@ -23,7 +23,7 @@ import {
 } from "utils/selectors/selectors"
 import { Profile } from "./Profile"
 
-class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
+class ProfileAPIComponent extends Component<WithRouterProfileComponent> {
 	state = {
 		isOwnStatus: true,
 	}
@@ -42,7 +42,7 @@ class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
 	componentDidMount() {
 		this.refreshProfile()
 	}
-	componentDidUpdate(prevProps: Readonly<WithRouterProfileComponentType>) {
+	componentDidUpdate(prevProps: Readonly<WithRouterProfileComponent>) {
 		if (
 			this.props.id !== prevProps.id ||
 			this.props.status !== prevProps.status ||
@@ -83,21 +83,21 @@ class ProfileAPIComponent extends Component<WithRouterProfileComponentType> {
 	}
 }
 
-const mapStateToProps = (state: StateRedux): MStPType => ({
+const mapStateToProps = (state: StateRedux): MStP => ({
 	isLoggedIn: isLoggedInSelector(state),
 	profile: profileSelector(state),
 	status: statusSelector(state),
 	id: idSelector(state),
 	isError: isErrorSelector(state),
 })
-type MStPType = {
+type MStP = {
 	isLoggedIn: boolean
 	profile: ProfileUser
 	status: string
 	id: number | null
 	isError: boolean
 }
-type MDtPType = {
+type MDtP = {
 	getProfile: (userId: string) => void
 	getStatus: (userId: string) => void
 	updateStatus: (status: string) => void
@@ -105,7 +105,7 @@ type MDtPType = {
 	getAuthUserData: () => void
 	saveAvatar: (file: File, userId: number) => void
 }
-type WithRouterProfileComponentType = MStPType & MDtPType & RouteComponentProps<{ userId?: string }>
+type WithRouterProfileComponent = MStP & MDtP & RouteComponentProps<{ userId?: string }>
 
 export const ProfileContainer = compose<ComponentType>(
 	withAuthRedirect,
