@@ -5,7 +5,7 @@ import { stopSubmit } from "redux-form"
 import { ThunkDispatch } from "redux-thunk"
 import defaultAvatar from "../assets/avatar.webp"
 
-let initialState: AuthReducerType = {
+let initialState: AuthReducer = {
 	id: null,
 	email: null,
 	login: null,
@@ -15,7 +15,7 @@ let initialState: AuthReducerType = {
 	captchaUrl: null,
 }
 
-export const authReducer = (state: AuthReducerType = initialState, action: AuthReducerAction): AuthReducerType => {
+export const authReducer = (state: AuthReducer = initialState, action: AuthReducerAction): AuthReducer => {
 	switch (action.type) {
 		case "auth/INITIALIZE":
 			return { ...state, isAuth: true }
@@ -37,7 +37,7 @@ export const authReducer = (state: AuthReducerType = initialState, action: AuthR
 	}
 }
 //types
-export type AuthReducerType = ResponseAuth & {
+export type AuthReducer = ResponseAuth & {
 	isAuth: boolean
 	isLoggedIn: boolean
 	ownUserAvatar: string | null
@@ -90,7 +90,7 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
 	}
 }
 export const login =
-	(formData: Form) => async (dispatch: ThunkDispatch<AuthReducerType, unknown, AuthReducerAction>) => {
+	(formData: Form) => async (dispatch: ThunkDispatch<AuthReducer, unknown, AuthReducerAction>) => {
 		const res = await api.login(formData)
 		if (res.resultCode === 0) {
 			await dispatch(getAuthUserData())
