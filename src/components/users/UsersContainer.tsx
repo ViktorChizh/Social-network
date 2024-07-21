@@ -19,7 +19,7 @@ import { Preloader } from "../common/preloader/Preloader"
 import { Users } from "./Users"
 import s from "./Users.module.css"
 
-class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
+class UsersAPIComponent extends Component<UsersAPIComponentProps> {
 	componentDidMount() {
 		this.props.getUsers(this.props.pageSize, this.props.currentPage)
 	}
@@ -50,7 +50,7 @@ class UsersAPIComponent extends Component<UsersAPIComponentPropsType> {
 		)
 	}
 }
-const mapStateToProps = (state: StateRedux): mStPType => ({
+const mapStateToProps = (state: StateRedux): MStP => ({
 	users: usersSelector(state),
 	pageSize: pageSizeSelector(state),
 	currentPage: currentPageSelector(state),
@@ -64,7 +64,7 @@ const UsersContainer = compose<ComponentType>(
 	connect(mapStateToProps, { setCurrentPage, toggleFollowUser, getUsers }),
 )(UsersAPIComponent)
 //types
-type mStPType = {
+type MStP = {
 	users: UserType[]
 	pageSize: number
 	currentPage: number
@@ -73,11 +73,11 @@ type mStPType = {
 	buttonDisabled: number[]
 	isLoggedIn: boolean
 }
-type mDtPType = {
+type MDtP = {
 	setCurrentPage: (currentPage: number) => void
 	toggleFollowUser: (userId: number, followed: boolean) => void
 	getUsers: (pageSize: number, currentPage: number) => void
 }
-type UsersAPIComponentPropsType = mStPType & mDtPType
+type UsersAPIComponentProps = MStP & MDtP
 
 export default UsersContainer
