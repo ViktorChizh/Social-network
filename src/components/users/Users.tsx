@@ -1,9 +1,9 @@
-import { UserType } from "api/API"
-import React, { FC } from "react"
-import { Paginator } from "../common/paginator/Paginator"
-import { User } from "./user/User"
+import {UserType} from 'api/API'
+import React from 'react'
+import {Paginator} from '../common/paginator/Paginator'
+import {User} from './user/User'
 
-export const Users: FC<UsersPropsType> = (props) => {
+export const Users = (props: UsersProps) => {
 	let { users, pageSize, currentPage, totalCount, buttonDisabled, onPageChanged, toggleFollowUser } = props
 	document.title = "SocialNetwork - users"
 	return (
@@ -16,7 +16,7 @@ export const Users: FC<UsersPropsType> = (props) => {
 	)
 }
 //types
-type UsersPropsType = {
+type UsersProps = {
 	users: UserType[]
 	pageSize: number
 	currentPage: number
