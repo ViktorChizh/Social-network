@@ -15,7 +15,7 @@ let initialState: AuthReducerType = {
 	captchaUrl: null,
 }
 
-export const authReducer = (state: AuthReducerType = initialState, action: AuthReducerActionType): AuthReducerType => {
+export const authReducer = (state: AuthReducerType = initialState, action: AuthReducerAction): AuthReducerType => {
 	switch (action.type) {
 		case "auth/INITIALIZE":
 			return { ...state, isAuth: true }
@@ -43,7 +43,7 @@ export type AuthReducerType = ResponseAuth & {
 	ownUserAvatar: string | null
 	captchaUrl: string | null
 }
-export type AuthReducerActionType =
+export type AuthReducerAction =
 	| ReturnType<typeof setAuthUserData>
 	| ReturnType<typeof logoutUser>
 	| ReturnType<typeof initialize>
@@ -90,7 +90,7 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
 	}
 }
 export const login =
-	(formData: Form) => async (dispatch: ThunkDispatch<AuthReducerType, unknown, AuthReducerActionType>) => {
+	(formData: Form) => async (dispatch: ThunkDispatch<AuthReducerType, unknown, AuthReducerAction>) => {
 		const res = await api.login(formData)
 		if (res.resultCode === 0) {
 			await dispatch(getAuthUserData())

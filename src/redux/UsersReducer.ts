@@ -14,7 +14,7 @@ const initialstate: UsersReducerType = {
 
 export const usersReducer = (
 	state: UsersReducerType = initialstate,
-	action: UsersReducerActionType,
+	action: UsersReducerAction,
 ): UsersReducerType => {
 	switch (action.type) {
 		case "users/SET-USERS":
@@ -95,7 +95,7 @@ export type UsersReducerType = {
 	isPreloading: boolean
 	buttonDisabled: number[]
 }
-export type UsersReducerActionType =
+export type UsersReducerAction =
 	| ReturnType<typeof setUsers>
 	| ReturnType<typeof setTotalCount>
 	| ReturnType<typeof setCurrentPage>

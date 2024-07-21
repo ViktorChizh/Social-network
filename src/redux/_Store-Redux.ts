@@ -1,8 +1,8 @@
 import { applyMiddleware, combineReducers, createStore } from "redux"
-import { profifeReducer, ProfifeReducerActionType } from "./ProfileReducer"
-import { dialogReducer, DialogReducerActionType } from "./DialogReducer"
-import { usersReducer, UsersReducerActionType } from "./UsersReducer"
-import { authReducer, AuthReducerActionType } from "./AuthReducer"
+import { profifeReducer, ProfifeReducerAction } from "./ProfileReducer"
+import { dialogReducer, DialogReducerAction } from "./DialogReducer"
+import { usersReducer, UsersReducerAction } from "./UsersReducer"
+import { authReducer, AuthReducerAction } from "./AuthReducer"
 import { reducer as formReducer } from "redux-form"
 import thunkMiddleWare from "redux-thunk"
 
@@ -16,12 +16,7 @@ export const rootReduser = combineReducers({
 
 export const store = createStore(rootReduser, applyMiddleware(thunkMiddleWare))
 //types
-export type StoreReduxType = typeof store
-export type StoreAction =
-	| ProfifeReducerActionType
-	| DialogReducerActionType
-	| UsersReducerActionType
-	| AuthReducerActionType
+export type StoreRedux = typeof store
+export type StoreAction = ProfifeReducerAction | DialogReducerAction | UsersReducerAction | AuthReducerAction
 export type StateRedux = ReturnType<typeof rootReduser>
-//@ts-ignore
-window.store = store
+

@@ -22,7 +22,7 @@ let initialState = {
 	],
 }
 
-export const profifeReducer = (state: ProfileType = initialState, action: ProfifeReducerActionType): ProfileType => {
+export const profifeReducer = (state: ProfileType = initialState, action: ProfifeReducerAction): ProfileType => {
 	switch (action.type) {
 		case "profile/ADD-POST": {
 			let newPost: PostType = {
@@ -103,7 +103,7 @@ export type ProfileType = {
 	posts: PostType[]
 }
 
-export type ProfifeReducerActionType =
+export type ProfifeReducerAction =
 	| ReturnType<typeof addPostAC>
 	| ReturnType<typeof deletePostAC>
 	| ReturnType<typeof setProfile>

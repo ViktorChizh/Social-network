@@ -14,7 +14,7 @@ let initialState = {
 	],
 }
 
-export const dialogReducer = (state: DialogType = initialState, action: DialogReducerActionType): DialogType => {
+export const dialogReducer = (state: DialogType = initialState, action: DialogReducerAction): DialogType => {
 	switch (action.type) {
 		case "dialog/ADD-DIALOG": {
 			let newDialog: DialogItemProps = {
@@ -39,7 +39,7 @@ export type DialogType = {
 	dialogs: DialogItemProps[]
 	messages: MessageType[]
 }
-export type DialogReducerActionType = ReturnType<typeof addDialogAC> | ReturnType<typeof addMessageAC>
+export type DialogReducerAction = ReturnType<typeof addDialogAC> | ReturnType<typeof addMessageAC>
 //actions
 export const addDialogAC = (dialog: string | undefined) => ({ type: "dialog/ADD-DIALOG" as const, payload: { dialog } })
 export const addMessageAC = (message: string | undefined) => ({
