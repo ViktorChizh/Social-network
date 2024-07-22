@@ -4,7 +4,7 @@ import { dialogSelector, isLoggedInSelector } from "utils/selectors/selectors"
 import { Dialogs } from "./Dialogs"
 import { connect } from "react-redux"
 import { StateRedux, StoreAction } from "redux/_Store-Redux"
-import { DialogType } from "redux/DialogReducer"
+import { DialogPage } from "redux/DialogReducer"
 import { compose, Dispatch } from "redux"
 
 const mapStateToProps = (state: StateRedux): MStP => ({
@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch: Dispatch): MDtP => ({ dispatch })
 const DialogsContainer = compose<ComponentType>(withAuthRedirect, connect(mapStateToProps, mapDispatchToProps))(Dialogs)
 //types
 type MStP = {
-	dialog: DialogType
+	dialog: DialogPage
 	isLoggedIn: boolean
 }
 type MDtP = {

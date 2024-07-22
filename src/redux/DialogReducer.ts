@@ -14,7 +14,7 @@ let initialState = {
 	],
 }
 
-export const dialogReducer = (state: DialogType = initialState, action: DialogReducerAction): DialogType => {
+export const dialogReducer = (state: DialogPage = initialState, action: DialogReducerAction): DialogPage => {
 	switch (action.type) {
 		case "dialog/ADD-DIALOG": {
 			let newDialog: DialogItemProps = {
@@ -35,7 +35,7 @@ export const dialogReducer = (state: DialogType = initialState, action: DialogRe
 	}
 }
 //types
-export type DialogType = {
+export type DialogPage = {
 	dialogs: DialogItemProps[]
 	messages: MessageType[]
 }
