@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {Dispatch} from 'redux'
 import {StateRedux, StoreAction} from 'redux/_Store-Redux'
-import {ProfileType} from 'redux/ProfileReducer'
+import {ProfilePage} from 'redux/ProfileReducer'
 import {profilePageSelector} from 'utils/selectors/selectors'
 import {MyPosts} from './MyPosts'
 
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch: Dispatch): MDtP => ({ dispatch })
 export const MyPostsContainer = connect<MStP, MDtP, unknown, StateRedux>(mapStateToProps, mapDispatchToProps)(MyPosts)
 //types
 type MStP = {
-	profile: ProfileType
+	profile: ProfilePage
 }
 type MDtP = {
 	dispatch: (action: StoreAction) => void

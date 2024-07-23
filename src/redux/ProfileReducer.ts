@@ -1,6 +1,6 @@
 import { api, Photos, ResponseProfileUser } from "api/API"
 import ava from "assets/postAvatar.jpg"
-import { PostType } from "components/profile/myPosts/post/Post"
+import { ProfilePost } from "components/profile/myPosts/post/Post"
 import { ProfileForm } from "components/profile/profileInfo/profileFormData/ProfileFormData"
 import { Action, Dispatch } from "redux"
 import { stopSubmit } from "redux-form"
@@ -22,10 +22,10 @@ let initialState = {
 	],
 }
 
-export const profifeReducer = (state: ProfileType = initialState, action: ProfifeReducerAction): ProfileType => {
+export const profifeReducer = (state: ProfilePage = initialState, action: ProfifeReducerAction): ProfilePage => {
 	switch (action.type) {
 		case "profile/ADD-POST": {
-			let newPost: PostType = {
+			let newPost: ProfilePost = {
 				id: state.posts[state.posts.length - 1].id + 1,
 				message: action.payload.post || "",
 				likesCount: 0,
@@ -96,11 +96,11 @@ export const saveAvatar = (file: File) => async (dispatch: Dispatch) => {
 //types
 export type ProfileUser = ResponseProfileUser & { userId: number }
 
-export type ProfileType = {
+export type ProfilePage = {
 	profile: ProfileUser
 	status: string
 	isError: boolean
-	posts: PostType[]
+	posts: ProfilePost[]
 }
 
 export type ProfifeReducerAction =

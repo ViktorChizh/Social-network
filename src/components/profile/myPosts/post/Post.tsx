@@ -13,12 +13,12 @@ export const Post = (props: PostProps) => {
 	)
 }
 //types
-export type PostType = {
+export type ProfilePost = {
 	id: number
 	message: string
 	likesCount: number
 	avatar: string
 }
 type PostProps = {
-	post: PostType
+	post: ProfilePost
 }
