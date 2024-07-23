@@ -1,9 +1,9 @@
-import { api, UserType } from "api/API"
+import { api, User } from "api/API"
 import { Dispatch } from "redux"
 import { filterObjectInArray } from "utils/functions/filterInArray"
 import { updateObjectInArray } from "utils/functions/updateObjectInArray"
 
-const initialstate: UsersReducerType = {
+const initialstate: UsersReducer = {
 	users: [],
 	pageSize: 3,
 	currentPage: 1,
@@ -13,9 +13,9 @@ const initialstate: UsersReducerType = {
 }
 
 export const usersReducer = (
-	state: UsersReducerType = initialstate,
+	state: UsersReducer = initialstate,
 	action: UsersReducerAction,
-): UsersReducerType => {
+): UsersReducer => {
 	switch (action.type) {
 		case "users/SET-USERS":
 			return { ...state, users: action.payload.users }
@@ -48,7 +48,7 @@ export const followUnFollow = (userId: number, followed: boolean) => ({
 	type: "users/FOLLOW-UNFOLLOW" as const,
 	payload: { userId, followed },
 })
-export const setUsers = (users: UserType[]) => ({ type: "users/SET-USERS" as const, payload: { users } })
+export const setUsers = (users: User[]) => ({ type: "users/SET-USERS" as const, payload: { users } })
 export const setPageSize = (pageSize: number) => ({ type: "users/SET-PAGESIZE" as const, payload: { pageSize } })
 export const setTotalCount = (totalCount: number) => ({
 	type: "users/SET-TOTALCOUNT" as const,
@@ -87,8 +87,8 @@ export const toggleFollowUser = (id: number, followed: boolean) => async (dispat
 }
 //types
 
-export type UsersReducerType = {
-	users: UserType[]
+export type UsersReducer = {
+	users: User[]
 	pageSize: number
 	currentPage: number
 	totalCount: number

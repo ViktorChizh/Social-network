@@ -10,7 +10,7 @@ export default {
 export const DialogItemDemo = () => {
 	return (
 		<BrowserRouter>
-			<DialogItem id={1} name={"Test user"} />
+			<DialogItem id={1} name={"Test userItem"} />
 		</BrowserRouter>
 	)
 }

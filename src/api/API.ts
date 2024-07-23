@@ -73,7 +73,7 @@ export type ResponseServer<D = {}> = {
 	messages: string[]
 }
 export type ResponseUser = {
-	items: UserType[]
+	items: User[]
 	totalCount: number
 	error: string
 }
@@ -87,7 +87,7 @@ export type ResponseProfileUser = {
 	photos: Photos
 }
 
-export type UserType = {
+export type User = {
 	id: number
 	name: string
 	status: string

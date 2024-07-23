@@ -1,10 +1,10 @@
-import {UserType} from 'api/API'
+import {User} from 'api/API'
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import ava from '../../../assets/avatar.webp'
 import s from '../Users.module.css'
 
-export const User = ({ user, toggleFollowUser, buttonDisabled }: UserProps) => {
+export const UserItem = ({ user, toggleFollowUser, buttonDisabled }: UserProps) => {
 	return (
 		<div className={s.block} key={user.id}>
 			<div className={s.blockImg}>
@@ -38,7 +38,7 @@ export const User = ({ user, toggleFollowUser, buttonDisabled }: UserProps) => {
 }
 //types
 type UserProps = {
-	user: UserType
+	user: User
 	buttonDisabled: number[]
 	toggleFollowUser: (userId: number, followed: boolean) => void
 }

@@ -1,4 +1,4 @@
-import { UserType } from "api/API"
+import { User } from "api/API"
 import { withAuthRedirect } from "utils/hoc/withAuthRedirect"
 import React, { Component, ComponentType } from "react"
 import { connect } from "react-redux"
@@ -65,7 +65,7 @@ const UsersContainer = compose<ComponentType>(
 )(UsersAPIComponent)
 //types
 type MStP = {
-	users: UserType[]
+	users: User[]
 	pageSize: number
 	currentPage: number
 	totalCount: number
