@@ -4,10 +4,10 @@ import { addDialogAC, addMessageAC } from "../../redux/DialogReducer"
 import { TextareaWithButton, TextForm } from "../common/textareaWithButton/TextareaWithButton"
 import { DialogItem } from "./dialogItem/DialogItem"
 import s from "./Dialogs.module.css"
-import { DialogsContainerType } from "./DialogsContainer"
+import { ContainerDialogs } from "./DialogsContainer"
 import { Message } from "./message/Message"
 
-export const Dialogs = ({ dialog, dispatch, isLoggedIn }:DialogsContainerType) => {
+export const Dialogs = ({ dialog, dispatch, isLoggedIn }:ContainerDialogs) => {
 	document.title = "SocialNetwork - dialogs"
 	const addDialog = (formData: TextForm) => dispatch(addDialogAC(formData.addDialog))
 	const addMessage = (formData: TextForm) => dispatch(addMessageAC(formData.addMessage))

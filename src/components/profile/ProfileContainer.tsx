@@ -23,7 +23,7 @@ import {
 } from "utils/selectors/selectors"
 import { Profile } from "./Profile"
 
-class ProfileAPIComponent extends Component<WithRouterProfileComponent> {
+class ProfileAPIComponent extends Component<ProfileCotainer> {
 	state = {
 		isOwnStatus: true,
 	}
@@ -42,7 +42,7 @@ class ProfileAPIComponent extends Component<WithRouterProfileComponent> {
 	componentDidMount() {
 		this.refreshProfile()
 	}
-	componentDidUpdate(prevProps: Readonly<WithRouterProfileComponent>) {
+	componentDidUpdate(prevProps: Readonly<ProfileCotainer>) {
 		if (
 			this.props.id !== prevProps.id ||
 			this.props.status !== prevProps.status ||
@@ -105,7 +105,7 @@ type MDtP = {
 	getAuthUserData: () => void
 	saveAvatar: (file: File, userId: number) => void
 }
-type WithRouterProfileComponent = MStP & MDtP & RouteComponentProps<{ userId?: string }>
+type ProfileCotainer = MStP & MDtP & RouteComponentProps<{ userId?: string }>
 
 export const ProfileContainer = compose<ComponentType>(
 	withAuthRedirect,

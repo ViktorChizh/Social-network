@@ -23,6 +23,6 @@ type MStP = {
 type MDtP = {
 	dispatch: (AC: StoreAction) => void
 }
-export type DialogsContainerType = MStP & MDtP
+export type ContainerDialogs = MStP & MDtP
 
 export default DialogsContainer
