@@ -5,9 +5,7 @@ import { ProfileForm } from "components/profile/profileInfo/profileFormData/Prof
 const instance = axios.create({
 	baseURL: "https://social-network.samuraijs.com/api/1.0/",
 	withCredentials: true,
-	headers: {
-		"API-KEY": "7786fc28-3a8a-4ff6-a330-c22ffae6ff54",
-	},
+	headers: { "API-KEY": "7786fc28-3a8a-4ff6-a330-c22ffae6ff54" },
 })
 
 export const api = {
@@ -52,13 +50,8 @@ export const api = {
 	async updateAvatar(file: File) {
 		const formData = new FormData()
 		formData.append("image", file)
-		return instance
-			.put<ResponseServer<Photos>>(`profile/photo/`, formData, {
-				headers: {
-					"Content-Type": "multipart/form-data",
-				},
-			})
-			.then((res) => res.data)
+		return instance.put<ResponseServer<Photos>>(`profile/photo/`, formData, { headers: {
+					"Content-Type": "multipart/form-data" }}).then((res) => res.data)
 	},
 }
 //types

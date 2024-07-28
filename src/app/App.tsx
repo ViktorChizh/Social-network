@@ -21,7 +21,7 @@ const UsersContainer = React.lazy(() => import("components/users/UsersContainer"
 const Music = React.lazy(() => import("components/music/Music"))
 const News = React.lazy(() => import("components/news/News"))
 
-class App extends React.Component<mStPType & mDtPType> {
+class App extends React.Component<MStP & MDtP> {
 	catchAllUnhandledErrors = (promiseRejectionEvent: PromiseRejectionEvent) => {
 		alert(promiseRejectionEvent.reason || "some error occured")
 	}
@@ -62,17 +62,11 @@ class App extends React.Component<mStPType & mDtPType> {
 	}
 }
 
-type mStPType = {
-	isAuth: boolean
-}
-type mDtPType = {
-	checkInitialize: () => void
-}
-const MapStateToProps = (state: StateRedux): mStPType => ({
-	isAuth: state.auth.isAuth,
-})
+type MStP = { isAuth: boolean }
+type MDtP = { checkInitialize: () => void }
+const MapStateToProps = (state: StateRedux): MStP => ({ isAuth: state.auth.isAuth })
 
 export default compose<ComponentType>(
 	withRouter,
-	connect<mStPType, mDtPType, unknown, StateRedux>(MapStateToProps, { checkInitialize }),
+	connect<MStP, MDtP, unknown, StateRedux>(MapStateToProps, { checkInitialize }),
 )(App)
